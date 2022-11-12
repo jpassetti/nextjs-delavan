@@ -1,0 +1,16 @@
+@use '../sass/abstracts/vars';
+
+.label {
+    display: inline-block;
+    font-size: .8rem;
+    letter-spacing: 1px;
+    padding: 0.2em 0;
+    font-weight: 700;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    font-family: vars.$font_primary;
+    text-transform: uppercase;
+}
