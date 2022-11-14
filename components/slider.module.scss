@@ -1,0 +1,17 @@
+.slider {
+   &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+   }
+   &__item {
+    background-color: white;
+    padding: 1rem;
+    cursor: pointer;
+    &.active {
+        border: 1px solid red;
+    }
+   }
+}

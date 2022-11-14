@@ -12,14 +12,15 @@ const Heading = ({
 	fontStyle = "normal",
 	fontWeight = "bold",
 	level, 
+	letterSpacing,
 	lineHeight = "normal",
 	marginTop, 
 	marginBottom, 
 	marginLeft, 
 	marginRight, 
-	textAlign = "left", 
+	textAlign, 
 	textTransform,
-	size
+	size,
 }) => {
 	const Tag = level > 6 ? 'h6' : `h${level}`
 
@@ -38,7 +39,9 @@ const Heading = ({
 		[`font-style-${fontStyle}`] : fontStyle,
 		[`line-height-${lineHeight}`] : lineHeight,
 		[`font-family-${fontFamily}`] : fontFamily,
-		[`size-${size}`] : size
+		[`font-size-${size}`] : size,
+		[`letter-spacing-${letterSpacing}`] : letterSpacing,
+
 	});
 
 	return <Tag className={`${headingClasses} ${className}`}>{children}</Tag>

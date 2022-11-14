@@ -4,7 +4,7 @@ import styles from './search.module.scss'
 
 const Search = () => {
     return <div className={styles.search}>
-        <Input value="Search" onChange={null} />
+        <Input value="Search" onChange={() => {}} />
     </div>
 }
 export default Search

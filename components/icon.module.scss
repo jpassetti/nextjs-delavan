@@ -1,7 +1,11 @@
+@use '../sass/abstracts/vars';
+
 .icon {
     width: 1.5rem;
     height: auto;
+    fill: lightgray;
+    transition: all .35s;
     &.active {
-        fill: orange;
+        fill: vars.$color__primary;
     }
 }

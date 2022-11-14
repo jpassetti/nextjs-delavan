@@ -1,0 +1,17 @@
+@use '../sass/abstracts/vars';
+
+.nav {
+    &__link {
+        color: white;
+        font-family: vars.$font__primary;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        display: block;
+        text-decoration: none;
+        font-weight: 700;
+        &:hover, &:focus {
+            color: white;
+            text-decoration: underline;
+        }
+    }
+}

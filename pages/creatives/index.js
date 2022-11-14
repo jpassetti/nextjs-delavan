@@ -35,6 +35,7 @@ const CreativesLandingPage = ({creativesData, categoriesData}) => {
         <Showcase 
             title="Creatives" 
             introduction="This is the introduction to the creatives landing page"
+            backgroundImage="https://picsum.photos/id/100/600/400"
         />
         <Container>
             <Filters 
@@ -44,9 +45,9 @@ const CreativesLandingPage = ({creativesData, categoriesData}) => {
                 displayFormatClickHandler={setDisplayFormat} 
             />
             {displayFormat === 'grid' ? 
-                <Grid data={filteredCreatives} />
+                <Grid data={filteredCreatives} parentSlug="creatives" />
             : displayFormat === 'list' ?
-                <List data={filteredCreatives} />
+                <List data={filteredCreatives} parentSlug="creatives" />
             : 'No format'
             }
         </Container>

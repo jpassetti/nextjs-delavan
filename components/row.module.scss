@@ -1,0 +1,26 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -.5rem;
+	@include mixins.marginAndPadding();
+	@include mixins.alignItems();
+	@include mixins.justifyContent();
+	@include mixins.flexDirection();
+}
+.table-header {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	border-bottom: 2px solid vars.$color__blue;
+	@include mixins.breakpoint(xs) {
+			display: none;
+		}
+}
+.table-row {
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+	border-bottom: 1px dotted vars.$color__blue;
+	margin-bottom: 0;
+}

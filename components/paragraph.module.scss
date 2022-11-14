@@ -4,12 +4,10 @@
 .paragraph {
 	font-size: 1.1rem;
 	line-height: 1.4;
-	font-family: vars.$font_primary;
-	color: black;
-
+	font-family: vars.$font__primary;
+	display: block;
 	&.intro {
 		font-size: 1.3rem;
-		font-family: vars.$font_primary;
 		max-width: 35em;
 
 		@include mixins.breakpoint(sm) {

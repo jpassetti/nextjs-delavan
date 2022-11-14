@@ -1,9 +1,14 @@
+@use '../sass/abstracts/mixins';
+
 .cardgroup {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
+    width: 70vw;
+    display: grid;
     gap: 1rem;
-    width: 800px;
-    background-color: yellow;
+    grid-template-columns: 1fr;
+    //background-color: yellow;
+    position: relative;
+    z-index: 2;
+    @include mixins.breakpoint(laptop) {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

@@ -2,12 +2,18 @@ import Card from './Card'
 
 import styles from './grid.module.scss'
 
-const Grid = ({data}) => {
-    return <div className={styles.grid}>
+const Grid = ({data, parentSlug}) => {
+    return <section className={styles.grid}>
         {data.map((item, index) => {
-            const {title, categories} = item;
-            return <Card key={index} title={item.title} categoryIds={categories} />
+            const {title, slug, featuredImage, excerpt, categories} = item;
+            return <Card 
+                key={index} 
+                title={title} 
+                slug={`${parentSlug ? parentSlug : ''}/${slug}`} 
+                categoryIds={categories} 
+                backgroundImage={featuredImage?.node.sourceUrl}
+            />
         })}
-    </div>
+    </section>
 }
 export default Grid;

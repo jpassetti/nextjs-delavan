@@ -1,0 +1,52 @@
+@use '../sass/abstracts/vars';
+
+.blue {
+    fill: vars.$color__blue;
+}
+.tan {
+    fill: vars.$color__tan;
+}
+.red {
+    fill: vars.$color__red;
+}
+.line {
+    fill: none;
+    @for $i from 0 through 32 {
+        &.stroke-width-#{$i} {
+           stroke-width: calc($i / 2);
+        }
+    }
+    &.stroke-white {
+        stroke: white;
+    }
+    &.stroke-tan {
+        stroke: tan;
+    }
+}
+.rect {
+    fill: none;
+    transition: all .5s;
+    @for $i from 0 through 32 {
+        &.stroke-width-#{$i} {
+            stroke-width: calc($i / 2);
+        }
+    }
+    &.stroke-white {
+        stroke: white;
+    }
+    &.stroke-tan {
+        stroke: tan;
+    }
+    &.fill-blue {
+        fill: vars.$color__blue;
+    }   
+    &.fill-red {
+        fill: vars.$color__red;
+    }
+    &.fill-transparent {
+        fill: transparent;
+        &:hover{
+            //fill: vars.$color__red;
+        }
+    }
+}

@@ -1,16 +1,29 @@
+@use '../sass/abstracts/mixins';
+
 .filters {
     //background-color: orange;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     margin-top: 1rem;
     margin-bottom: 1rem;
     border-top: 1px solid black;
     padding-top: 1rem;
+    @include mixins.breakpoint(tablet) {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 .filtersLeft {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 50%;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
     gap: 1rem;
+    text-align: left;
+    @include mixins.breakpoint(tablet) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: 50%;
+    }
 }

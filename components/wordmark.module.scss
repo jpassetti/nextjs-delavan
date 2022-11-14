@@ -1,0 +1,10 @@
+.wordmark {
+    width: 100%;
+    height: auto;
+    &.white {
+        fill: white;
+    }
+    &.black {
+        fill: black;
+    }
+}

@@ -170,10 +170,7 @@
 }
 
 @mixin fontWeight() {
-	$values: 500,
-	700,
-	normal,
-	bold;
+	$values: 300, 400, 500, 700, 900, normal, bold;
 
 	@each $value in $values {
 		&.font-weight-#{$value} {
@@ -205,7 +202,7 @@
 }
 
 @mixin fontFamily() {
-	$values: ("primary" : "Arial", "secondary" : "Georgia");
+	$values: ("primary" : vars.$font__primary, "secondary" : vars.$font__secondary);
 
 	@each $key,
 	$value in $values {
@@ -232,9 +229,18 @@
 		}
 	}
 }
+@mixin letterSpacing() {
+	$values: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+
+	@each $value in $values {
+		&.letter-spacing-#{$value} {
+			letter-spacing: #{$value}px;
+		}
+	}
+}
 
 @mixin fontColor() {
-	$colors: ("black" : "#000000", "white": "#ffffff", "blue": "blue", "orange": "orange");
+	$colors: ("black" : "#000000", "white": "#ffffff", "blue": vars.$color__blue, "tan": vars.$color__tan);
 
 	@each $color,
 	$value in $colors {

@@ -1,4 +1,7 @@
+@use '../sass/abstracts/vars';
+
 .select {
     width: 100%;
     padding: 0.5rem;
+    font-family: vars.$font__primary;
 }

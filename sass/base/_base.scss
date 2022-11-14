@@ -9,9 +9,18 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, li {
 ol, ul, li {
     list-style: none;
 }
+img, svg {
+    vertical-align: top;
+}
 * {
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 body {
-    background-color: lightgray;
+    background-color: white;
+}
+.responsive-img {
+    width: 100%;
+    height: auto;
 }

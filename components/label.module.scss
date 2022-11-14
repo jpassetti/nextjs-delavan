@@ -3,7 +3,7 @@
 .label {
     display: inline-block;
     font-size: .8rem;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     padding: 0.2em 0;
     font-weight: 700;
     line-height: 1;
@@ -11,6 +11,6 @@
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    font-family: vars.$font_primary;
+    font-family: vars.$font__primary;
     text-transform: uppercase;
 }

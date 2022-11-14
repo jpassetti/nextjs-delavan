@@ -1,6 +1,9 @@
+@use '../sass/abstracts/vars';
+
 .footer {
     width: 100%;
-    background-color: gray;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    background-color: vars.$color__primary;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    color: white;
 }
