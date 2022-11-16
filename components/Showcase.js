@@ -20,15 +20,15 @@ const Showcase = ({location, title, introduction, category, backgroundImage}) =>
     });
    
     if (location === 'home') {
-        return <Building />
-        {/*return <section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage})`}}>
+        //return <Building />
+        return <section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage})`}}>
             <CardGroup>
                 {homeCards.map((card, index) => {
                     const {title, slug, featuredImage } = card;
                     return <Card key={index} title={title} slug={slug} backgroundImage={featuredImage?.node?.sourceUrl} />
                 })}
             </CardGroup>           
-            </section>*/}
+            </section>
     } else {
         return <section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage})`}}>
             <Container>

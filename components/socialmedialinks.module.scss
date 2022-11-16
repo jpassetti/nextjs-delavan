@@ -1,0 +1,30 @@
+@use '../sass/abstracts/vars';
+
+.socialMediaList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+.socialMediaListItem {
+    display: inline-block;
+    a {
+        width: 3em;
+        height: 3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        border-radius: 50%;
+        border: 1px solid white;
+        transition: all .5s;
+        svg {
+            width: 1.5em;
+            height: 1.5em;
+            fill: white;
+        }
+        &:hover {
+            background-color: vars.$color__blue;
+        }
+    }
+}

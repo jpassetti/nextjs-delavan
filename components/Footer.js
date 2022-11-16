@@ -1,8 +1,10 @@
 import Container from './Container'
 import Col from './Col';
+import Icon from './Icon';
 import Link from 'next/link';
 import Nav from './Nav';
 import Row from './Row';
+import SocialMediaLinks from './SocialMediaLinks';
 import styles from './footer.module.scss';
 import Wordmark from './Wordmark';
 
@@ -34,7 +36,8 @@ const Footer = () => {
                 Syracuse, NY 13204</Paragraph>
                 
                 <Paragraph color="white"><strong>Gallery</strong><br />
-                8 a.m.-12 p.m., 1-5 p.m.</Paragraph>
+                8 a.m.-12 p.m.,<br />
+                1-5 p.m.</Paragraph>
             </Col>
             <Col md="2">
                 <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Contact</Heading>
@@ -43,8 +46,8 @@ const Footer = () => {
             </Col>
             <Col md="2">
                 <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Connect</Heading>
-                <Paragraph color="white"><a href="https://www.facebook.com">Facebook</a></Paragraph>
-                <Paragraph color="white"><a href="https://www.instagram.com">Instagram</a></Paragraph>
+                <SocialMediaLinks />
+               
             </Col>
         </Row>
         </Container>

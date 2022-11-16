@@ -31,7 +31,7 @@ const Building = () => {
 
             <Rect x="0" y="0" fill="blue" width="1600" height="900"/>
             <Rect x="450" y="230" stroke="tan" strokeWidth="2" width="1200" height="500"/>
-           {/* <rect x="0" y="0" width="1600" height="900" mask="url(#Mask)" />*/}
+           <Rect x="450" y="230" width="1200" height="500" mask="url(#Mask)" />
 
             {units.map((myUnit, i) => {
                 return <Unit x={myUnit.x} y={myUnit.y} />;
@@ -43,12 +43,13 @@ const Building = () => {
 export default Building
 
 const Window = ({x, y}) => {
-    let windowWidth = 40;
+    let windowWidth = 26;
     let windowHeight = 80;
     return <g data-group="window">
-        <Rect x={`${x}px`} y={`${y}px`} stroke="tan" strokeWidth="1" width={windowWidth} height={windowHeight} fill="blue" />
-        <Line x1={`${x+(windowWidth/2)}px`} y1={`${y}px`} x2={`${x+(windowWidth/2)}px`} y2={`${y+windowHeight}px`} width="2" stroke="white" />
-        <Line x1={`${x+0}px`} y1={`${y+(windowHeight/2)}px`} x2={`${x+windowWidth}px`} y2={`${y+(windowHeight/2)}px`} width="2" stroke="white" />
+        <Rect x={`${x}px`} y={`${y}px`} stroke="tan" strokeWidth="2" width={windowWidth} height={windowHeight} fill="blue" />
+        <Line x1={`${x+(windowWidth/2)}px`} y1={`${y}px`} x2={`${x+(windowWidth/2)}px`} y2={`${y+windowHeight}px`} width="2" stroke="tan" />
+        <Line x1={`${x+0}px`} y1={`${y+(windowHeight/2)}px`} x2={`${x+windowWidth}px`} y2={`${y+(windowHeight/2)}px`} width="2" stroke="tan" />
+      
         </g>
 }
 Building.Window = Window;
@@ -58,24 +59,31 @@ const Unit = ({x, y, hover}) => {
         unit: true,
         [`fill-red`] : hover
     });
+    let windowWidth=26;
+    let windowHeight=80;
+    let unitWidth=140;
+    let windowRows = 4;
+    let windowMargin = 10;
+    let windowGap = (unitWidth-(windowWidth*2)-(windowMargin*2))/3;
     return <svg className={unitClasses} x={`${x}px`} y={`${y}px`} xmlSpace="preserve">
         <Rect x="0" y="0" stroke="tan" strokeWidth="1" width="130" height="500" fill="transparent" />
         <g data-group="unit lines">
-            <Line x1="10" y1="10" x2="130" y2="10" strokeWidth="2" />
+            <Line x1="10" y1="10" x2="120" y2="10" strokeWidth="2" />
             <Line x1="10" y1="10" x2="10" y2="500"/>
-            <Line x1="130" y1="10" x2="130" y2="500"/>
+            <Line x1="120" y1="10" x2="120" y2="500"/>
         </g>
-        <Window x={24} y={20} />
-        <Window x={76} y={20} />
+       
+        <Window x={windowMargin+windowGap} y={20} />
+        <Window x={windowMargin+windowGap+windowWidth+windowGap} y={20} />
 
-        <Window x={24} y={120} />
-        <Window x={76} y={120} />
+        <Window x={windowMargin+windowGap} y={120} />
+        <Window x={windowMargin+windowGap+windowWidth+windowGap} y={120} />
 
-        <Window x={24} y={220} />
-        <Window x={76} y={220} />
+        <Window x={windowMargin+windowGap} y={220} />
+        <Window x={windowMargin+windowGap+windowWidth+windowGap} y={220} />
 
-        <Window x={24} y={320} />
-        <Window x={76} y={320} />
+        <Window x={windowMargin+windowGap} y={320} />
+        <Window x={windowMargin+windowGap+windowWidth+windowGap} y={320} />
     </svg>
 }
 Building.Unit = Unit;
@@ -88,14 +96,14 @@ const Line = ({x1, y1, x2, y2, strokeWidth, stroke="tan"}) => {
     });
     return <line className={lineClasses} x1={x1} y1={y1} x2={x2} y2={y2} />
 }
-const Rect = ({x, y, stroke="tan", strokeWidth="1", fill, width, height}) => {
+const Rect = ({x, y, stroke="tan", strokeWidth="1", fill, width, height, mask}) => {
     let rectClasses = cx({
         rect: true,
         [`stroke-width-${strokeWidth}`] : strokeWidth,
         [`stroke-${stroke}`] : stroke,
         [`fill-${fill}`] : fill,
     });
-    return <rect x={`${x}`} y={`${y}`} className={rectClasses} width={width} height={height}/>
+    return <rect x={`${x}`} y={`${y}`} className={rectClasses} width={width} height={height} mask={mask} />
 }
 
 const OrangeCircles = () => {
@@ -116,7 +124,7 @@ const OrangeCircles = () => {
     const circles = buildCircles();
     return <svg x="0" y="0" width="1600" height="900">
         {circles.map((myCircle, i) => {
-            return <circle cx={myCircle.x} cy={myCircle.y} r="25" stroke="orange" strokeWidth="1" fill="green" />;
+            return <circle cx={myCircle.x} cy={myCircle.y} r="25" stroke="black" strokeWidth="1" fill="black" />;
         })}
     </svg>
 }
