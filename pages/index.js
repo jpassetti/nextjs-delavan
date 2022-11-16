@@ -9,6 +9,7 @@ export default function Home() {
   return <Layout>
       <Showcase 
       location="home"
+      backgroundImage="building--blue.jpg"
       />
   </Layout>
 }
