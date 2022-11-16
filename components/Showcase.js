@@ -45,7 +45,7 @@ const Showcase = ({location, title, introduction, category, backgroundImage}) =>
         return <section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage})`}}>
             <Container>
             <div className={styles.showcase__content}>
-            {category && <Heading level="3" color="white">
+            {category &&  <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase">
                  <Link href={`/${category.slug}`}>
                  {category.title}
                  </Link>

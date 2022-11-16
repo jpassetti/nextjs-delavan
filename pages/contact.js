@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Layout from "../components/Layout";
 import Showcase from "../components/Showcase";
 import Container from "../components/Container";
@@ -5,6 +6,9 @@ import Container from "../components/Container";
 const ContactPage = () => {
     
     return <Layout>
+        <Head>
+            <title>Contact</title>
+        </Head>
         <Showcase 
             title="Contact" 
             introduction="This is the introduction to the contact landing page"

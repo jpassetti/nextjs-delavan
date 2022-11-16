@@ -16,7 +16,7 @@ import { getPages } from '../lib/api';
 const MenuOverlay = ({closeHandler}) => {
     const pages = getPages();
     return <div className={styles.menuoverlay}>
-        <ButtonUI clickHandler={closeHandler} icon="close" />
+        <ButtonUI clickHandler={closeHandler} icon="close" color="white" />
         <Container>
             <Row>
                 <Col xs="6" sm="4" md="3">

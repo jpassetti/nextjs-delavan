@@ -3,11 +3,12 @@ import styles from './icon.module.scss';
 
 let cx = classNames.bind(styles);
 
-const Icon = ({ icon, active }) => {
+const Icon = ({ icon, active, color }) => {
     let iconClasses = cx({
         icon: true,
         active: active,
         close: icon === 'close',
+        [`fill-${color}`] : color
     });
     return icon === "grid" ? <svg className={iconClasses} x="0px" y="0px"
          viewBox="0 0 167.9 167.78" style={{ enableBackground: "new 0 0 167.9 167.78"}} xmlSpace="preserve">

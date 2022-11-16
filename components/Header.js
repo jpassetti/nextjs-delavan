@@ -22,9 +22,9 @@ const Header = () => {
                     </Link>
                 </Col>
                 <Col xs="6" sm="4" md="3" textAlign="right" marginBottom="0">
-                <ButtonUI icon="menu" clickHandler={() =>{
-                    setMenuOpen(!menuOpen);
-                }}>Menu</ButtonUI>
+                    <ButtonUI icon="menu" color="white" clickHandler={() =>{
+                        setMenuOpen(!menuOpen);
+                    }}>Menu</ButtonUI>
                 </Col>
             </Row>
         </Container>

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Layout from "../components/Layout";
 import Showcase from "../components/Showcase";
 import Container from "../components/Container";
@@ -17,6 +18,9 @@ export async function getStaticProps(context) {
 const HistoryPage = ({ timelineData }) => {
     
     return <Layout>
+        <Head>
+            <title>History</title>
+        </Head>
         <Showcase 
             title="History" 
             introduction="This is the introduction to the history landing page"

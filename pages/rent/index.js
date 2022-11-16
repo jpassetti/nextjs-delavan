@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 import Layout from "../../components/Layout";
 import Showcase from "../../components/Showcase";
 import Space from "../../components/Space";
@@ -19,6 +20,9 @@ export async function getStaticProps(context) {
 const RentLandingPage = ({spacesData}) => {
     const [activeSpace, setActiveSpace] = useState(0);
     return <Layout>
+         <Head>
+            <title>Rent</title>
+        </Head>
         <Showcase 
             title="Rent" 
             introduction="This is the introduction to the rent landing page"

@@ -1,6 +1,7 @@
 import Aside from '../../components/Aside';
 import Col from '../../components/Col';
 import Container from '../../components/Container';
+import Head from 'next/head';
 import Layout from "../../components/Layout";
 import Paragraph from '../../components/Paragraph';
 import Row from '../../components/Row';
@@ -35,6 +36,9 @@ const SingleNewsPage = ({ singleNewsData }) => {
     const { title, categories, content, featuredImage } = singleNewsData;
     return (
         <Layout>
+            <Head>
+                <title>{title}</title>
+            </Head>
             <Showcase
                 category={{
                     title: "News",

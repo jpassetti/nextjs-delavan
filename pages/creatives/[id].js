@@ -4,6 +4,7 @@ import ButtonGroup from '../../components/ButtonGroup';
 import Container from '../../components/Container';
 import Col from '../../components/Col';
 import Group from '../../components/Group';
+import Head from 'next/head';
 import Heading from '../../components/Heading';
 import Layout from "../../components/Layout";
 import Row from '../../components/Row';
@@ -41,6 +42,9 @@ const SingleCreativePage = ({ creative }) => {
     const { title, content, categories, links, featuredImage, tags } = creative;
     return (
         <Layout>
+            <Head>
+                <title>{title}</title>
+            </Head>
             <Showcase
                 category={{
                     title: "Creatives",
@@ -59,7 +63,7 @@ const SingleCreativePage = ({ creative }) => {
                     <Col xs="12" sm="3" marginBottom="0">
                         <Aside>
                             <ButtonGroup>
-                                <Button label="Visit Site" />
+                                <Button label="Visit Site" url={links.website} />
                             </ButtonGroup>
                             <Group>
                                 <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Follow</Heading>
