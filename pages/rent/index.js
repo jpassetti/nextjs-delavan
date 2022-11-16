@@ -21,7 +21,7 @@ const RentLandingPage = ({spacesData}) => {
     const [activeSpace, setActiveSpace] = useState(0);
     return <Layout>
          <Head>
-            <title>Rent</title>
+            <title>Rent | Delavan Studios | Syracuse, NY</title>
         </Head>
         <Showcase 
             title="Rent" 

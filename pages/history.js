@@ -19,7 +19,7 @@ const HistoryPage = ({ timelineData }) => {
     
     return <Layout>
         <Head>
-            <title>History</title>
+            <title>History | Delavan Studios | Syracuse, NY</title>
         </Head>
         <Showcase 
             title="History" 

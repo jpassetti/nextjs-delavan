@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 
 import Container from "../../components/Container";
@@ -32,6 +33,9 @@ const CreativesLandingPage = ({creativesData, categoriesData}) => {
         }
     });
     return <Layout>
+        <Head>
+            <title>Creatives | Delavan Studios | Syracuse, NY</title>
+        </Head>
         <Showcase 
             title="Creatives" 
             introduction="This is the introduction to the creatives landing page"

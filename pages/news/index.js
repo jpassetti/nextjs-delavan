@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 
 import Container from "../../components/Container";
@@ -33,6 +34,9 @@ const NewsLandingsPage = ({newsData, newsCategoryData}) => {
         }
     });
     return <Layout>
+        <Head>
+            <title>News | Delavan Studios | Syracuse, NY</title>
+        </Head>
         <Showcase 
             title="News" 
             introduction="This is the introduction to the news landing page"

@@ -7,7 +7,7 @@ const ContactPage = () => {
     
     return <Layout>
         <Head>
-            <title>Contact</title>
+            <title>Contact | Delavan Studios | Syracuse, NY</title>
         </Head>
         <Showcase 
             title="Contact" 

@@ -43,7 +43,7 @@ const SingleCreativePage = ({ creative }) => {
     return (
         <Layout>
             <Head>
-                <title>{title}</title>
+                <title>{title} | Delavan Studios | Syracuse, NY</title>
             </Head>
             <Showcase
                 category={{
