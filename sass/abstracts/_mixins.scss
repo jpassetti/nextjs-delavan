@@ -255,6 +255,20 @@
 		}
 	}
 }
+@mixin fillColorsAndBorders() {
+	$colors: ("black" : "#000000", "white": "#ffffff", "blue": vars.$color__blue, "tan": vars.$color__tan, "red": vars.$color__red);
+
+	@each $color,
+	$value in $colors {
+		&.fill-#{$color} {
+			color: #{$value};
+			border-color: #{$value};
+			svg {
+				fill: #{$value};
+			}
+		}
+	}
+}
 @mixin backgroundColors() {
 	$colors: ("black" : "#000000", "white": "#ffffff", "blue": "blue", "blue_10": "blue", "orange": "orange", "orange_10": "orange");
 

@@ -1,4 +1,5 @@
 @use '../sass/abstracts/vars';
+@use '../sass/abstracts/mixins';
 
 .socialMediaList {
     display: flex;
@@ -7,24 +8,29 @@
 }
 .socialMediaListItem {
     display: inline-block;
-    a {
-        width: 3em;
-        height: 3em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: white;
-        border-radius: 50%;
-        border: 1px solid white;
-        transition: all .5s;
+}
+.socialMediaLink {
+    width: 3em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: black;
+    border-radius: 50%;
+    border: 1px solid black;
+    transition: all .5s;
+    svg {
+        width: 1.5em;
+        height: 1.5em;
+        fill: black;
+    }
+    @include mixins.fillColorsAndBorders();
+    &:hover, &:focus {
+        background-color: vars.$color__blue;
+        border-color: vars.$color__blue;
         svg {
-            width: 1.5em;
-            height: 1.5em;
             fill: white;
-        }
-        &:hover {
-            background-color: vars.$color__blue;
         }
     }
 }

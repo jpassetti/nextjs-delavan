@@ -1,0 +1,19 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+.tag {
+    padding: .5rem .75rem;
+    border-radius: 0.25rem;
+    color: vars.$color__blue;
+    border: 1px solid vars.$color__blue;
+    font-size: .75rem;
+    font-family: vars.$font__primary;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}

@@ -1,10 +1,12 @@
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import classNames from 'classnames/bind';
+
 import Building from './Building';
 import Card from './Card';
 import CardGroup from './CardGroup';
 import Container from './Container';
 import Heading from './Heading';
-import Link from 'next/link';
 import Paragraph from './Paragraph';
 import * as styles from './showcase.module.scss';
 
@@ -13,6 +15,7 @@ import { getHomeCards } from '../lib/api';
 let cx = classNames.bind(styles)
 
 const Showcase = ({location, title, introduction, category, backgroundImage}) => {
+    const router = useRouter();
     const homeCards = getHomeCards();
     let showcaseClasses = cx({
         showcase: true,
@@ -25,7 +28,16 @@ const Showcase = ({location, title, introduction, category, backgroundImage}) =>
             <CardGroup>
                 {homeCards.map((card, index) => {
                     const {title, slug, featuredImage } = card;
-                    return <Card key={index} title={title} slug={slug} backgroundImage={featuredImage?.node?.sourceUrl} />
+                    return <Card 
+                        key={index} 
+                        clickHandler={(e) => {
+                            e.preventDefault()
+                            router.push(slug)
+                        }} 
+                        title={title} 
+                        slug={slug} 
+                        backgroundImage={featuredImage?.node?.sourceUrl} 
+                    />
                 })}
             </CardGroup>           
             </section>

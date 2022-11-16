@@ -1,11 +1,16 @@
+import Heading from './Heading';
+
 import styles from './space.module.scss';
 
 const Space = ({space}) => {
-    const {title, size, description, image} = space;
-    return <div className={styles.space}>
-        <div className="space__content">
-            <h2>{title}</h2>
-            <p>{size}</p>
+    const {title, size, description, featuredImage} = space;
+    return <div 
+    className={styles.space}
+    style={{backgroundImage: `url(${featuredImage.node.sourceUrl})`}}
+    >
+        <div className={styles.space__content}>
+            <Heading level="2" color="white" marginBottom="2">{title}</Heading>
+            <Heading level="3" color="white">{size}</Heading>
         </div>
     </div>
 }

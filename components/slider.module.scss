@@ -1,17 +1,29 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
 .slider {
    &__items {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    @include mixins.breakpoint(sm) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @include mixins.breakpoint(md) {
+        grid-template-columns: repeat(6, 1fr);
+    }
    }
    &__item {
     background-color: white;
     padding: 1rem;
     cursor: pointer;
+    color: vars.$color__blue;
+    border: 1px solid vars.$color__blue;
     &.active {
-        border: 1px solid red;
+        background-color: vars.$color__tan;
+        color: vars.$color__blue;
     }
    }
 }

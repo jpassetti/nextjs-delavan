@@ -1,4 +1,6 @@
 import classNames from 'classnames/bind';
+import Heading from './Heading';
+import Paragraph from './Paragraph';
 import styles from './slider.module.scss';
 let cx = classNames.bind(styles)
 
@@ -14,8 +16,8 @@ const Slider = ({ items, small, clickHandler, activeSpace }) => {
                 return <div key={index} className={itemClasses} onClick={() => {
                     clickHandler(index);
                 }}>
-                    {small ? <h3>{item.title}</h3> : <h2>{item.title}</h2>}
-                    <p>{item.size}</p>
+                    {small ? <Heading level="3" marginBottom="1">{item.title}</Heading> : <Heading level="2" marginBottom="1">{item.title}</Heading>}
+                    <Paragraph>{item.size}</Paragraph>
                 </div>
             })}
         </div>

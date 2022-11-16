@@ -15,7 +15,7 @@ const Filters = ({categories, changeCategory, displayFormat, displayFormatClickH
         <div className={styles.filtersLeft}>
             <Label>Filters</Label>
             <Select items={categorySelectValues} changeHandler={changeCategory} />
-            <Search />
+            {/*<Search />*/}
         </div>
         <div className={styles.filtersRight}>
             <ButtonUI icon="grid" active={displayFormat === "grid" ? true : false} clickHandler={() => {

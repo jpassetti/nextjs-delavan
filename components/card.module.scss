@@ -12,6 +12,7 @@
     background-size: cover;
     background-position: center center;
     position: relative;
+    cursor: pointer;
     @include mixins.breakpoint(laptop) {
         height: 460px;
     }
@@ -22,6 +23,9 @@
         width: 100%;
         padding: 1rem;
         z-index: 2;
+        @include mixins.breakpoint(laptop) {
+            padding: 1.5rem;
+        }
     }
     &::after {
         content: '';
