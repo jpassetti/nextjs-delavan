@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from "framer-motion"
 import { useState } from 'react';
 import ButtonUI from './ButtonUI';
 import Col from './Col';
@@ -13,9 +14,11 @@ const Header = () => {
     return <header className={styles.header}>
         <Container>
             <Row justifyContent="space-between" alignItems="center">
+            <AnimatePresence>
                 {menuOpen && <MenuOverlay closeHandler={() => {
                     setMenuOpen(false);
                 }} />}
+                </AnimatePresence>
                 <Col xs="6" sm="4" md="3" textAlign="left" marginBottom="0">
                     <Link href="/">
                         <Wordmark color="white" />

@@ -1,3 +1,5 @@
+import { motion } from "framer-motion"
+
 import ButtonUI from './ButtonUI';
 import Link from 'next/link';
 import Col from './Col';
@@ -15,7 +17,14 @@ import { getPages } from '../lib/api';
 
 const MenuOverlay = ({closeHandler}) => {
     const pages = getPages();
-    return <div className={styles.menuoverlay}>
+    return <motion.div 
+    key="modal" 
+    className={styles.menuoverlay}
+    initial={{ y: "-100vh" }}
+    animate={{ y: 0 }}
+    exit={{ y: "-100vh" }}
+    transition={{ duration: 0.5 }}
+    >
         <ButtonUI clickHandler={closeHandler} icon="close" color="white" />
         <Container>
             <Row>
@@ -50,6 +59,6 @@ const MenuOverlay = ({closeHandler}) => {
                 </Col>
             </Row>  
         </Container>
-    </div>
+    </motion.div>
 }
 export default MenuOverlay
