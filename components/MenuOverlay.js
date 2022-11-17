@@ -70,7 +70,7 @@ const MenuOverlay = ({closeHandler}) => {
                 <Col xs="6" sm="6" md="2" marginTop="3">
                     <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Contact</Heading>
                     <Paragraph color="white">(315)800-5302</Paragraph>
-                    <Paragraph color="white"><a href="mailto:email@email.com">email@email.com</a></Paragraph>
+                    <Paragraph color="white"><a href="mailto:info@delavanstudios.com">info@delavanstudios.com</a></Paragraph>
                 </Col>
                 <Col xs="6" sm="6" md="2" marginTop="3">
                     <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Connect</Heading>

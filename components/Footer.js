@@ -42,7 +42,7 @@ const Footer = () => {
             <Col sm="6" md="2">
                 <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Contact</Heading>
                 <Paragraph>(315)800-5302</Paragraph>
-                <Paragraph color="white"><a href="mailto:email@email.com">email@email.com</a></Paragraph>
+                <Paragraph color="white"><a href="mailto:info@delavanstudios.com">info@delavanstudios.com</a></Paragraph>
             </Col>
             <Col sm="6" md="2">
                 <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Connect</Heading>
