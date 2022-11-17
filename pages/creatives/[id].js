@@ -10,17 +10,17 @@ import Layout from "../../components/Layout";
 import Row from '../../components/Row';
 import Section from '../../components/Section';
 import Showcase from "../../components/Showcase";
-import { getSingleCreativeBySlug, getCreatives, getCategoryNameById } from "../../lib/api";
+import { getCreativeBySlug, getCreatives, getCategoryNameById, getAllCreativesSlugs } from "../../lib/api";
 import Paragraph from '../../components/Paragraph';
 import SocialMediaLinks from '../../components/SocialMediaLinks';
 import Tags from '../../components/Tags';
 
 export async function getStaticPaths() {
-    const creatives = await getCreatives();
-    const paths = creatives.map(creative => {
+    const creatives = await getAllCreativesSlugs();
+    const paths = creatives.map(edge => {
         return {
             params: {
-                id: creative.slug.toString()
+                id: edge.node.slug
             }
         }
     });
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
     }
 }
 export async function getStaticProps( {params}) {
-    const creative = await getSingleCreativeBySlug(params.id);
+    const creative = await getCreativeBySlug(params.id);
     return {
         props: {
             creative
@@ -39,7 +39,7 @@ export async function getStaticProps( {params}) {
 }
 
 const SingleCreativePage = ({ creative }) => {
-    const { title, content, categories, links, featuredImage, tags } = creative;
+    const { title, featuredImage, excerpt } = creative;
     return (
         <Layout>
             <Head>
@@ -51,17 +51,19 @@ const SingleCreativePage = ({ creative }) => {
                     slug: "creatives"
                 }}
                 title={title}
+                introduction={excerpt}
                 backgroundImage={featuredImage?.node?.sourceUrl} 
             />
            <Container>
                 <Row justifyContent="space-between">
                     <Col xs="12" sm="8" marginBottom="0">
                         <Section>
-                            <Paragraph marginBottom="0">{content}</Paragraph>
+                            <Paragraph marginBottom="0">Main content will go here.</Paragraph>
                         </Section>
                     </Col>
                     <Col xs="12" sm="3" marginBottom="0">
                         <Aside>
+                            {/*}
                             <ButtonGroup>
                                 <Button label="Visit Site" url={links.website} />
                             </ButtonGroup>
@@ -72,7 +74,7 @@ const SingleCreativePage = ({ creative }) => {
                             <Group>
                                 <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Tags</Heading>
                                 <Tags tags={tags} />
-                            </Group>
+            </Group>*/}
                         </Aside>
                     </Col>
                 </Row>

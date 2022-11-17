@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { getCategoryNameById } from '../lib/api';
 import styles from './card.module.scss'
 
-const Card = ({title, slug, categoryIds, backgroundImage, clickHandler}) => {
+const Card = ({title, slug, categories, backgroundImage, clickHandler}) => {
   //  console.log("Card");
     //console.log({categoryIds});
     const variants = {
@@ -32,12 +32,11 @@ const Card = ({title, slug, categoryIds, backgroundImage, clickHandler}) => {
         onClick={clickHandler}    
     >
         <div className={styles.card__nameplate}>
-            <Heading level="4" marginBottom="2" color="tan" textTransform="uppercase" size="sm">
-            {categoryIds?.map(categoryId => {
-                const catName = getCategoryNameById(categoryId);
-               // console.log({catName});
-                return catName !== "Featured" ? catName : '';
-            })}</Heading>
+    
+            {categories?.edges.map(category => {
+                const {name} = category.node;
+                return <Heading level="4" marginBottom="2" color="tan" textTransform="uppercase" size="sm">{name}</Heading>
+            })}
             <Heading level="3" color="white" className={styles.card__title}>
                 <Link href={`/${slug}`}>
                 {title}

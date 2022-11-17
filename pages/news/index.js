@@ -8,30 +8,27 @@ import Layout from "../../components/Layout";
 import List from '../../components/List';
 import Showcase from "../../components/Showcase";
 
-import { getNews, getNewsCategories } from "../../lib/api";
+import { getAllPosts, getAllCategories } from "../../lib/api";
 
 export async function getStaticProps(context) {
-    const newsData = await getNews();
-    const newsCategoryData = await getNewsCategories();
+    const postsData = await getAllPosts();
+    const categoriesData = await getAllCategories();
     return {
       props: {
-        newsData,
-        newsCategoryData
+        postsData,
+        categoriesData
       }, // will be passed to the page component as props
     }
   }
 
-const NewsLandingsPage = ({newsData, newsCategoryData}) => {
+const NewsLandingsPage = ({postsData, categoriesData}) => {
     const [displayFormat, setDisplayFormat] = useState('list');
-    const [activeCategory, setActiveCategory] = useState(1);
+    const [activeCategory, setActiveCategory] = useState('blog');
     const [searchTerm, setSearchTerm] = useState('');
-
-    const filteredNews = newsData.filter(newsItem => {
-        if (newsItem.categories.includes(activeCategory)) {
-            return true;
-        } else {
-            return false;
-        }
+    // todo: refactor filters
+    const filteredPosts = postsData.filter(post => {
+        const {categories} = post.node;
+        return categories.edges.some(edge => edge.node.slug === activeCategory);
     });
     return <Layout>
         <Head>
@@ -44,15 +41,15 @@ const NewsLandingsPage = ({newsData, newsCategoryData}) => {
         />
          <Container>
             <Filters 
-                categories={newsCategoryData}
+                categories={categoriesData}
                 changeCategory={setActiveCategory}
                 displayFormat={displayFormat} 
                 displayFormatClickHandler={setDisplayFormat} 
             />
             {displayFormat === 'grid' ? 
-                <Grid data={filteredNews} parentSlug="news" />
+                <Grid data={filteredPosts} parentSlug="news" />
             : displayFormat === 'list' ?
-                <List data={filteredNews} parentSlug="news" />
+                <List data={filteredPosts} parentSlug="news" />
             : 'No format'
             }
         </Container>

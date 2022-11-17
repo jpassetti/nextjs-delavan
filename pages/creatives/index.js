@@ -7,31 +7,34 @@ import Grid from "../../components/Grid";
 import Layout from "../../components/Layout";
 import List from "../../components/List";
 import Showcase from "../../components/Showcase";
-import { getCreatives, getCategories } from "../../lib/api";
+import { getAllCreatives, getAllCreativeTypes } from "../../lib/api";
 
-export async function getStaticProps(context) {
-    const creativesData = await getCreatives();
-    const categoriesData = await getCategories();
-    return {
-      props: {
-        creativesData,
-        categoriesData
-      }, // will be passed to the page component as props
-    }
-  }
+export async function getStaticProps() {
+	// Fetch necessary data for the blog post using params.id
+	const creativesData = await getAllCreatives();
+    const creativeTypesData = await getAllCreativeTypes();
+	return {
+		props: {
+			creativesData,
+            creativeTypesData
+		},
+		revalidate: 86400, // In seconds
+	}
+}
 
-const CreativesLandingPage = ({creativesData, categoriesData}) => {
+const CreativesLandingPage = ({creativesData, creativeTypesData}) => {
     const [displayFormat, setDisplayFormat] = useState('grid');
-    const [activeCategory, setActiveCategory] = useState(1);
-    const [searchTerm, setSearchTerm] = useState('');
+   // const [activeCategory, setActiveCategory] = useState(1);
+    //const [searchTerm, setSearchTerm] = useState('');
 
-    const filteredCreatives = creativesData.filter(creative => {
+    const filteredCreatives = creativesData;
+   /*const filteredCreatives = creativesData.filter(creative => {
         if (creative.categories.includes(activeCategory)) {
             return true;
         } else {
             return false;
         }
-    });
+    });*/
     return <Layout>
         <Head>
             <title>Creatives | Delavan Studios | Syracuse, NY</title>
@@ -42,9 +45,9 @@ const CreativesLandingPage = ({creativesData, categoriesData}) => {
             backgroundImage="https://picsum.photos/id/100/600/400"
         />
         <Container>
-            <Filters 
-                categories={categoriesData}
-                changeCategory={setActiveCategory}
+          <Filters 
+               categories={creativeTypesData}
+                //changeCategory={setActiveCategory}
                 displayFormat={displayFormat} 
                 displayFormatClickHandler={setDisplayFormat} 
             />

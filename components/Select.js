@@ -2,7 +2,7 @@ import styles from './select.module.scss'
 
 const Select = ({items, changeHandler}) => {
     return <select className={styles.select} onChange={(e) => {
-        changeHandler(parseInt(e.target.value));
+        changeHandler(e.target.value);
     }}>
         {items.map((item, index) => {
             const {label, value} = item;

@@ -9,8 +9,8 @@ import styles from './list.module.scss'
 
 const List = ({data, parentSlug}) => {
     return <section className={styles.list}>
-        {data.map((item, index) => {
-            const {title, excerpt, featuredImage, slug} = item;
+        {data.map((edge, index) => {
+            const {title, excerpt, featuredImage, slug} = edge.node;
             return <article key={index} className={styles.listArticleItem}>
                 <Row alignItems="center">
                     {featuredImage && <Col md="3" marginBottom="0">

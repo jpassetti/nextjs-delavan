@@ -6,9 +6,10 @@ import styles from './filters.module.scss';
 
 const Filters = ({categories, changeCategory, displayFormat, displayFormatClickHandler}) => {
     const categorySelectValues = categories.map(function(category) { 
+        const {name, slug} = category.node;
         return {
-            label: category.name,
-            value: category.id
+            label: name,
+            value: slug
         }
     });
     return <div className={styles.filters}>

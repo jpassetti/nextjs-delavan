@@ -17,6 +17,24 @@ import { getPages } from '../lib/api';
 
 const MenuOverlay = ({closeHandler}) => {
     const pages = getPages();
+    const variants = {
+        show: {
+          x: 0,
+          opacity: 1,
+          transition: {
+           // x: { stiffness: 1000, velocity: -100 },
+            duration: .5
+          }
+        },
+        hidden: {
+          x: 50,
+          opacity: 0,
+          transition: {
+            duration: .5
+            //x: { stiffness: 1000 }
+          }
+        }
+      };
     return <motion.div 
     key="modal" 
     className={styles.menuoverlay}
@@ -25,6 +43,7 @@ const MenuOverlay = ({closeHandler}) => {
     exit={{ y: "-100vh" }}
     transition={{ duration: 0.5 }}
     >
+        <motion.div variants={variants}>
         <ButtonUI clickHandler={closeHandler} icon="close" color="white" />
         <Container>
             <Row>
@@ -59,6 +78,7 @@ const MenuOverlay = ({closeHandler}) => {
                 </Col>
             </Row>  
         </Container>
+        </motion.div>
     </motion.div>
 }
 export default MenuOverlay

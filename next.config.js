@@ -7,6 +7,12 @@ module.exports = {
           port: '',
           pathname: '/**',
         },
+        {
+          protocol: 'http',
+          hostname: '146.190.38.141',
+          port: '',
+          pathname: '/**',
+        },
       ],
     },
   }
