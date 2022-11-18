@@ -9,7 +9,7 @@ module.exports = {
         },
         {
           protocol: 'http',
-          hostname: '146.190.38.141',
+          hostname: 'api.delavan-studios-dev.com',
           port: '',
           pathname: '/**',
         },

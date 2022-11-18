@@ -6,15 +6,26 @@ import Container from "../components/Container";
 import Heading from '../components/Heading';
 import Paragraph from '../components/Paragraph';
 
-const ContactPage = () => {
-    
+import { getPageBySlug } from "../lib/api";
+
+export async function getStaticProps( {params}) {
+    const pageData = await getPageBySlug(params.id);
+    return {
+        props: {
+            pageData
+        }
+    }
+}
+
+const ContactPage = ({pageData}) => {
+    const {title, content} = pageData;
     return <Layout>
         <Head>
-            <title>Contact | Delavan Studios | Syracuse, NY</title>
+            <title>{title} | Delavan Studios | Syracuse, NY</title>
         </Head>
         <Showcase 
-            title="Contact" 
-            introduction="This is the introduction to the contact landing page"
+            title={title}
+            introduction={excerpt}
             backgroundImage="https://picsum.photos/600/400"
         />
         <Container> 
