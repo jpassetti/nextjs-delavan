@@ -10,10 +10,11 @@ const SocialMediaLinks = ({links, color}) => {
         'socialMediaLink': true,
         [`fill-${color}`]: color,
     });
-    return links ? <ul className={styles.socialMediaList}>
-        {links.map((link, index) => {
+    let theLinks = links ? links : getSocialMediaLinks();
+    return theLinks ? <ul className={styles.socialMediaList}>
+        {theLinks.map((link, index) => {
             const {name, url} = link;
-            return name !== "website" ? <li key={index} className={styles.socialMediaListItem}><a className={socialMediaLinkClasses} href={url}><Icon icon={name} /></a></li> : '';
+            return name !== "website" ? <li key={index} className={styles.socialMediaListItem}><a className={socialMediaLinkClasses} href={url} target="_blank"><Icon icon={name} /></a></li> : '';
         })}
     </ul>  : ''  
 }
