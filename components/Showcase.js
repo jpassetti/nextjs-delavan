@@ -19,7 +19,7 @@ const Showcase = ({location, title, introduction, category, backgroundImage,   c
     rentCardData,
     newsCardData}) => {
     const router = useRouter();
-    const homeCards = getHomeCards();
+    const homeCards = [creativeCardData, rentCardData, newsCardData];
     let showcaseClasses = cx({
         showcase: true,
         home: location === 'home',

@@ -1,3 +1,4 @@
+import {decode} from 'html-entities';
 import classNames from 'classnames/bind';
 import * as styles from './paragraph.module.scss';
 
@@ -25,6 +26,7 @@ const Paragraph = ({
 		[`font-weight-${fontWeight}`] : fontWeight,
 		[`font-color-${color}`] : color
 	});
-	return <p className={`${paragraphClasses} ${className}`}>{children}</p>
+	const decodedContent = decode(children);
+	return <p className={`${paragraphClasses} ${className}`}>{decodedContent}</p>
 }
 export default Paragraph;
