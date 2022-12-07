@@ -30,6 +30,9 @@ const NewsLandingsPage = ({postsData, categoriesData, pageData}) => {
     // todo: refactor filters
     const filteredPosts = postsData.filter(post => {
         const {categories} = post.node;
+        if (activeCategory === 'all') {
+            return post;
+        }
         return categories.edges.some(edge => edge.node.slug === activeCategory);
     });
     const {title, content, excerpt, featuredImage} = pageData;

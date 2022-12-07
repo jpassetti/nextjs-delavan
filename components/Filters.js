@@ -15,7 +15,7 @@ const Filters = ({categories, changeCategory, displayFormat, displayFormatClickH
     return <div className={styles.filters}>
         <div className={styles.filtersLeft}>
             <Label>Filters</Label>
-            <Select items={categorySelectValues} changeHandler={changeCategory} activeOption={activeCategory} />
+            <Select items={[{label: "All", value: "all"}, ...categorySelectValues]} changeHandler={changeCategory} activeOption={activeCategory} />
             {/*<Search />*/}
         </div>
         <div className={styles.filtersRight}>

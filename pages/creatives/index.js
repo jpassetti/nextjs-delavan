@@ -26,9 +26,23 @@ export async function getStaticProps() {
 
 const CreativesLandingPage = ({creativesData, creativeTypesData, pageData}) => {
     const [displayFormat, setDisplayFormat] = useState('grid');
-    const filteredCreatives = creativesData;
+    const [activeCategory, setActiveCategory] = useState('Featured');
+    const filteredCreatives = creativesData.filter(creative => {
+        if (activeCategory === 'all') {
+            return creative;
+        }
+        const {creativeTypes} = creative.node;
+        const matches = creativeTypes.edges.filter(creativeType => {
+            if(creativeType.node.name.toLowerCase() === activeCategory) {
+                return true;
+            }
+        });
+        if (matches.length > 0) {
+            return creative;
+        }       
+    });
     const {title, content, excerpt, featuredImage} = pageData;
-  
+    
     return <Layout>
         <Head>
             <title>{title} | Delavan Studios | Syracuse, NY</title>
@@ -40,8 +54,9 @@ const CreativesLandingPage = ({creativesData, creativeTypesData, pageData}) => {
         />
         <Container>
           <Filters 
-               categories={creativeTypesData}
-                //changeCategory={setActiveCategory}
+                categories={creativeTypesData}
+                activeCategory={activeCategory}
+                changeCategory={setActiveCategory}
                 displayFormat={displayFormat} 
                 displayFormatClickHandler={setDisplayFormat} 
             />

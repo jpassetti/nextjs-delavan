@@ -6,6 +6,7 @@ const Select = ({items, changeHandler, activeOption}) => {
     }} value={activeOption}>
         {items.map((item, index) => {
             const {label, value} = item;
+            if (value !== "uncategorized") 
             return <option key={index} value={value}>{label}</option>
         })}
     </select>
