@@ -18,7 +18,7 @@ export async function getStaticProps( {params}) {
 }
 
 const ContactPage = ({pageData}) => {
-    const {title, content} = pageData;
+    const {title, content, excerpt, featuredImage} = pageData;
     return <Layout>
         <Head>
             <title>{title} | Delavan Studios | Syracuse, NY</title>
@@ -26,7 +26,7 @@ const ContactPage = ({pageData}) => {
         <Showcase 
             title={title}
             introduction={excerpt}
-            backgroundImage="https://picsum.photos/600/400"
+            backgroundImage={featuredImage?.node?.sourceUrl} 
         />
         <Container> 
             <Section>

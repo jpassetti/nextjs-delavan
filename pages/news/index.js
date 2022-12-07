@@ -23,7 +23,7 @@ export async function getStaticProps(context) {
 
 const NewsLandingsPage = ({postsData, categoriesData}) => {
     const [displayFormat, setDisplayFormat] = useState('list');
-    const [activeCategory, setActiveCategory] = useState('blog');
+    const [activeCategory, setActiveCategory] = useState('news');
     const [searchTerm, setSearchTerm] = useState('');
     // todo: refactor filters
     const filteredPosts = postsData.filter(post => {
