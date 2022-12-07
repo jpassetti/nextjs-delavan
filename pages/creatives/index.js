@@ -26,7 +26,7 @@ export async function getStaticProps() {
 
 const CreativesLandingPage = ({creativesData, creativeTypesData, pageData}) => {
     const [displayFormat, setDisplayFormat] = useState('grid');
-    const [activeCategory, setActiveCategory] = useState('Featured');
+    const [activeCategory, setActiveCategory] = useState('featured');
     const filteredCreatives = creativesData.filter(creative => {
         if (activeCategory === 'all') {
             return creative;

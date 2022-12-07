@@ -15,7 +15,9 @@ import { getHomeCards } from '../lib/api';
 
 let cx = classNames.bind(styles)
 
-const Showcase = ({location, title, introduction, category, backgroundImage}) => {
+const Showcase = ({location, title, introduction, category, backgroundImage,   creativeCardData,
+    rentCardData,
+    newsCardData}) => {
     const router = useRouter();
     const homeCards = getHomeCards();
     let showcaseClasses = cx({

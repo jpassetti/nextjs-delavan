@@ -1,11 +1,11 @@
 import styles from './select.module.scss'
 
-const Select = ({items, changeHandler, activeOption}) => {
+const Select = ({options, changeHandler, value}) => {
     return <select className={styles.select} onChange={(e) => {
         changeHandler(e.target.value);
-    }} value={activeOption}>
-        {items.map((item, index) => {
-            const {label, value} = item;
+    }} value={value}>
+        {options.map((option, index) => {
+            const {label, value} = option;
             if (value !== "uncategorized") 
             return <option key={index} value={value}>{label}</option>
         })}
