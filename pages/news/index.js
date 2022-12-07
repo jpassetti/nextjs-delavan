@@ -45,6 +45,7 @@ const NewsLandingsPage = ({postsData, categoriesData}) => {
                 changeCategory={setActiveCategory}
                 displayFormat={displayFormat} 
                 displayFormatClickHandler={setDisplayFormat} 
+                activeCategory={activeCategory}
             />
             {displayFormat === 'grid' ? 
                 <Grid data={filteredPosts} parentSlug="news" />

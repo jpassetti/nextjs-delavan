@@ -4,7 +4,7 @@ import Select from './Select'
 import Search from './Search'
 import styles from './filters.module.scss';
 
-const Filters = ({categories, changeCategory, displayFormat, displayFormatClickHandler}) => {
+const Filters = ({categories, changeCategory, displayFormat, displayFormatClickHandler, activeCategory}) => {
     const categorySelectValues = categories.map(function(category) { 
         const {name, slug} = category.node;
         return {
@@ -15,7 +15,7 @@ const Filters = ({categories, changeCategory, displayFormat, displayFormatClickH
     return <div className={styles.filters}>
         <div className={styles.filtersLeft}>
             <Label>Filters</Label>
-            <Select items={categorySelectValues} changeHandler={changeCategory} />
+            <Select items={categorySelectValues} changeHandler={changeCategory} activeOption={activeCategory} />
             {/*<Search />*/}
         </div>
         <div className={styles.filtersRight}>

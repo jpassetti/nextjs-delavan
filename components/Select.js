@@ -1,9 +1,9 @@
 import styles from './select.module.scss'
 
-const Select = ({items, changeHandler}) => {
+const Select = ({items, changeHandler, activeOption}) => {
     return <select className={styles.select} onChange={(e) => {
         changeHandler(e.target.value);
-    }}>
+    }} value={activeOption}>
         {items.map((item, index) => {
             const {label, value} = item;
             return <option key={index} value={value}>{label}</option>
