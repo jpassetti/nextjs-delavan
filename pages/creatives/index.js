@@ -7,42 +7,36 @@ import Grid from "../../components/Grid";
 import Layout from "../../components/Layout";
 import List from "../../components/List";
 import Showcase from "../../components/Showcase";
-import { getAllCreatives, getAllCreativeTypes } from "../../lib/api";
+import { getAllCreatives, getAllCreativeTypes, getPageBySlug } from "../../lib/api";
 
 export async function getStaticProps() {
 	// Fetch necessary data for the blog post using params.id
 	const creativesData = await getAllCreatives();
     const creativeTypesData = await getAllCreativeTypes();
+    const pageData = await getPageBySlug("creatives-page");
 	return {
 		props: {
 			creativesData,
-            creativeTypesData
+            creativeTypesData,
+            pageData
 		},
 		revalidate: 86400, // In seconds
 	}
 }
 
-const CreativesLandingPage = ({creativesData, creativeTypesData}) => {
+const CreativesLandingPage = ({creativesData, creativeTypesData, pageData}) => {
     const [displayFormat, setDisplayFormat] = useState('grid');
-   // const [activeCategory, setActiveCategory] = useState(1);
-    //const [searchTerm, setSearchTerm] = useState('');
-
     const filteredCreatives = creativesData;
-   /*const filteredCreatives = creativesData.filter(creative => {
-        if (creative.categories.includes(activeCategory)) {
-            return true;
-        } else {
-            return false;
-        }
-    });*/
+    const {title, content, excerpt, featuredImage} = pageData;
+  
     return <Layout>
         <Head>
-            <title>Creatives | Delavan Studios | Syracuse, NY</title>
+            <title>{title} | Delavan Studios | Syracuse, NY</title>
         </Head>
         <Showcase 
-            title="Creatives" 
-            introduction="This is the introduction to the creatives landing page"
-            backgroundImage="https://picsum.photos/id/100/600/400"
+            title={title}
+            introduction={excerpt}
+            backgroundImage={featuredImage?.node?.sourceUrl} 
         />
         <Container>
           <Filters 

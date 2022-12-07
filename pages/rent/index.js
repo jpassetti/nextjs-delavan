@@ -6,27 +6,30 @@ import Space from "../../components/Space";
 import Slider from "../../components/Slider";
 import Container from "../../components/Container";
 
-import { getSpaces } from "../../lib/api";
+import { getSpaces, getPageBySlug } from "../../lib/api";
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
     const spacesData = await getSpaces();
+    const pageData = await getPageBySlug("rent");
     return {
       props: {
         spacesData,
+        pageData
       }, // will be passed to the page component as props
     }
   }
 
-const RentLandingPage = ({spacesData}) => {
+const RentLandingPage = ({spacesData, pageData}) => {
     const [activeSpace, setActiveSpace] = useState(0);
+    const {title, content, excerpt, featuredImage} = pageData;
     return <Layout>
          <Head>
-            <title>Rent | Delavan Studios | Syracuse, NY</title>
+            <title>{title} | Delavan Studios | Syracuse, NY</title>
         </Head>
         <Showcase 
-            title="Rent" 
-            introduction="This is the introduction to the rent landing page"
-            backgroundImage="https://picsum.photos/id/101/600/400"
+            title={title}
+            introduction={excerpt}
+            backgroundImage={featuredImage?.node?.sourceUrl} 
         />
         <Container>
         <Space space={spacesData[activeSpace]} />

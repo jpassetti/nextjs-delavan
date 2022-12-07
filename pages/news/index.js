@@ -8,20 +8,22 @@ import Layout from "../../components/Layout";
 import List from '../../components/List';
 import Showcase from "../../components/Showcase";
 
-import { getAllPosts, getAllCategories } from "../../lib/api";
+import { getAllPosts, getAllCategories, getPageBySlug } from "../../lib/api";
 
 export async function getStaticProps(context) {
     const postsData = await getAllPosts();
     const categoriesData = await getAllCategories();
+    const pageData = await getPageBySlug("news");
     return {
       props: {
         postsData,
-        categoriesData
+        categoriesData,
+        pageData
       }, // will be passed to the page component as props
     }
   }
 
-const NewsLandingsPage = ({postsData, categoriesData}) => {
+const NewsLandingsPage = ({postsData, categoriesData, pageData}) => {
     const [displayFormat, setDisplayFormat] = useState('list');
     const [activeCategory, setActiveCategory] = useState('news');
     const [searchTerm, setSearchTerm] = useState('');
@@ -30,14 +32,15 @@ const NewsLandingsPage = ({postsData, categoriesData}) => {
         const {categories} = post.node;
         return categories.edges.some(edge => edge.node.slug === activeCategory);
     });
+    const {title, content, excerpt, featuredImage} = pageData;
     return <Layout>
         <Head>
-            <title>News | Delavan Studios | Syracuse, NY</title>
+            <title>{title} | Delavan Studios | Syracuse, NY</title>
         </Head>
         <Showcase 
-            title="News" 
-            introduction="This is the introduction to the news landing page"
-            backgroundImage="https://picsum.photos/id/102/600/400"
+            title={title}
+            introduction={excerpt}
+            backgroundImage={featuredImage?.node?.sourceUrl} 
         />
          <Container>
             <Filters 
