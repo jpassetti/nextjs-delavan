@@ -39,7 +39,15 @@ export async function getStaticProps( {params}) {
 }
 
 const SingleCreativePage = ({ creative }) => {
-    const { title, featuredImage, excerpt } = creative;
+    const { title, featuredImage, excerpt, creativeInformation, content } = creative;
+    
+    const linksArr = creativeInformation.links.map((link) => {
+        return {
+            name: link,
+            url: creativeInformation[`${link}Url`]
+        }
+    });
+
     return (
         <Layout>
             <Head>
@@ -58,23 +66,28 @@ const SingleCreativePage = ({ creative }) => {
                 <Row justifyContent="space-between">
                     <Col xs="12" sm="8" marginBottom="0">
                         <Section>
-                            <Paragraph marginBottom="0">Main content will go here.</Paragraph>
+                            <Paragraph marginBottom="0">Main content blocks will go here.</Paragraph>
                         </Section>
                     </Col>
                     <Col xs="12" sm="3" marginBottom="0">
                         <Aside>
-                            {/*}
-                            <ButtonGroup>
-                                <Button label="Visit Site" url={links.website} />
-                            </ButtonGroup>
-                            <Group>
+                            {creativeInformation.websiteUrl && 
+                                 <ButtonGroup>
+                                 <Button label="Visit Site" url={creativeInformation.websiteUrl} />
+                                </ButtonGroup>
+                            }
+                           
+                           <Group>
                                 <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Follow</Heading>
-                                <SocialMediaLinks color="red" links={links.socialLinks} />
+                                <SocialMediaLinks 
+                                    color="red" 
+                                    links={linksArr} 
+                                />
                             </Group>
-                            <Group>
+                            {/*<Group>
                                 <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Tags</Heading>
                                 <Tags tags={tags} />
-            </Group>*/}
+                            </Group>*/}
                         </Aside>
                     </Col>
                 </Row>

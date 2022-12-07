@@ -52,7 +52,7 @@ const Showcase = ({location, title, introduction, category, backgroundImage}) =>
                  </Link>
              </Heading>
             }
-            <Heading level="1" color="white">{title}</Heading>
+            <Heading level="1" color="white" marginBottom="2">{title}</Heading>
             {introduction && <Paragraph intro color="white">{introduction}</Paragraph>}
             </div>
             </Container>

@@ -6,17 +6,15 @@ import styles from './socialmedialinks.module.scss';
 let cx = classNames.bind(styles);
 
 const SocialMediaLinks = ({links, color}) => {
-    const socialLinks = links ? links : getSocialMediaLinks();
-
     let socialMediaLinkClasses = cx({
         'socialMediaLink': true,
         [`fill-${color}`]: color,
     });
-    return <ul className={styles.socialMediaList}>
-        {socialLinks.map((link, index) => {
-            const { url, icon } = link;
-            return <li key={index} className={styles.socialMediaListItem}><a className={socialMediaLinkClasses} href={url}><Icon icon={icon} /></a></li>
+    return links ? <ul className={styles.socialMediaList}>
+        {links.map((link, index) => {
+            const {name, url} = link;
+            return name !== "website" ? <li key={index} className={styles.socialMediaListItem}><a className={socialMediaLinkClasses} href={url}><Icon icon={name} /></a></li> : '';
         })}
-    </ul>    
+    </ul>  : ''  
 }
 export default SocialMediaLinks;
