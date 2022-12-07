@@ -5,7 +5,6 @@ $sizes: xs, sm, md, lg;
 
 .col {
 	width: 100%;
-
 	@each $size in $sizes {
 		@include mixins.breakpoint(#{$size}) {
 			@for $i from 1 through 12 {

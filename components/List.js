@@ -1,11 +1,13 @@
 import Col from './Col';
 import Heading from './Heading';
 import Image from 'next/image';
+import Icon from './Icon';
 import Link from 'next/link';
 import Paragraph from './Paragraph';
 import Row from './Row';
 
 import styles from './list.module.scss'
+import Button from './Button';
 
 const List = ({data, parentSlug}) => {
     return <section className={styles.list}>
@@ -13,7 +15,7 @@ const List = ({data, parentSlug}) => {
             const {title, excerpt, featuredImage, slug} = edge.node;
             return <article key={index} className={styles.listArticleItem}>
                 <Row alignItems="center">
-                    {featuredImage && <Col md="3" marginBottom="0">
+                    {featuredImage && <Col md="3" marginBottom="2">
                         <Link href={`/${parentSlug ? parentSlug : ''}/${slug}`}>
                             <Image 
                                 src={featuredImage.node.sourceUrl} 
@@ -24,14 +26,17 @@ const List = ({data, parentSlug}) => {
                             />
                         </Link>
                     </Col>}
-                    {title && <Col md="3" marginBottom="0">
+                    {title && <Col md="3" marginBottom="2">
                         <Heading level="3" color="black"><Link href={`${parentSlug ? parentSlug : ''}/${slug}`}>
                             {title}
                         </Link></Heading>
                     </Col>}
-                    {excerpt && <Col md="6" marginBottom="0">
+                    {excerpt && <Col md="5" marginBottom="2">
                         <Paragraph>{excerpt}</Paragraph>
                     </Col>}
+                    <Col md="1" marginBottom="2">
+                        <Button backgroundColor="tan" iconAfter="angle-right" shape="circle" url={`${parentSlug ? parentSlug : ''}/${slug}`} />
+                    </Col>
                </Row>
             </article>
         })}
