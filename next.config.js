@@ -8,8 +8,8 @@ module.exports = {
           pathname: '/**',
         },
         {
-          protocol: 'http',
-          hostname: 'api.delavan-studios-dev.com',
+          protocol: 'https',
+          hostname: 'delavan-studios-dev.com',
           port: '',
           pathname: '/**',
         },

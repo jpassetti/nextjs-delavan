@@ -9,7 +9,7 @@ import Paragraph from '../components/Paragraph';
 import { getPageBySlug } from "../lib/api";
 
 export async function getStaticProps( {params}) {
-    const pageData = await getPageBySlug(params.id);
+    const pageData = await getPageBySlug("contact");
     return {
         props: {
             pageData
