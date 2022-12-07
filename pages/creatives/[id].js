@@ -77,13 +77,14 @@ const SingleCreativePage = ({ creative }) => {
                                 </ButtonGroup>
                             }
                            
-                           <Group>
-                                <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Follow</Heading>
+                           {linksArr.length > 0 && <Group>
+                               <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Follow</Heading>
                                 <SocialMediaLinks 
                                     color="red" 
                                     links={linksArr} 
                                 />
                             </Group>
+                            }
                             {/*<Group>
                                 <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Tags</Heading>
                                 <Tags tags={tags} />
