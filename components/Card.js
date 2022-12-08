@@ -33,10 +33,10 @@ const Card = ({title, slug, categories, backgroundImage, clickHandler}) => {
     >
         <div className={styles.card__nameplate}>
     
-            {categories?.edges.map(category => {
+            {categories?.edges.map((category, index) => {
                 const {name} = category.node;
                 if (name !== "Featured")
-                return <Heading level="4" marginBottom="2" color="tan" textTransform="uppercase" size="sm">{name}</Heading>
+                return <Heading key={index} level="4" marginBottom="2" color="tan" textTransform="uppercase" size="sm">{name}</Heading>
             })}
             <Heading level="3" color="white" className={styles.card__title}>
                 <Link href={`/${slug}`}>

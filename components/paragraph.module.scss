@@ -6,6 +6,17 @@
 	line-height: 1.4;
 	font-family: vars.$font__primary;
 	display: block;
+	&.medium {
+		font-size: 1.1rem;
+		max-width: 35em;
+		@include mixins.breakpoint(sm) {
+			font-size: 1.3rem;
+		}
+
+		@include mixins.breakpoint(md) {
+			font-size: 1.5rem;
+		}
+	}
 	&.intro {
 		font-size: 1.3rem;
 		max-width: 35em;

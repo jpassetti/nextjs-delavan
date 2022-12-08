@@ -9,7 +9,7 @@ import CardGroup from './CardGroup';
 import Container from './Container';
 import Heading from './Heading';
 import Paragraph from './Paragraph';
-import * as styles from './showcase.module.scss';
+import styles from './showcase.module.scss';
 
 import { getHomeCards } from '../lib/api';
 
@@ -26,6 +26,10 @@ const Showcase = ({location, title, introduction, category, backgroundImage,   h
     if (location === 'home') {
         //return <Building />
         return <section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage})`}}>
+            
+                <Container>
+                <div className={styles.showcase__content}>
+            <Paragraph color="white" marginBottom="3" type="medium"><strong>Delavan Studios</strong> is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side.</Paragraph>
             <CardGroup>
                 {homeCards.map((card, index) => {
                     const {title, slug, featuredImage } = card;
@@ -40,7 +44,10 @@ const Showcase = ({location, title, introduction, category, backgroundImage,   h
                         backgroundImage={featuredImage?.node?.sourceUrl} 
                     />
                 })}
-            </CardGroup>           
+            </CardGroup> 
+            </div>  
+            </Container> 
+                  
             </section>
     } else {
         return <section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage})`}}>

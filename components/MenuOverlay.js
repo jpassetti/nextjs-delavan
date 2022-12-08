@@ -46,18 +46,19 @@ const MenuOverlay = ({closeHandler}) => {
         <motion.div variants={variants}>
         <ButtonUI clickHandler={closeHandler} icon="close" color="white" />
         <Container>
-            <Row>
+        <Row marginBottom="4">
                 <Col xs="6" sm="4" md="3">
                     <Link href="/">
                         <Wordmark color="white" />
                     </Link>
                 </Col>
-                <Col xs="6" sm="8" md="1"></Col>
-                <Col xs="6" sm="6" md="2" marginTop="3">
+                </Row>
+                <Row>
+                <Col xs="6" sm="6" md="3" marginTop="3">
                     <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Pages</Heading>
                     <Nav pages={pages} location="mobile" />
                 </Col>
-                <Col xs="6" sm="6" md="2" marginTop="3">
+                <Col xs="6" sm="6" md="3" marginTop="3">
                     <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Visit</Heading>
                     <Paragraph color="white" marginBottom="2"><strong>Location</strong><br />
                     509 W Fayette St<br />
@@ -67,12 +68,12 @@ const MenuOverlay = ({closeHandler}) => {
                     8 a.m.-12 p.m.,<br />
                     1-5 p.m.</Paragraph>
                 </Col>
-                <Col xs="6" sm="6" md="2" marginTop="3">
+                <Col xs="6" sm="6" md="3" marginTop="3">
                     <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Contact</Heading>
                     <Paragraph color="white">(315)800-5302</Paragraph>
                     <Paragraph color="white"><a href="mailto:info@delavanstudios.com">info@delavanstudios.com</a></Paragraph>
                 </Col>
-                <Col xs="6" sm="6" md="2" marginTop="3">
+                <Col xs="6" sm="6" md="3" marginTop="3">
                     <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Connect</Heading>
                     <SocialMediaLinks color="white" />
                 </Col>

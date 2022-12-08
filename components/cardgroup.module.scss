@@ -1,7 +1,8 @@
 @use '../sass/abstracts/mixins';
 
 .cardgroup {
-    width: 70vw;
+    // width: 70vw;
+    width: 100%;
     display: grid;
     gap: 1rem;
     grid-template-columns: 1fr;

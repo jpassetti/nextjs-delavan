@@ -19,6 +19,7 @@ const Paragraph = ({
 	let paragraphClasses = cx({
 		paragraph: true,
 		intro: type === 'intro',
+		medium : type === 'medium',
 		[`margin-bottom-${marginBottom}`] : marginBottom,
 		[`margin-top-${marginTop}`]: marginTop,
 		diminish : diminish,
