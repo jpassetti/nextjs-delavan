@@ -6,8 +6,9 @@ import Container from './Container'
 import Label from './Label'
 import Row from './Row'
 import Select from './Select'
-import styles from './Filters.module.scss';
 import Search from './Search';
+
+import styles from './filters.module.scss';
 
 let cx = classNames.bind(styles);
 

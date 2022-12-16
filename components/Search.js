@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import Icon from './Icon'
 import Input from './Input';
 import Span from './Span';
-import styles from './Search.module.scss';
+import styles from './search.module.scss';
 
 const Search = ({children}) =>{
     return <Fragment>{children}</Fragment>
