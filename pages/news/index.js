@@ -46,13 +46,6 @@ const NewsLandingsPage = ({postsData, categoriesData, pageData}) => {
             backgroundImage={featuredImage?.node?.sourceUrl} 
         />
          <Container>
-            <Filters 
-                categories={categoriesData}
-                changeCategory={setActiveCategory}
-                displayFormat={displayFormat} 
-                displayFormatClickHandler={setDisplayFormat} 
-                activeCategory={activeCategory}
-            />
             {displayFormat === 'grid' ? 
                 <Grid data={filteredPosts} parentSlug="news" />
             : displayFormat === 'list' ?

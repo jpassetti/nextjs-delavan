@@ -3,11 +3,10 @@ import classNames from 'classnames/bind';
 import ButtonUI from './ButtonUI'
 import Col from './Col'
 import Container from './Container'
-import Input from './Input'
 import Label from './Label'
 import Row from './Row'
 import Select from './Select'
-import styles from './filters.module.scss';
+import styles from './Filters.module.scss';
 import Search from './Search';
 
 let cx = classNames.bind(styles);
