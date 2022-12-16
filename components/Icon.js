@@ -15,6 +15,14 @@ const iconPaths = [
         C151.06,90.09,242.32,181.4,333.06,272.2z`
     },
     {
+        name: `search`,
+        viewBox : {
+            width: 512,
+            height: 512
+        },
+        path: `M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z`
+    },
+    {
         name: 'grid',
         viewBox: {
             width: 167.9,
@@ -133,7 +141,8 @@ const iconPaths = [
 const Icon = ({ icon, active, color }) => {
     let iconClasses = cx({
         icon: true,
-        active: active,
+        active: active === 'active',
+        inactive : active === 'inactive',
         close: icon === 'close',
         [`fill-${color}`] : color
     });

@@ -5,9 +5,12 @@
     width: 1.5rem;
     height: auto;
     transition: all .35s;
-    fill: gray;
+    fill: vars.$color__primary;
+    &.inactive {
+        opacity: .35;
+    }
     &.active {
-        fill: vars.$color__primary;
+        opacity: 1;    
     }
     &.close {
         position: absolute;

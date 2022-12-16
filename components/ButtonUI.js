@@ -11,7 +11,7 @@ const ButtonUI = ({ icon, clickHandler, active, color }) => {
         active: active,
     });
     return <button className={buttonClasses} onClick={clickHandler}>
-        <Icon color={color} icon={icon} active={active ? active : false} />
+        <Icon color={color} icon={icon} active={active ? 'active' : 'inactive'} />
     </button>
 }
 export default ButtonUI;

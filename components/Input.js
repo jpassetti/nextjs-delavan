@@ -1,6 +1,18 @@
-import styles from './input.module.scss'
+import classNames from 'classnames/bind'
+import styles from './input.module.scss';
 
-const Input = ({ value, onChange }) => {
-    return <input className={styles.input} type="text" value={value} onChange={onChange} />
+let cx = classNames.bind(styles);
+
+const Input = ({ 
+    value, 
+    type="text", 
+    onChange, 
+    placeholder 
+}) => {
+    let inputClasses = cx({
+        input: true,
+        'input--search': type === 'search'
+    });
+    return <input className={inputClasses} type={type} value={value} onChange={onChange} placeholder={placeholder ? placeholder : ''} />
 }
 export default Input

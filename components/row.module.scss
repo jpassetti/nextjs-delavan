@@ -10,6 +10,8 @@
 	@include mixins.alignItems();
 	@include mixins.justifyContent();
 	@include mixins.flexDirection();
+	@include mixins.flexGap();
+	@include mixins.flexWrap();
 }
 .table-header {
 	padding-top: 1rem;

@@ -357,3 +357,23 @@
 		}
 	}
 }
+@mixin flexGap() {
+	@for $i from 1 through 16 {
+		&.gap-#{$i} {
+			gap: $i  + rem;
+		}
+	}
+}
+@mixin flexWrap() {
+	$values: wrap,
+	nowrap,
+	wrap-reverse,
+	initial,
+	inherit;
+
+	@each $value in $values {
+		&.flex-wrap-#{$value} {
+			flex-wrap: #{$value};
+		}
+	}
+}

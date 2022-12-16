@@ -7,10 +7,11 @@
     padding: 0.2em 0;
     font-weight: 700;
     line-height: 1;
-    color: black;
+    color: vars.$color__blue;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
     font-family: vars.$font__primary;
     text-transform: uppercase;
+    margin-bottom: .5rem;
 }

@@ -4,9 +4,12 @@
 .input {
     border: 1px solid #ccc;
     border-radius: 4px;
-    padding: 0.5rem;
+    padding: 1rem 0.5rem;
     width: 100%;
     display: block;
     font-family: vars.$font__primary;
     color: black;
+    &--search {
+        padding-left: 4rem;
+    }
 }
