@@ -73,7 +73,7 @@ const SingleCreativePage = ({ creative }) => {
                         <Aside>
                             {creativeInformation.websiteUrl && 
                                  <ButtonGroup>
-                                 <Button label="Visit Site" url={creativeInformation.websiteUrl} />
+                                 <Button size="large" label="Visit Site" url={creativeInformation.websiteUrl} />
                                 </ButtonGroup>
                             }
                            
