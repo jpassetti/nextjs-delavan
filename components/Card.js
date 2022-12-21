@@ -1,8 +1,11 @@
+import classNames from 'classnames/bind';
 import { motion } from "framer-motion";
 import Heading from './Heading';
 import Link from 'next/link'
 import { getCategoryNameById } from '../lib/api';
 import styles from './card.module.scss'
+
+let cx = classNames.bind(styles);
 
 const Card = ({title, slug, categories, backgroundImage, clickHandler}) => {
   //  console.log("Card");
@@ -25,9 +28,16 @@ const Card = ({title, slug, categories, backgroundImage, clickHandler}) => {
           }
         }
       };
+
+      let cardClasses = cx({
+        card: true,
+        'has-background': backgroundImage ? true : false,
+        'no-background' : backgroundImage ? false : true
+      });
+
     return <motion.article 
         variants={variants}
-        className={styles.card} 
+        className={cardClasses} 
         style={{backgroundImage: `url(${backgroundImage})`}}
         onClick={clickHandler}    
     >

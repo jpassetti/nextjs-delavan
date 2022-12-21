@@ -41,6 +41,7 @@ const Heading = ({
 		[`font-family-${fontFamily}`] : fontFamily,
 		[`font-size-${size}`] : size,
 		[`letter-spacing-${letterSpacing}`] : letterSpacing,
+		[`size-${size}`] : size
 
 	});
 

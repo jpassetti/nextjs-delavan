@@ -41,7 +41,7 @@ export async function getStaticProps( {params}) {
 const SingleCreativePage = ({ creative }) => {
     const { title, featuredImage, excerpt, creativeInformation, content } = creative;
     
-    const linksArr = creativeInformation.links.map((link) => {
+    const linksArr = creativeInformation?.links?.map((link) => {
         return {
             name: link,
             url: creativeInformation[`${link}Url`]
@@ -85,14 +85,10 @@ const SingleCreativePage = ({ creative }) => {
                                 />
                             </Group>
                             }
-                            {/*<Group>
-                                <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Tags</Heading>
-                                <Tags tags={tags} />
-                            </Group>*/}
                         </Aside>
                     </Col>
                 </Row>
-           </Container>
+                        </Container>
         </Layout>
     );
 }

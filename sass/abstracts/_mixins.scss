@@ -377,3 +377,21 @@
 		}
 	}
 }
+@mixin borderTop() {
+	@for $i from 1 through 16 {
+		&.border-top-#{$i} {
+			border-top-color: vars.$color__blue_10;
+			border-top-width: #{$i}px;
+			border-top-style: solid;
+		}
+	}
+}
+@mixin borderBottom() {
+	@for $i from 1 through 16 {
+		&.border-bottom-#{$i} {
+			border-bottom-color: vars.$color__blue_10;
+			border-bottom-width: #{$i}px;
+			border-bottom-style: solid;
+		}
+	}
+}

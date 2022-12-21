@@ -45,6 +45,9 @@
 		@include mixins.breakpoint(md) {
 			font-size: 2rem;
 		}
+		&.size-small {
+			font-size: 1.5rem;
+		}
 	}
 
 	&.h3 {
