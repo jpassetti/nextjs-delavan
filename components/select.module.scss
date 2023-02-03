@@ -4,7 +4,9 @@
 .select {
     width: 100%;
     padding: 1rem 0.5rem;
-    font-family: vars.$font__primary;
+    font-family: vars.$font__nunito;
+    font-weight: 400;
+    font-size: 1.2rem;
     display: block;
     @include mixins.breakpoint(sm) {
         // max-width: 20rem;

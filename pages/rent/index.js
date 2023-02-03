@@ -28,6 +28,7 @@ const RentLandingPage = ({spacesData, pageData}) => {
         </Head>
         <Showcase 
             title={title}
+            slug="rent"
             introduction={excerpt}
             backgroundImage={featuredImage?.node?.sourceUrl} 
         />

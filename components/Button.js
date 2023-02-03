@@ -7,6 +7,7 @@ let cx = classNames.bind(styles);
 
 const Button = ({
     backgroundColor,
+    fontColor,
     iconAfter, 
     label, 
     size,
@@ -15,6 +16,7 @@ const Button = ({
     let buttonClasses = cx({
         btn: true,
         [`background-color-${backgroundColor}`]: backgroundColor,
+        [`font-color-${fontColor}`]: fontColor,
         [`size-${size}`] : size
     });
     return <button className={buttonClasses}>

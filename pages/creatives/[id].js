@@ -14,6 +14,7 @@ import { getCreativeBySlug, getCreatives, getCategoryNameById, getAllCreativesSl
 import Paragraph from '../../components/Paragraph';
 import SocialMediaLinks from '../../components/SocialMediaLinks';
 import Tags from '../../components/Tags';
+import MainContent from '../../components/MainContent';
 
 export async function getStaticPaths() {
     const creatives = await getAllCreativesSlugs();
@@ -66,7 +67,7 @@ const SingleCreativePage = ({ creative }) => {
                 <Row justifyContent="space-between">
                     <Col xs="12" sm="8" marginBottom="0">
                         <Section>
-                            <Paragraph marginBottom="0">Main content blocks will go here.</Paragraph>
+                           {content && <MainContent content={content} />}
                         </Section>
                     </Col>
                     <Col xs="12" sm="3" marginBottom="0">

@@ -4,6 +4,8 @@ import styles from './heading.module.scss';
 let cx = classNames.bind(styles);
 
 const Heading = ({
+	accentBottom,
+	accentTop,
 	borderTop,
 	children, 
 	className,
@@ -41,8 +43,11 @@ const Heading = ({
 		[`font-family-${fontFamily}`] : fontFamily,
 		[`font-size-${size}`] : size,
 		[`letter-spacing-${letterSpacing}`] : letterSpacing,
-		[`size-${size}`] : size
-
+		[`size-${size}`] : size,
+		[`top-accent`] : accentTop,
+		[`top-accent-${accentTop}`] : accentTop,
+		[`bottom-accent`] : accentBottom,
+		[`bottom-accent-${accentBottom}`] : accentBottom,
 	});
 
 	return <Tag className={`${headingClasses} ${className}`}>{children}</Tag>

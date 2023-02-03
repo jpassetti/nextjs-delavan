@@ -46,6 +46,7 @@ const DisplayPosts = ({
                             key={index} 
                             title={title} 
                             slug={formattedSlug}
+                            categorySlug={categorySlug}
                             //categories={creativeTypes ? creativeTypes : categories} 
                             backgroundImage={featuredImage?.node.sourceUrl}
                             clickHandler={(e) => {
@@ -69,7 +70,7 @@ const DisplayPosts = ({
                  </Section.Header>
             </Col>
             <Col sm="6">
-                {posts.map((edge, index) => {
+            {posts.length > 0 ? posts.map((edge, index) => {
                     const {title, slug } = edge.node;
                     return <Row 
                     key={index} 
@@ -92,14 +93,17 @@ const DisplayPosts = ({
                         </Heading>
                     }
                         <Button 
-                            backgroundColor="tan" 
+                            backgroundColor={categorySlug} 
                             iconAfter="angle-right" 
                             shape="circle" 
                             size="small"
                             url={`${parentSlug ? parentSlug : ''}/${slug}`} 
                         />
                     </Row>
-                })}
+                })
+                :
+                <Paragraph>No creatives match this category yet.</Paragraph>
+                }
             </Col>
         </Row>
         </Fragment>

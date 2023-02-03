@@ -165,7 +165,7 @@ const ItemsByType = ({
         </Filters.Bar>
         }
         <Container>
-            {filteredCategories && filteredCategories.map((category, index) => {
+            {filteredCategories.length > 0 && filteredCategories.map((category, index) => {
                 const { posts, name, slug } = category;
                 console.log({posts});
                 return posts.length > 0 && <DisplayPosts 
@@ -177,7 +177,8 @@ const ItemsByType = ({
                         displayCategory={false}
                         categorySlug={slug}
                  />
-            })}
+            })
+        }
         </Container>
     </Fragment>
 }

@@ -42,6 +42,7 @@ const CreativesLandingPage = ({
         </Head>
         <Showcase 
             title={title}
+            slug="creatives"
             //title={title}
             introduction={excerpt}
             //introduction={"This is a test of the creatives page."}

@@ -3,21 +3,20 @@
 
 .btn {
     background-color: vars.$color__blue;
-    font-family: vars.$font__primary;
-    font-weight: bold;
+    font-family: vars.$font__nunito;
+    font-weight: 900;
     font-size: 1.1rem;
+    line-height: 1;
     color: #fff;
-    padding: 10px;
+    padding: 1rem 1.5rem;
     border-radius: 5px;
-    border: none;
+    border: 0px;
     cursor: pointer;
+    user-select: none;
     transition: all 0.3s ease;
     display: block;
-    //width: 100%;
-    a {
-        color: #fff;
-        text-decoration: none;
-    }
+    text-align: center;
+    text-decoration: none;
     svg {
         width: 1.5em;
         height: 1.5em;
@@ -33,5 +32,10 @@
     &.size-large {
         display: block;
     }
+    @include mixins.fontColors();
     @include mixins.backgroundColors();
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 }

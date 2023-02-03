@@ -440,11 +440,11 @@ const iconPaths = [
     },
 ];
 
-const Icon = ({ icon, active, color }) => {
+const Icon = ({ icon, isActive, color }) => {
     let iconClasses = cx({
         icon: true,
-        active: active === 'active',
-        inactive : active === 'inactive',
+        active : isActive === true,
+        inactive : isActive === false,
         close: icon === 'close',
         [`fill-${color}`] : color
     });
@@ -461,7 +461,11 @@ const Icon = ({ icon, active, color }) => {
     </svg> : '';
 }
 const Accessory = ({icon}) => {
-    return <div className={styles.iconAccessory}>
+    let iconAccessoryClasses = cx({
+        iconAccessory: true,
+        [`background-color-${icon}`] : icon
+    });
+    return <div className={iconAccessoryClasses}>
         <Icon icon={icon} color="blue" />
      </div>
 }

@@ -1,5 +1,7 @@
+import { Fragment } from 'react';
 import Container from './Container'
 import Col from './Col';
+import CreativeBorder from './CreativeBorder'
 import Icon from './Icon';
 import Link from 'next/link';
 import Nav from './Nav';
@@ -14,7 +16,10 @@ import Paragraph from './Paragraph';
 
 const Footer = () => {
     const pages = getPages();
-    return <footer className={styles.footer}>
+    return <Fragment>
+        <CreativeBorder />
+    <footer className={styles.footer}>
+        
         <Container>
         <Row marginBottom="4">
             <Col xs="6" sm="4" md="2">
@@ -52,5 +57,6 @@ const Footer = () => {
         </Row>
         </Container>
     </footer>
+    </Fragment>
 }
 export default Footer;

@@ -20,6 +20,13 @@ const CreativeFragment = `
                 }
             }
         }
+        creativeInformation {
+            name {
+                businessName
+                firstname
+                lastName
+            }
+        }
     }
     ${ImageFragment}
 `

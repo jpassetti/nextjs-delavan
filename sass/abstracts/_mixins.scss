@@ -280,12 +280,64 @@
 	}
 }
 @mixin backgroundColors() {
-	$colors: ("black" : "#000000", "white": "#ffffff", "blue": vars.$color__blue, "tan": vars.$color__tan, "red": vars.$color__red);
+	$colors: (
+		"black" : "#000000", 
+		"white": "#ffffff", 
+		"blue": vars.$color__blue, 
+		"tan": vars.$color__tan, 
+		"red": vars.$color__red,
+		"yellow" : vars.$color_new__yellow,
+		"design" : vars.$color_new__blue2, 
+		"photography" : vars.$color_new__yellow,
+		"painting": vars.$color_new__orange,
+		"printmaking": vars.$color_new__green,
+		"other": vars.$color_new__blue
+	);
 
 	@each $color,
 	$value in $colors {
 		&.background-color-#{$color} {
 			background-color: #{$value};
+		}
+	}
+}
+@mixin fontColors() {
+	$colors: (
+		"black" : "#000000", 
+		"white": "#ffffff", 
+		"blue": vars.$color_new__blue, 
+		"navy": vars.$color__blue,
+		"tan": vars.$color__tan, 
+		"red": vars.$color__red,
+		"yellow" : vars.$color_new__yellow,
+	);
+
+	@each $color,
+	$value in $colors {
+		&.font-color-#{$color} {
+			color: #{$value};
+		}
+	}
+}
+@mixin newAccentColors() {
+	$colors: (
+		"design" : vars.$color_new__blue2, 
+		"photography" : vars.$color_new__yellow,
+		"painting": vars.$color_new__orange,
+		"printmaking": vars.$color_new__green,
+		"other": vars.$color_new__blue
+	);
+
+	@each $color,
+	$value in $colors {
+		&.background-color-#{$color} {
+			background-color: #{$value};
+		}
+	}
+	@each $color,
+	$value in $colors {
+		&.border-bottom-#{$color} {
+			border-bottom-color: #{$value};
 		}
 	}
 }
@@ -392,6 +444,13 @@
 			border-bottom-color: vars.$color__blue_10;
 			border-bottom-width: #{$i}px;
 			border-bottom-style: solid;
+		}
+	}
+}
+@mixin flexGrows() {
+	@for $i from 1 through 100 {
+		&.flex-grow-#{$i} {
+			flex-grow: $i;
 		}
 	}
 }

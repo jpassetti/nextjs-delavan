@@ -10,7 +10,7 @@ const Paragraph = ({
 	className,
 	color,
 	diminish,
-	marginBottom, 
+	marginBottom=1, 
 	marginTop,
 	textAlign,
 	fontWeight

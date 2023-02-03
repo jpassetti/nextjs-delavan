@@ -7,7 +7,7 @@ import styles from './card.module.scss'
 
 let cx = classNames.bind(styles);
 
-const Card = ({title, slug, categories, backgroundImage, clickHandler}) => {
+const Card = ({title, slug, categories, backgroundImage, clickHandler, categorySlug}) => {
   //  console.log("Card");
     //console.log({categoryIds});
     const variants = {
@@ -32,7 +32,12 @@ const Card = ({title, slug, categories, backgroundImage, clickHandler}) => {
       let cardClasses = cx({
         card: true,
         'has-background': backgroundImage ? true : false,
-        'no-background' : backgroundImage ? false : true
+        'no-background' : backgroundImage ? false : true,
+        [`border-bottom-${categorySlug}`] : categorySlug,
+      });
+      let ctaClasses = cx({
+        card__cta: true,
+        [`background-color-${categorySlug}`] : categorySlug,
       });
 
     return <motion.article 
@@ -54,7 +59,7 @@ const Card = ({title, slug, categories, backgroundImage, clickHandler}) => {
                 </Link>
             </Heading>
         </div>
-        <div className={styles.card__cta}>
+        <div className={ctaClasses}>
             <Link href={`/${slug}`}>
                 View more
              </Link>

@@ -42,6 +42,7 @@ const NewsLandingsPage = ({postsData, categoriesData, pageData}) => {
         </Head>
         <Showcase 
             title={title}
+            slug="news"
             introduction={excerpt}
             backgroundImage={featuredImage?.node?.sourceUrl} 
         />

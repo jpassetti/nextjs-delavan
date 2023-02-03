@@ -21,8 +21,9 @@
     cursor: pointer;
     color: vars.$color__blue;
     border: 1px solid vars.$color__blue;
+    transition: all .5s;
     &.active {
-        background-color: vars.$color__tan;
+        background-color: vars.$color_new__yellow;
         color: vars.$color__blue;
     }
    }

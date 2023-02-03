@@ -16,18 +16,8 @@
     cursor: pointer;
     border-bottom: .5rem solid rgba(122,0,0, 1);
     background-color: vars.$color__blue;
-    /*&.no-background:nth-of-type(4n+1) {
-        background-color: vars.$color__green;
-    }
-    &.no-background:nth-of-type(4n+2) {
-        background-color: vars.$color__red;
-    }
-    &.no-background:nth-of-type(4n+3) {
-        background-color: vars.$color__tan;
-    }
-    &.no-background:nth-of-type(4n+4) {
-        background-color: vars.$color__blue;
-    }*/
+    transition: all .5s;
+    @include mixins.newAccentColors();
     &__nameplate {
         position: absolute;
         bottom: 0;
@@ -52,9 +42,11 @@
         justify-content: center;
         align-items: center;
         font-size: 1.2rem;
-        font-weight: 700;
-        font-family: vars.$font__primary;
+        font-weight: 900;
+        font-family: vars.$font__nunito;
         transition: all .3s;
+        text-transform: uppercase;
+        @include mixins.newAccentColors();
         a {
             color: white;
             text-decoration: none;
@@ -80,6 +72,8 @@
         }
     }
     &:hover, &:focus {
+        transform: scale(1.025);
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.45);
         .card__cta {
             bottom: 0;
         }

@@ -15,7 +15,7 @@ const Form = ({searchQuery, setSearchQuery, handleSearchFormSubmit}) => {
          <Input 
             type="search"
             value={searchQuery} 
-            placeholder="Search..." 
+            placeholder="Type Creative name..." 
             onChange={(e) => {
                 setSearchQuery(e.target.value);
             }} 
