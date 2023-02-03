@@ -6,7 +6,7 @@ import Showcase from '../../components/Showcase';
 import { getAllCreatives, getAllCreativeTypes, getAllCreativesByType, getPageBySlug } from "../../lib/api";
 
 export async function getStaticProps() {
-    const pageData = await getPageBySlug("creatives-page");
+    const pageData = await getPageBySlug("creatives");
 	const creativesData = await getAllCreatives();
     const creativeTypes = await getAllCreativeTypes();
    // const creativesByTypeData = await getAllCreativesByType();
