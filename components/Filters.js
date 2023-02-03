@@ -110,14 +110,14 @@ const ByDisplayFormat = ({displayFormat, setDisplayFormat}) => {
         <div>
             <ButtonUI 
                 icon="grid" 
-                isActive={displayFormat === "grid" ? true : false} 
+                active={displayFormat === "grid" ? true : false} 
                 clickHandler={() => {
                     setDisplayFormat("grid");
                 }} 
             />
             <ButtonUI
                 icon="list" 
-                isActive={displayFormat === "list" ? true : false} 
+                active={displayFormat === "list" ? true : false} 
                 clickHandler={() => {
                     setDisplayFormat("list");
                 }} 

@@ -46,14 +46,16 @@ const SingleNewsPage = ({ postData }) => {
                     slug: "news"
                 }}
                 title={title} 
-                introduction={excerpt}
+                introduction={excerpt ? excerpt : null}
                 backgroundImage={featuredImage?.node?.sourceUrl} 
             />
              <Container>
                 <Row justifyContent="space-between">
                     <Col xs="12" sm="8" marginBottom="0">
                         <Section>
-                            <MainContent content={content} />
+                            {content && 
+                                <MainContent content={content} />
+                            }
                         </Section>
                     </Col>
                     <Col xs="12" sm="3" marginBottom="0">

@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import Col from '../components/Col';
+import ContactForm from '../components/ContactForm';
 import Layout from "../components/Layout";
 import Section from '../components/Section';
 import Showcase from "../components/Showcase";
@@ -32,6 +34,9 @@ const ContactPage = ({pageData}) => {
             <Section>
                 <Heading level="2" marginBottom="2">Get in touch</Heading>
                 <Paragraph>Use the form below to get in touch with us.</Paragraph>
+                <Col xs="12" sm="6" md="4">
+                <ContactForm />
+                </Col>
             </Section>
         </Container>
     </Layout>

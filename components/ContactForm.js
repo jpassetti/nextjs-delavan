@@ -1,5 +1,11 @@
 import Cf7FormWrapper from "./Cf7FormWrapper"
 import { useState } from "react"
+import Input from './Input'
+import TextArea from "./TextArea"
+import Button from "./Button"
+import Label from "./Label"
+import Group from './Group';
+import Paragraph from "./Paragraph"
 
 function Form({ handler, isLoading, isSent, hasError }) {
   const [formState, setFormState] = useState({})
@@ -15,25 +21,35 @@ function Form({ handler, isLoading, isSent, hasError }) {
     handler(e, formState)
   }
 
-  return (
-    <form onSubmit={handleFormSubmit}>
-      <div>isLoading: {isLoading ? "Loading" : "false"}</div>
-      <div>isSent: {isSent ? "Sent" : "false"}</div>
-      <div>Error: {hasError || "null"}</div>
+  return <form onSubmit={handleFormSubmit}>
+      <div style={{ "backgroundColor": "#ccc", "marginBottom" : "1rem", "padding" : "1rem" }}>
+        <Paragraph>isLoading: {isLoading ? "Loading" : "false"}</Paragraph>
+        <Paragraph>isSent: {isSent ? "Sent" : "false"}</Paragraph>
+        <Paragraph>Error: {hasError || "null"}</Paragraph>
+      </div>
 
-      <div>Enter your name:</div>
-      <input onChange={(e) => handleFieldChange("your-name", e)} type="text" />
-      <div>Enter your email:</div>
-      <input onChange={(e) => handleFieldChange("your-email", e)} type="text" />
-      <div>Enter your phone:</div>
-      <input onChange={(e) => handleFieldChange("your-phone", e)} type="text" />
-      <input type="submit" value="Send" />
+      <Group>
+        <Label>Your name:</Label>
+        <Input onChange={(e) => handleFieldChange("your-name", e)} />
+      </Group>
+      <Group>
+        <Label>Your email:</Label>
+        <Input onChange={(e) => handleFieldChange("your-email", e)} />
+      </Group>
+      <Group>
+        <Label>Your subject:</Label>
+        <Input onChange={(e) => handleFieldChange("your-subject", e)} />
+      </Group>
+      <Group>
+        <Label>Your message:</Label>
+        <TextArea onChange={(e) => handleFieldChange("your-message", e)} />
+      </Group>
+      <Button label="Send" type="submit" />
     </form>
-  )
 }
 
 const ContactForm = () => {
-  return <Cf7FormWrapper url="https://delavan-studios-dev.com">
+  return <Cf7FormWrapper siteUrl="https://delavan-studios-dev.com" formId="88" >
         <Form />
       </Cf7FormWrapper>
 }
