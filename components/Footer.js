@@ -52,7 +52,7 @@ const Footer = () => {
             </Col>
             <Col sm="6" md="3">
                 <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Connect</Heading>
-                <SocialMediaLinks color="white" />
+                <SocialMediaLinks color="white" justifyContent="flex-start" />
             </Col>
         </Row>
         </Container>

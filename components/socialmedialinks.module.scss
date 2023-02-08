@@ -5,6 +5,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: .5rem;
+    &.justify-content-center {
+        justify-content: center;
+    }
+    &.justify-content-flex-start {
+        justify-content: flex-start;
+    }
+   
 }
 .socialMediaListItem {
     display: inline-block;
@@ -25,6 +32,7 @@
         height: 1.5em;
         fill: black;
     }
+   
     @include mixins.fillColorsAndBorders();
     &:hover, &:focus {
         background-color: vars.$color__blue;

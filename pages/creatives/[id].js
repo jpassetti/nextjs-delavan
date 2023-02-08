@@ -64,29 +64,29 @@ const SingleCreativePage = ({ creative }) => {
                 backgroundImage={featuredImage?.node?.sourceUrl} 
             />
            <Container>
-                <Row justifyContent="space-between">
-                    <Col xs="12" sm="8" marginBottom="0">
+                <Row justifyContent="center">
+                    <Col xs="12" sm="10" md="8" marginBottom="0">
                         <Section>
-                           {content && <MainContent content={content} />}
-                        </Section>
-                    </Col>
-                    <Col xs="12" sm="3" marginBottom="0">
-                        <Aside>
-                            {creativeInformation.websiteUrl && 
+                        {creativeInformation.websiteUrl && 
                                  <ButtonGroup>
                                  <Button size="large" label="Visit Site" url={creativeInformation.websiteUrl} />
                                 </ButtonGroup>
                             }
                            
                            {linksArr.length > 0 && <Group>
-                               <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm">Follow</Heading>
+                               <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm" textAlign="center">Follow</Heading>
                                 <SocialMediaLinks 
                                     color="red" 
                                     links={linksArr} 
+                                    justifyContent="center"
                                 />
                             </Group>
                             }
-                        </Aside>
+                        </Section>
+                        <Section>
+                            
+                           {content && <MainContent content={content} />}
+                        </Section>
                     </Col>
                 </Row>
                         </Container>
