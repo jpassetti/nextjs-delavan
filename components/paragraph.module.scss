@@ -8,7 +8,7 @@
 	display: block;
 	&.medium {
 		font-size: 1.1rem;
-		max-width: 35em;
+		// max-width: 35em;
 		@include mixins.breakpoint(sm) {
 			font-size: 1.3rem;
 		}
@@ -20,7 +20,7 @@
 	&.intro {
 		font-size: 1.3rem;
 		max-width: 35em;
-
+		margin: 0 auto;
 		@include mixins.breakpoint(sm) {
 			font-size: 1.5rem;
 		}

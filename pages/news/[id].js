@@ -50,7 +50,7 @@ const SingleNewsPage = ({ postData }) => {
                 backgroundImage={featuredImage?.node?.sourceUrl} 
             />
              <Container>
-                <Row justifyContent="space-between">
+                <Row justifyContent="center">
                     <Col xs="12" sm="8" marginBottom="0">
                         <Section>
                             {content && 
@@ -58,11 +58,7 @@ const SingleNewsPage = ({ postData }) => {
                             }
                         </Section>
                     </Col>
-                    <Col xs="12" sm="3" marginBottom="0">
-                        <Aside>
-                          Sidebar content
-                        </Aside>
-                    </Col>
+
                 </Row>
            </Container>
         </Layout>

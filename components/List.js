@@ -26,13 +26,11 @@ const List = ({data, parentSlug}) => {
                             />
                         </Link>
                     </Col>}
-                    {title && <Col md="3" marginBottom="2">
-                        <Heading level="3" color="black"><Link href={`${parentSlug ? parentSlug : ''}/${slug}`}>
+                    {title && <Col md="7" marginBottom="2">
+                        <Heading level="3" color="black" marginBottom={1}><Link href={`${parentSlug ? parentSlug : ''}/${slug}`}>
                             {title}
                         </Link></Heading>
-                    </Col>}
-                    {excerpt && <Col md="5" marginBottom="2">
-                        <Paragraph>{excerpt}</Paragraph>
+                        {excerpt && <Paragraph>{excerpt}</Paragraph>}
                     </Col>}
                     <Col md="1" marginBottom="2">
                         <Button backgroundColor="tan" iconAfter="angle-right" shape="circle" url={`${parentSlug ? parentSlug : ''}/${slug}`} />

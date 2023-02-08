@@ -16,6 +16,8 @@ import styles from './showcase.module.scss';
 
 import { getHomeCards } from '../lib/api';
 import CreativeBorder from './CreativeBorder';
+import Row from './Row';
+import Col from './Col';
 
 let cx = classNames.bind(styles)
 
@@ -32,8 +34,13 @@ const Showcase = ({location, title, introduction, category, backgroundImage, hom
         return <Fragment><section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage})`}}>
             
                 <Container>
+                    <Row justifyContent="center">
+                        <Col xs={12} sm={10} md={8}>
                 <div className={styles.showcase__content}>
             <Paragraph color="white" marginBottom="3" type="medium"><strong>Delavan Studios</strong> is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side.</Paragraph>
+            </div>  
+            </Col>
+            </Row>
             <CardGroup>
                 {homeCards.map((card, index) => {
                     const {title, slug, featuredImage, categorySlug } = card;
@@ -50,7 +57,7 @@ const Showcase = ({location, title, introduction, category, backgroundImage, hom
                     />
                 })}
             </CardGroup> 
-            </div>  
+           
             </Container> 
             
             </section>
