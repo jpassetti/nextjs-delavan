@@ -28,7 +28,7 @@ const AboutPage = ({ timelineData }) => {
         <Showcase 
             title="About" 
             introduction="This is the introduction to the about landing page"
-            backgroundImage="/images/building.jpg"
+            backgroundImage="/building.jpg"
         />
         <Container> 
         <Section>

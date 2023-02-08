@@ -22,7 +22,7 @@ function Form({ handler, isLoading, isSent, hasError }) {
   }
 
   return <form onSubmit={handleFormSubmit}>
-      <div style={{ "backgroundColor": "#ccc", "marginBottom" : "1rem", "padding" : "1rem" }}>
+      <div style={{ "backgroundColor": "#ccc", "marginBottom" : "1rem", "padding" : "1rem", "display" : "none" }}>
         <Paragraph>isLoading: {isLoading ? "Loading" : "false"}</Paragraph>
         <Paragraph>isSent: {isSent ? "Sent" : "false"}</Paragraph>
         <Paragraph>Error: {hasError || "null"}</Paragraph>

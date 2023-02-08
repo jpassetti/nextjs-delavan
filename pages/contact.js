@@ -7,6 +7,7 @@ import Showcase from "../components/Showcase";
 import Container from "../components/Container";
 import Heading from '../components/Heading';
 import Paragraph from '../components/Paragraph';
+import Row from '../components/Row';
 
 import { getPageBySlug } from "../lib/api";
 
@@ -32,11 +33,13 @@ const ContactPage = ({pageData}) => {
         />
         <Container> 
             <Section>
-                <Heading level="2" marginBottom="2">Get in touch</Heading>
-                <Paragraph>Use the form below to get in touch with us.</Paragraph>
-                <Col xs="12" sm="6" md="4">
-                <ContactForm />
+                <Row justifyContent="center">
+                <Col xs="12" sm="10" md="8">
+                    <Heading level="2" marginBottom="2">Get in touch</Heading>
+                    <Paragraph marginBottom={2}>Use the form below to get in touch with us.</Paragraph>
+                    <ContactForm />
                 </Col>
+                </Row>
             </Section>
         </Container>
     </Layout>
