@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
+import Heading from "../../components/Heading";
 import Layout from "../../components/Layout";
 import Showcase from "../../components/Showcase";
 import Space from "../../components/Space";
@@ -33,8 +34,9 @@ const RentLandingPage = ({spacesData, pageData}) => {
             backgroundImage={featuredImage?.node?.sourceUrl} 
         />
         <Container>
-        <Space space={spacesData[activeSpace]} />
-        <Slider small items={spacesData} clickHandler={setActiveSpace} activeSpace={activeSpace} />
+          <Heading level="2" color="black" marginBottom={2} marginTop={6}>Available spaces</Heading>
+          <Space space={spacesData[activeSpace]} />
+          <Slider small items={spacesData} clickHandler={setActiveSpace} activeSpace={activeSpace} />
         </Container>
     </Layout>
 }

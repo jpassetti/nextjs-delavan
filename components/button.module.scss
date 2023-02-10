@@ -33,7 +33,7 @@
         display: block;
     }
     @include mixins.fontColors();
-    @include mixins.backgroundColors();
+    @include mixins.newAccentColors();
     a {
         text-decoration: none;
         color: inherit;

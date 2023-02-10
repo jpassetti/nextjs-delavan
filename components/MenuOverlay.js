@@ -44,7 +44,7 @@ const MenuOverlay = ({closeHandler}) => {
     transition={{ duration: 0.5 }}
     >
         <motion.div variants={variants}>
-        <ButtonUI clickHandler={closeHandler} icon="close" color="white" active="true" />
+        <ButtonUI clickHandler={closeHandler} iconSlug="close" color="white" active="true" />
         <Container>
         <Row marginBottom="4">
                 <Col xs="6" sm="4" md="3">

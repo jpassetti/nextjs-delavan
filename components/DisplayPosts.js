@@ -20,6 +20,7 @@ import Section from './Section'
 let cx = classNames.bind(styles)
 
 const DisplayPosts = ({
+    categoryIcon,
     categorySlug,
     displayFormat,
     posts,
@@ -35,8 +36,8 @@ const DisplayPosts = ({
         {displayFormat === "grid" ? 
             <Fragment>
                 <Section.Header>
-                    <Icon.Accessory icon={categorySlug} />
-                    <Heading level="2" textTransform="uppercase" size="small">{sectionTitle}</Heading>
+                    <Icon.Accessory iconPath={categoryIcon} iconSlug={categorySlug} />
+                    <Heading level="2" color="black" textTransform="uppercase" size="small">{sectionTitle}</Heading>
                  </Section.Header>
                  <div className={displayClasses}>
                     {posts.length > 0 ? posts.map((edge, index) => {
@@ -65,8 +66,8 @@ const DisplayPosts = ({
             <Row alignItems="top">
             <Col sm="6">
                 <Section.Header>
-                    <Icon.Accessory icon={categorySlug} />
-                    <Heading level="2" textTransform="uppercase" size="small">{sectionTitle}</Heading>
+                    <Icon.Accessory iconPath={categoryIcon} iconSlug={categorySlug} />
+                    <Heading level="2" textTransform="uppercase" size="small" color="black">{sectionTitle}</Heading>
                  </Section.Header>
             </Col>
             <Col sm="6">

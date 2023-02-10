@@ -6,47 +6,53 @@ import Container from "../components/Container";
 import Timeline from '../components/Timeline';
 
 import { getTimelineItems } from "../lib/api";
+import MainContent from "../components/MainContent";
 import Paragraph from "../components/Paragraph";
 import Row from "../components/Row";
 import Section from "../components/Section";
 
+import { getPageBySlug } from "../lib/api";
+
 export async function getStaticProps(context) {
     const timelineData = await getTimelineItems();
+    const pageData = await getPageBySlug("about");
     return {
       props: {
-        timelineData
+        timelineData,
+        pageData
       }, // will be passed to the page component as props
     }
   }
 
-const AboutPage = ({ timelineData }) => {
+const AboutPage = ({ timelineData, pageData }) => {
+
+    const {title, slug, content, excerpt, featuredImage} = pageData;
     
     return <Layout>
         <Head>
-            <title>About | Delavan Studios | Syracuse, NY</title>
+            <title>{title} | Delavan Studios | Syracuse, NY</title>
         </Head>
         <Showcase 
-            title="About" 
-            introduction="This is the introduction to the about landing page"
-            backgroundImage="/building.jpg"
+            title={title} 
+            introduction={excerpt}
+            backgroundImage={featuredImage?.node.sourceUrl}
         />
         <Container> 
         <Section>
             <Row justifyContent="center">
                 <Col xs="12" sm="10" md="8">
-            <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus est nisl, ac suscipit diam blandit vitae. Mauris sodales tellus ut purus posuere, ac auctor ex interdum. In viverra maximus sollicitudin. Cras a accumsan diam. Phasellus posuere ex purus, rutrum molestie sem ultricies et. Duis sit amet elit laoreet, molestie quam laoreet, imperdiet justo.</Paragraph>
-            <Paragraph> Aenean sodales, enim sed eleifend mattis, ligula ex ultricies justo, ut hendrerit purus dui a ligula. Donec suscipit semper quam, sed tincidunt orci consectetur quis. Morbi mollis, risus a consequat maximus, quam tortor scelerisque purus, et congue augue sapien luctus orci. 
-                </Paragraph>
-                <Paragraph>Vivamus ipsum arcu, aliquam quis risus sed, lobortis mollis libero. Sed libero massa, malesuada sed ipsum id, tincidunt tempor tellus. Vestibulum eu mauris accumsan turpis volutpat consectetur eget non dui. Maecenas sit amet augue sed turpis congue sollicitudin eu sit amet metus. Fusce ornare dolor a nisl dictum, vitae feugiat erat varius.</Paragraph>
+                {content && 
+                    <MainContent content={content} />
+                }
                 </Col>
                 </Row>
                 </Section>
-            <Timeline>
+            {/*<Timeline>
                 {timelineData.map((item, index) => {
                     return <Timeline.Item key={index} item={item} />
                 })}
 
-            </Timeline>
+            </Timeline>*/}
         </Container>
     </Layout>
 }

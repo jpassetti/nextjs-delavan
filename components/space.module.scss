@@ -10,14 +10,7 @@
     }
     &__image {
         width: 100%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-        &::after {
-            content: '';
-            display: block;
-            padding-bottom: 56.25%;
-        }
+        height: auto;
         @include mixins.breakpoint(tablet) {
             width: 65%;
         }

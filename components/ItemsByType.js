@@ -106,7 +106,7 @@ const ItemsByType = ({
     useEffect( () => {
        //console.log("use effect categoriesWithPosts");
         const categoriesWithPosts = categories.map((category) => {
-            const { name, slug } = category.node;
+            const { name, slug, creativeTypeInformation } = category.node;
             const matchingPosts = posts.filter((post) => {
                 const { creativeTypes } = post.node;
                 //console.log({creativeTypes});
@@ -136,6 +136,7 @@ const ItemsByType = ({
             return {
                 name,
                 slug,
+                creativeTypeInformation,
                 posts: matchingPosts,
             };
         }); 
@@ -166,7 +167,8 @@ const ItemsByType = ({
         }
         <Container>
             {filteredCategories.length > 0 && filteredCategories.map((category, index) => {
-                const { posts, name, slug } = category;
+                const { posts, name, slug, creativeTypeInformation } = category;
+                console.log({creativeTypeInformation});
                 console.log({posts});
                 return posts.length > 0 && <DisplayPosts 
                         key={index}
@@ -176,6 +178,7 @@ const ItemsByType = ({
                         parentSlug="creatives"
                         displayCategory={false}
                         categorySlug={slug}
+                        categoryIcon={creativeTypeInformation?.svgIcon}
                  />
             })
         }

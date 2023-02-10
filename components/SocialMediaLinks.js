@@ -18,7 +18,7 @@ const SocialMediaLinks = ({links, color, justifyContent}) => {
     return theLinks ? <ul className={socialMediaListClasses}>
         {theLinks.map((link, index) => {
             const {name, url} = link;
-            return name !== "website" ? <li key={index} className={styles.socialMediaListItem}><a className={socialMediaLinkClasses} href={url} target="_blank"><Icon icon={name} /></a></li> : '';
+            return name !== "website" ? <li key={index} className={styles.socialMediaListItem}><a className={socialMediaLinkClasses} href={url} target="_blank"><Icon iconSlug={name} /></a></li> : '';
         })}
     </ul>  : ''  
 }

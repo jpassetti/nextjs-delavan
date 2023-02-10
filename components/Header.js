@@ -19,14 +19,14 @@ const Header = () => {
                     setMenuOpen(false);
                 }} />}
                 </AnimatePresence>
-                <ButtonUI icon="menu" color="white" active="true" clickHandler={() =>{
+                <ButtonUI iconSlug="menu" color="white" active="true" clickHandler={() =>{
                         setMenuOpen(!menuOpen);
                     }}>Menu</ButtonUI>
                     <Link href="/">
                         <Wordmark color="white" />
                     </Link>
                
-                    <ButtonUI icon="search" color="white" active="true">Search</ButtonUI>
+                    <ButtonUI iconSlug="search" color="white" active="true">Search</ButtonUI>
                
             </Row>
         </Container>

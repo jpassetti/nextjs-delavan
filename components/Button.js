@@ -20,7 +20,7 @@ const Button = ({
         [`size-${size}`] : size
     });
     return <button className={buttonClasses}>
-        {url ? <a href={url} target="_blank" rel="noopener noreferrer">{label ? label : ''} {iconAfter ? <Icon fill="blue" icon={iconAfter} /> : ''}</a> : label}
+        {url ? <a href={url} target="_blank" rel="noopener noreferrer">{label ? label : ''} {iconAfter ? <Icon fill="blue" iconSlug={iconAfter} /> : ''}</a> : label}
     </button>
 }
 export default Button;

@@ -43,7 +43,7 @@ const Card = ({title, slug, categories, backgroundImage, clickHandler, categoryS
     return <motion.article 
         variants={variants}
         className={cardClasses} 
-        style={{backgroundImage: `url(${backgroundImage})`}}
+        style={{backgroundImage: `url(${backgroundImage ? backgroundImage : "none"})`}}
         onClick={clickHandler}    
     >
         <div className={styles.card__nameplate}>

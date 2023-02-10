@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import classNames from 'classnames/bind'
 import styles from './icon.module.scss';
 
@@ -440,33 +442,42 @@ const iconPaths = [
     },
 ];
 
-const Icon = ({ icon, isActive, color }) => {
+const Icon = ({ iconPath, isActive, color, iconSlug }) => {
     let iconClasses = cx({
         icon: true,
         active : isActive === true,
         inactive : isActive === false,
-        close: icon === 'close',
+        close: iconSlug === 'close',
         [`fill-${color}`] : color
     });
-    const matchingIcon = iconPaths.find(iconPath => iconPath.name === icon);
-    return matchingIcon ? <svg 
-        className={iconClasses} 
-        x="0px" 
-        y="0px"
-        viewBox={`0 0 ${matchingIcon.viewBox.width} ${matchingIcon.viewBox.height}`} 
-        style={{ enableBackground: `new 0 0 ${matchingIcon.viewBox.width} ${matchingIcon.viewBox.height}`}}
-        xmlSpace="preserve"
-        >
-        <path d={matchingIcon.path} />
-    </svg> : '';
+    if (iconPath) {
+        return <Image 
+            src={iconPath.sourceUrl} 
+            alt={iconPath.altText} 
+            width={32} 
+            height={50} 
+        />
+    } else {
+        const matchingIcon = iconPaths.find(iconPath => iconPath.name === iconSlug);
+        return matchingIcon ? <svg 
+            className={iconClasses} 
+            x="0px" 
+            y="0px"
+            viewBox={`0 0 ${matchingIcon.viewBox.width} ${matchingIcon.viewBox.height}`} 
+            style={{ enableBackground: `new 0 0 ${matchingIcon.viewBox.width} ${matchingIcon.viewBox.height}`}}
+            xmlSpace="preserve"
+            >
+            <path d={matchingIcon.path} />
+        </svg> : '';
+    }
 }
-const Accessory = ({icon}) => {
+const Accessory = ({iconPath, iconSlug}) => {
     let iconAccessoryClasses = cx({
         iconAccessory: true,
-        [`background-color-${icon}`] : icon
+        [`background-color-${iconSlug}`] : iconSlug
     });
     return <div className={iconAccessoryClasses}>
-        <Icon icon={icon} color="blue" />
+        <Icon iconPath={iconPath} iconSlug={iconSlug} color="black"  />
      </div>
 }
 Icon.Accessory = Accessory;

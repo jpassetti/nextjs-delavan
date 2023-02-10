@@ -15,7 +15,7 @@ const Space = ({space}) => {
             alt={featuredImage?.node.altText}
             width={featuredImage?.node.mediaDetails.width}
             height={featuredImage?.node.mediaDetails.height}
-            layout="responsive"
+            className={styles.space__image}
         />
         <div className={styles.space__content}>
             <Heading level="2" color="white" marginBottom="1">{title}</Heading>

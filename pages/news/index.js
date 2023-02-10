@@ -4,6 +4,7 @@ import { useState } from "react";
 import Container from "../../components/Container";
 import Filters from "../../components/Filters";
 import Grid from '../../components/Grid';
+import Heading from "../../components/Heading";
 import Layout from "../../components/Layout";
 import List from '../../components/List';
 import Showcase from "../../components/Showcase";
@@ -47,6 +48,7 @@ const NewsLandingsPage = ({postsData, categoriesData, pageData}) => {
             backgroundImage={featuredImage?.node?.sourceUrl} 
         />
          <Container>
+         <Heading level="2" color="black" marginBottom={2} marginTop={6}>Latest</Heading>
             {displayFormat === 'grid' ? 
                 <Grid data={filteredPosts} parentSlug="news" />
             : displayFormat === 'list' ?
