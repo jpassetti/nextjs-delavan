@@ -10,13 +10,23 @@ import Paragraph from './Paragraph';
 import Row from './Row';
 import SocialMediaLinks from './SocialMediaLinks';
 import Wordmark from './Wordmark';
-import styles from './menuoverlay.module.scss';
+
+import classNames from 'classnames/bind'
+import styles from './overlay.module.scss';
+
+let cx = classNames.bind(styles);
+
 
 
 import { getPages } from '../lib/api';
+import Input from "./Input";
+import Button from "./Button";
 
-const MenuOverlay = ({closeHandler}) => {
-    const pages = getPages();
+const Overlay = ({children, closeHandler, slug}) => {
+    let overlayClasses = cx({
+        overlay: true,
+        [`bg-${slug}`]: slug
+    });
     const variants = {
         show: {
           x: 0,
@@ -35,16 +45,25 @@ const MenuOverlay = ({closeHandler}) => {
           }
         }
       };
+
     return <motion.div 
     key="modal" 
-    className={styles.menuoverlay}
+    className={overlayClasses}
     initial={{ y: "-100vh" }}
     animate={{ y: 0 }}
     exit={{ y: "-100vh" }}
     transition={{ duration: 0.5 }}
     >
         <motion.div variants={variants}>
-        <ButtonUI clickHandler={closeHandler} iconSlug="close" color="white" active="true" />
+            <ButtonUI clickHandler={closeHandler} iconSlug="close" color={slug === "menu" ? "white" : "blue"} active="true" />
+            {children}
+        </motion.div>
+    </motion.div>
+}
+const Menu = ({closeHandler}) => {
+    const pages = getPages();
+   
+    return <Overlay closeHandler={closeHandler} slug="menu">
         <Container>
         <Row marginBottom="4">
                 <Col xs="6" sm="4" md="3">
@@ -79,7 +98,22 @@ const MenuOverlay = ({closeHandler}) => {
                 </Col>
             </Row>  
         </Container>
-        </motion.div>
-    </motion.div>
+    </Overlay>
 }
-export default MenuOverlay
+Overlay.Menu = Menu;
+const Search = ({closeHandler}) => {
+    return <Overlay closeHandler={closeHandler} slug="search">
+        <Container>
+            <Row justifyContent="center">
+                <Col xs="12" sm="10" md="8">
+                <Heading level="3" marginBottom="2" color="blue" textTransform="uppercase" size="sm">Search</Heading>
+                    <Row flexDirection="row">
+                        <Input /><Button label="Submit" />
+                    </Row>
+                </Col>
+            </Row>
+        </Container>
+    </Overlay>
+}
+Overlay.Search = Search;
+export default Overlay;
