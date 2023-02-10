@@ -26,6 +26,7 @@ const RentLandingPage = ({spacesData, pageData}) => {
     return <Layout>
          <Head>
             <title>{title} | Delavan Studios | Syracuse, NY</title>
+            <meta name="description" content={ excerpt ? excerpt : "Delavan Studios is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side. The studios are flexible for many uses." } />
         </Head>
         <Showcase 
             title={title}

@@ -53,6 +53,7 @@ const SingleCreativePage = ({ creative }) => {
         <Layout>
             <Head>
                 <title>{title} | Delavan Studios | Syracuse, NY</title>
+                <meta name="description" content={ excerpt ? excerpt : "Delavan Studios is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side. The studios are flexible for many uses." } />
             </Head>
             <Showcase
                 category={{
@@ -64,9 +65,11 @@ const SingleCreativePage = ({ creative }) => {
                 backgroundImage={featuredImage?.node?.sourceUrl} 
             />
            <Container>
-                <Row justifyContent="center">
+                <Row>
                     <Col xs="12" sm="10" md="8" marginBottom="0">
-                        <Section>
+                        {content && <MainContent content={content} />}
+                    </Col>
+                    <Col xs="12" sm="2" md="4" marginBottom="0" paddingTop={4}>
                         {creativeInformation.websiteUrl && 
                                  <ButtonGroup>
                                  <Button size="large" label="Visit Site" url={creativeInformation.websiteUrl} />
@@ -81,12 +84,7 @@ const SingleCreativePage = ({ creative }) => {
                                     justifyContent="center"
                                 />
                             </Group>
-                            }
-                        </Section>
-                        <Section>
-                            
-                           {content && <MainContent content={content} />}
-                        </Section>
+                            }   
                     </Col>
                 </Row>
                         </Container>

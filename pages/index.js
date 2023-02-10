@@ -1,4 +1,4 @@
-
+import Head from 'next/head';
 import Layout from '../components/Layout'
 import Showcase from '../components/Showcase';
 
@@ -20,6 +20,10 @@ export default function Home({
   homeCardsData
 }) {
   return <Layout>
+    <Head>
+        <title>Delavan Studios | Syracuse, NY</title>
+            <meta name="description" content="Delavan Studios is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side. The studios are flexible for many uses." />
+    </Head>
       <Showcase 
       location="home"
       backgroundImage="building--blue.jpg"
