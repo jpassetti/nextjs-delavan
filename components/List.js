@@ -33,7 +33,7 @@ const List = ({data, parentSlug}) => {
                         {excerpt && <Paragraph>{excerpt}</Paragraph>}
                     </Col>}
                     <Col md="1" marginBottom="2">
-                        <Button backgroundColor="tan" iconAfter="angle-right" shape="circle" url={`${parentSlug ? parentSlug : ''}/${slug}`} />
+                        <Button backgroundColor="photography" iconAfter="angle-right" shape="circle" url={`${parentSlug ? parentSlug : ''}/${slug}`} />
                     </Col>
                </Row>
             </article>
