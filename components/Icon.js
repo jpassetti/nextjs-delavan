@@ -453,7 +453,7 @@ const Icon = ({ iconPath, isActive, color, iconSlug }) => {
     if (iconPath) {
         return <Image 
             src={iconPath.sourceUrl} 
-            alt={iconPath.altText} 
+            alt={iconPath.altText ? iconPath.altText : ''} 
             width={32} 
             height={50} 
         />

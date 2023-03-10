@@ -33,14 +33,14 @@ const ItemsByType = ({
     const [showResultInfo, setShowResultInfo] = useState(false);
 
     useEffect( () => {
-        console.log("use effect for activeCategory");
+        //console.log("use effect for activeCategory");
         const filtered = items.filter(post => {
             if (activeCategory === 'all') {
                 return post;
             }
             return post.node.creativeTypes.edges.some(type => type.node.slug === activeCategory);
         });
-        console.log({filtered});
+        //console.log({filtered});
         setPosts(filtered)
     }, [ activeCategory ] );
 
@@ -168,8 +168,8 @@ const ItemsByType = ({
         <Container>
             {filteredCategories.length > 0 && filteredCategories.map((category, index) => {
                 const { posts, name, slug, creativeTypeInformation } = category;
-                console.log({creativeTypeInformation});
-                console.log({posts});
+               // console.log({creativeTypeInformation});
+               // console.log({posts});
                 return posts.length > 0 && <DisplayPosts 
                         key={index}
                         sectionTitle={name}
