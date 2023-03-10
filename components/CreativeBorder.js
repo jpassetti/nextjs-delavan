@@ -10,11 +10,10 @@ const CreativeBorder = () => {
         'creativeBorder': true,
     });
    
-    let creativeTypes = ["design", "photography", "painting", "printmaking", "other"];
+    let creativeTypes = ["design", "photography", "painting", "printmaking", "clothing", "other"];
     return <div className={creativeBorderClasses}>
         {creativeTypes.map((type, index) => {
-            let rand = Math.random() * 100;
-            rand = Math.floor(rand);
+            let rand = Math.floor(Math.random() * 100);
              let borderClasses = cx({
                 'border': true,
                 [`background-color-${type}`] : type,
