@@ -31,7 +31,7 @@ const Showcase = ({location, title, introduction, category, backgroundImage, hom
    
     if (location === 'home') {
         //return <Building />
-        return <Fragment><section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage})`}}>
+        return <Fragment><section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage ? backgroundImage : ''})`}}>
             
                 <Container>
                     <Row justifyContent="center">
@@ -63,7 +63,7 @@ const Showcase = ({location, title, introduction, category, backgroundImage, hom
             </section>
             </Fragment>
     } else {
-        return <Fragment><section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage})`}}>
+        return <Fragment><section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage ? backgroundImage : ''})`}}>
             <Container>
             <div className={styles.showcase__content}>
             {category &&  <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase">
