@@ -34,6 +34,7 @@
     }
     @include mixins.fontColors();
     @include mixins.newAccentColors();
+    @include mixins.backgroundColors();
     a {
         text-decoration: none;
         color: inherit;

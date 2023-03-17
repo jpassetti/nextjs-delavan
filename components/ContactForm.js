@@ -7,7 +7,7 @@ import Label from "./Label"
 import Group from './Group';
 import Paragraph from "./Paragraph"
 
-function Form({ handler, isLoading, isSent, hasError }) {
+function Form({ subject="Delavan Studios Contact Form Submission", handler, isLoading, isSent, hasError }) {
   const [formState, setFormState] = useState({})
 
   const handleFieldChange = (field, e) => {
@@ -21,7 +21,7 @@ function Form({ handler, isLoading, isSent, hasError }) {
     handler(e, formState)
   }
 
-  return <form onSubmit={handleFormSubmit}>
+  return <form onSubmit={handleFormSubmit} style={{ "marginBottom" : "2rem"}}>
       <div style={{ "backgroundColor": "#ccc", "marginBottom" : "1rem", "padding" : "1rem", "display" : "none" }}>
         <Paragraph>isLoading: {isLoading ? "Loading" : "false"}</Paragraph>
         <Paragraph>isSent: {isSent ? "Sent" : "false"}</Paragraph>
@@ -37,20 +37,20 @@ function Form({ handler, isLoading, isSent, hasError }) {
         <Input onChange={(e) => handleFieldChange("your-email", e)} />
       </Group>
       <Group>
-        <Label>Your subject:</Label>
-        <Input onChange={(e) => handleFieldChange("your-subject", e)} />
+        <Label>Subject:</Label>
+        <Input value={subject} onChange={(e) => handleFieldChange("your-subject", e)} />
       </Group>
       <Group>
-        <Label>Your message:</Label>
+        <Label>Message:</Label>
         <TextArea onChange={(e) => handleFieldChange("your-message", e)} />
       </Group>
       <Button label="Send" type="submit" />
     </form>
 }
 
-const ContactForm = () => {
+const ContactForm = ({subject}) => {
   return <Cf7FormWrapper siteUrl="https://delavan-studios-dev.com" formId="88" >
-        <Form />
+        <Form subject={subject} />
       </Cf7FormWrapper>
 }
 export default ContactForm;

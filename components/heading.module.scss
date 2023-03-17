@@ -114,6 +114,7 @@
 		@include mixins.breakpoint(md) {
 			font-size: 1.5rem;
 		}
+		@include mixins.fontWeight();
 	}
 
 	&.h4 {

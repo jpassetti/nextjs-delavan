@@ -9,6 +9,7 @@ const Slider = ({ items, small, clickHandler, activeSpace }) => {
     return <div className={styles.slider}>
         <div className={styles.slider__items}>
             {items.map((item, index) => {
+                const {title, spaceInformation, featuredImage} = item.node;
                 let itemClasses = cx({
                     slider__item: true,
                     active: activeSpace === index
@@ -16,8 +17,8 @@ const Slider = ({ items, small, clickHandler, activeSpace }) => {
                 return <div key={index} className={itemClasses} onClick={() => {
                     clickHandler(index);
                 }}>
-                    {small ? <Heading level="3" marginBottom="1">{item.title}</Heading> : <Heading level="2" marginBottom="1">{item.title}</Heading>}
-                    <Paragraph>{item.size}</Paragraph>
+                    {small ? <Heading level="3" marginBottom="1">{title}</Heading> : <Heading level="2" marginBottom="1">{title}</Heading>}
+                    <Paragraph>{spaceInformation.squareFt} ft.</Paragraph>
                 </div>
             })}
         </div>
