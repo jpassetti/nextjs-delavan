@@ -13,23 +13,26 @@ const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOverlayOpen, setSearchOverlayOpen] = useState(false);
 
-
-
-
     return <header className={styles.header}>
         <Container>
             <Row justifyContent="space-between" alignItems="center">
-            <AnimatePresence>
-                {menuOpen && <Overlay.Menu closeHandler={() => {
-                    setMenuOpen(false);
-                }} />}
-                {searchOverlayOpen && <Overlay.Search closeHandler={() => {
-                    setSearchOverlayOpen(false)
-                }} />}
-            </AnimatePresence>
+           
+                <Overlay.Menu 
+                    isOverlayActive={menuOpen} 
+                    closeHandler={() => {
+                        setMenuOpen(false);
+                    }} 
+                />
+                <Overlay.Search 
+                    isOverlayActive={searchOverlayOpen} 
+                    closeHandler={() => {
+                        setSearchOverlayOpen(false);
+                    }} 
+                />
+            
                 <ButtonUI 
                 iconSlug="menu" 
-                color="white" 
+                iconColor="white" 
                 active="true" 
                 clickHandler={() =>{
                     setMenuOpen(!menuOpen);
@@ -39,17 +42,17 @@ const Header = () => {
                 <Link href="/">
                     <Wordmark color="white" />
                 </Link>
-               
-                <ButtonUI 
+               <div></div>
+               {/* <ButtonUI 
                 iconSlug="search" 
-                color="white" 
+                iconColor="white" 
                 active="true"
                 clickHandler={() =>{
                     setSearchOverlayOpen(true);
                 }}
                 >Search
                 </ButtonUI>
-               
+            */}
             </Row>
         </Container>
     </header>

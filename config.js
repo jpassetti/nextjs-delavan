@@ -1,0 +1,1 @@
+export const DEFAULT_TITLE = 'Delavan Studios | Syracuse, NY';

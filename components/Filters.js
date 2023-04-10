@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 
+
 import ButtonUI from './ButtonUI'
 import Col from './Col'
 import Container from './Container'
@@ -75,7 +76,12 @@ const Bar = ({children}) => {
     </div>
 }
 Filters.Bar = Bar;
-const ByCategories = ({categories, activeCategory, setActiveCategory}) => {
+const ByCategories = ({
+    categories, 
+    activeCategory, 
+    //setActiveCategory
+}) => {
+    
     const categorySelectValues = categories.map(function(category) { 
         const {name, slug} = category.node;
         return {
@@ -83,11 +89,13 @@ const ByCategories = ({categories, activeCategory, setActiveCategory}) => {
             value: slug
         }
     });
+
+    
     return <Col xs="12" sm="4">
         <Label>Filter by category</Label>
         <Select 
             options={[{label: "All", value: "all"}, ...categorySelectValues]} 
-            changeHandler={setActiveCategory} 
+            changeHandler={handleChange} 
             value={activeCategory} 
         />
     </Col>

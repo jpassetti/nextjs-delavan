@@ -4,25 +4,25 @@ import styles from './heading.module.scss';
 let cx = classNames.bind(styles);
 
 const Heading = ({
-	accentBottom,
-	accentTop,
-	borderTop,
+	accentBottom=undefined,
+	accentTop=undefined,
+	borderTop=undefined,
 	children, 
-	className,
+	className=undefined,
 	color="blue", 
 	fontFamily = "primary",
 	fontStyle = "normal",
 	fontWeight = "bold",
-	level, 
-	letterSpacing,
+	level=undefined, 
+	letterSpacing=undefined,
 	lineHeight = "normal",
-	marginTop, 
-	marginBottom, 
-	marginLeft, 
-	marginRight, 
-	textAlign, 
-	textTransform,
-	size,
+	marginTop=undefined, 
+	marginBottom=undefined, 
+	marginLeft=undefined, 
+	marginRight=undefined, 
+	textAlign=undefined, 
+	textTransform=undefined,
+	size=undefined,
 }) => {
 	const Tag = level > 6 ? 'h6' : `h${level}`
 

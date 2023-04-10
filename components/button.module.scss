@@ -2,19 +2,23 @@
 @use '../sass/abstracts/vars';
 
 .btn {
-    background-color: vars.$color__blue;
+    //background-color: vars.$color__blue;
+    background-color: inherit;
     font-family: vars.$font__nunito;
     font-weight: 900;
     font-size: 1.1rem;
     line-height: 1;
-    color: #fff;
+    //color: #fff;
     padding: 1rem 1.5rem;
     border-radius: 5px;
     border: 0px;
     cursor: pointer;
     user-select: none;
     transition: all 0.3s ease;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
     text-align: center;
     text-decoration: none;
     svg {
@@ -31,6 +35,28 @@
     }
     &.size-large {
         display: block;
+    }
+    &.toggle {
+        color: vars.$color__blue;
+        border: 1px solid vars.$color__blue;
+        display: inline-flex;
+        &.size-small {
+            font-size: 1rem;
+            padding: .6rem 1rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            font-family: vars.$font__primary__condensed;
+        }
+        &.active {
+            color: white;
+            background-color: vars.$color__blue;
+            &:hover {
+                background-color: black;
+            }
+        }
+        &:hover {
+            background-color: rgba(0,0,0,.1);
+        }
     }
     @include mixins.fontColors();
     @include mixins.newAccentColors();

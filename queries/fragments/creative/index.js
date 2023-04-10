@@ -27,6 +27,15 @@ const CreativeFragment = `
                 lastName
             }
         }
+        tags {
+            edges {
+                node {
+                    id
+                    name
+                    slug
+                }
+            }
+        }
     }
     ${ImageFragment}
 `

@@ -12,11 +12,11 @@
     &.active {
         opacity: 1;    
     }
-    &.close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-    }
+    // &.close {
+    //     position: absolute;
+    //     top: 1rem;
+    //     right: 1rem;
+    // }
     @include mixins.fills();
 }
 .iconAccessory {

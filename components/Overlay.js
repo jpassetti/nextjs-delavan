@@ -1,69 +1,84 @@
-import { motion } from "framer-motion"
+//packages
+import { motion, AnimatePresence } from "framer-motion"
+import classNames from 'classnames/bind'
 
+// components
+import Button from "./Button";
 import ButtonUI from './ButtonUI';
-import Link from 'next/link';
 import Col from './Col';
 import Container from './Container';
 import Heading from './Heading';
+import Input from "./Input";
+import Link from 'next/link';
 import Nav from './Nav';
 import Paragraph from './Paragraph';
 import Row from './Row';
 import SocialMediaLinks from './SocialMediaLinks';
 import Wordmark from './Wordmark';
 
-import classNames from 'classnames/bind'
+// styles
 import styles from './overlay.module.scss';
-
 let cx = classNames.bind(styles);
 
-
-
+// data
 import { getPages } from '../lib/api';
-import Input from "./Input";
-import Button from "./Button";
 
-const Overlay = ({children, closeHandler, slug}) => {
+
+const Overlay = ({children, closeHandler, isOverlayActive, slug}) => {
     let overlayClasses = cx({
         overlay: true,
         [`bg-${slug}`]: slug
     });
-    const variants = {
+    const overlayVariants = {
         show: {
-          x: 0,
-          opacity: 1,
+          y: 0,
+          //opacity: 1,
           transition: {
            // x: { stiffness: 1000, velocity: -100 },
             duration: .5
           }
         },
         hidden: {
-          x: 50,
-          opacity: 0,
+          y: "-100vh",
+          //opacity: 0,
           transition: {
             duration: .5
             //x: { stiffness: 1000 }
           }
+        },
+        exit: {
+            y: "-100vh",
+           // opacity: 0,
+            transition: {
+                delay: .6,
+                duration: .5
+                //x: { stiffness: 1000 }
+            }
         }
       };
 
-    return <motion.div 
-    key="modal" 
-    className={overlayClasses}
-    initial={{ y: "-100vh" }}
-    animate={{ y: 0 }}
-    exit={{ y: "-100vh" }}
-    transition={{ duration: 0.5 }}
-    >
-        <motion.div variants={variants}>
-            <ButtonUI clickHandler={closeHandler} iconSlug="close" color={slug === "menu" ? "white" : "blue"} active="true" />
+    return <AnimatePresence>
+        {isOverlayActive && <motion.div 
+        key={`modal-${slug}`} 
+        className={overlayClasses}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+        variants={overlayVariants}
+        >
+        <div>
+            <ButtonUI clickHandler={closeHandler} iconSlug="close" iconColor={slug === "menu" ? "white" : "blue"} active="true" />
             {children}
-        </motion.div>
-    </motion.div>
+        </div>
+       
+    </motion.div> 
+    }
+    </AnimatePresence>
 }
-const Menu = ({closeHandler}) => {
+const Menu = ({closeHandler, isOverlayActive}) => {
     const pages = getPages();
    
-    return <Overlay closeHandler={closeHandler} slug="menu">
+    return <Overlay slug="menu" closeHandler={closeHandler} slug="menu" isOverlayActive={isOverlayActive}>
         <Container>
         <Row marginBottom="4">
                 <Col xs="6" sm="4" md="3">
@@ -101,14 +116,16 @@ const Menu = ({closeHandler}) => {
     </Overlay>
 }
 Overlay.Menu = Menu;
-const Search = ({closeHandler}) => {
-    return <Overlay closeHandler={closeHandler} slug="search">
+const Search = ({closeHandler, isOverlayActive}) => {
+    return <Overlay slug="search" closeHandler={closeHandler} slug="search" isOverlayActive={isOverlayActive}>
         <Container>
             <Row justifyContent="center">
                 <Col xs="12" sm="10" md="8">
                 <Heading level="3" marginBottom="2" color="blue" textTransform="uppercase" size="sm">Search</Heading>
                     <Row flexDirection="row">
-                        <Input /><Button label="Submit" />
+                        <Col xs={12} sm={10}><Input /></Col>
+                        <Col xs={12} sm={2}><Button label="Submit" backgroundColor="blue" fontColor="white" /></Col>
+                        
                     </Row>
                 </Col>
             </Row>

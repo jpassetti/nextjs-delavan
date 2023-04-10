@@ -1,61 +1,54 @@
+import FilteredCreativeList from '../../components/FilteredCreativeList';
 import Head from "next/head";
-import Items from "../../components/Items";
-import ItemsByType from '../../components/ItemsByType'
 import Layout from "../../components/Layout";
 import Showcase from '../../components/Showcase';
-import { getAllCreatives, getAllCreativeTypes, getAllCreativesByType, getPageBySlug } from "../../lib/api";
+
+import { DEFAULT_TITLE } from '../../config';
+
+import { 
+    getAllCreatives, 
+    getAllCreativeTypes, 
+    getPageBySlug, 
+} from "../../lib/api";
 
 export async function getStaticProps() {
     const pageData = await getPageBySlug("creatives");
-	const creativesData = await getAllCreatives();
-    const creativeTypes = await getAllCreativeTypes();
-   // const creativesByTypeData = await getAllCreativesByType();
-   // const creativeTypesData = await getAllCreativeTypes();
-    
-	return {
-		props: {
+    const allCreatives = await getAllCreatives();
+    const allCreativeTypes = await getAllCreativeTypes();
+    return {
+        props: {
             pageData,
-           creativesData,
-           creativeTypes
-           // creativeTypesData,
-          // creativesByTypeData,
-		},
-		revalidate: 86400, // In seconds
-	}
+            allCreatives,
+            allCreativeTypes
+        },
+        revalidate: 86400, // In seconds
+    }
 }
 
 const CreativesLandingPage = ({
     pageData,
-    creativesData, 
-    creativeTypes,
-    //creativeTypesData, 
-    //creativesByTypeData, 
-   
+    allCreatives,
+    allCreativeTypes
 }) => {
-   const {title, excerpt, featuredImage} = pageData;
-    
-  
-
+    const { title, excerpt, featuredImage } = pageData;
+    const pageTitle = title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
     return <Layout>
         <Head>
-            <title>{title} | Delavan Studios | Syracuse, NY</title>
-            <meta name="description" content={ excerpt ? excerpt : "Delavan Studios is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side. The studios are flexible for many uses." } />
+            <title>{pageTitle}</title>
+            <meta name="description" content={excerpt ? excerpt : "Delavan Studios is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side. The studios are flexible for many uses."} />
         </Head>
-        <Showcase 
+        <Showcase
             title={title}
             slug="creatives"
-            //title={title}
             introduction={excerpt}
-            //introduction={"This is a test of the creatives page."}
-            backgroundImage={featuredImage?.node?.sourceUrl} 
+            backgroundImage={featuredImage?.node?.sourceUrl}
+            height="small"
         />
-       
-       <ItemsByType 
-            items={creativesData}
-            categories={creativeTypes}  
-            includeFilters={true}
-            includeSearch={true}
-            displayFormats={['grid', 'list']}
+        <FilteredCreativeList 
+            creatives={allCreatives} 
+            creativeTypes={allCreativeTypes} 
+            initialCreativeType="all"
+            initialTagSlug="all"
         />
     </Layout>
 }

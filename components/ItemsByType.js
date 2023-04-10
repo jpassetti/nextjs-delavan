@@ -1,28 +1,31 @@
 import { useState, useEffect, Fragment } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { isEmpty } from 'lodash';
+import { useRouter } from 'next/router'
 
 // queries
 import { GET_CREATIVES_SEARCH_RESULTS } from "../queries/search/get-search-results";
 import { PER_PAGE_FIRST } from '../utils/pagination';
 
+// components
+import Col from "./Col";
 import Container from "./Container";
 import DisplayPosts from "./DisplayPosts";
 import Filters from "./Filters";
-import Grid from "./Grid";
-import Heading from './Heading';
-import List from "./List";
-import Paragraph from "./Paragraph";
+import Label from "./Label";
+import Select from "./Select";
 
-const ItemsByType = ({ 
-    items, 
-    categories, 
-    includeFilters="false", 
-    includeSearch="false", 
-    displayFormats 
+const ItemsByType = ({
+    items,
+    categories,
+    categoriesWithItems,
+    includeFilters = "false",
+    includeSearch = "false",
+    displayFormats
 }) => {
+    const router = useRouter()
     const [posts, setPosts] = useState(items);
-    const [filteredPosts, setFilteredPosts] = useState([]);
+    //const [filteredPosts, setFilteredPosts] = useState([]);
     const [activeCategory, setActiveCategory] = useState('all');
     const [filteredCategories, setFilteredCategories] = useState([]);
     const [displayFormat, setDisplayFormat] = useState("grid");
@@ -32,7 +35,7 @@ const ItemsByType = ({
     const [queryResultPosts, setQueryResultPosts] = useState({});
     const [showResultInfo, setShowResultInfo] = useState(false);
 
-    useEffect( () => {
+    useEffect(() => {
         //console.log("use effect for activeCategory");
         const filtered = items.filter(post => {
             if (activeCategory === 'all') {
@@ -42,69 +45,69 @@ const ItemsByType = ({
         });
         //console.log({filtered});
         setPosts(filtered)
-    }, [ activeCategory ] );
+    }, [activeCategory]);
 
-    const [ fetchPosts, { loading, error, data } ] = useLazyQuery(GET_CREATIVES_SEARCH_RESULTS, {
+    const [fetchPosts, { loading, error, data }] = useLazyQuery(GET_CREATIVES_SEARCH_RESULTS, {
         notifyOnNetworkStatusChange: true,
-        onCompleted: ( data ) => {
-          setPosts( data?.creatives.edges ?? {} );
-          setShowResultInfo( true );
-          setActiveCategory( 'all' );
+        onCompleted: (data) => {
+            setPosts(data?.creatives.edges ?? {});
+            setShowResultInfo(true);
+            setActiveCategory('all');
         },
-        onError: ( error ) => {
-            console.log({error});
-          setSearchError( error?.graphQLErrors ?? '' );
+        onError: (error) => {
+            console.log({ error });
+            setSearchError(error?.graphQLErrors ?? '');
         }
-      } );
-    
-    const handleSearchFormSubmit = async( event ) => {
-       // console.log("handleSearchFormSubmit");
+    });
+
+    const handleSearchFormSubmit = async (event) => {
+        // console.log("handleSearchFormSubmit");
         event.preventDefault();
-        setShowResultInfo( false );
-    
-        if ( isEmpty( searchQuery ) ) {
-          setSearchError( 'Please enter text to search' );
-          setPosts(items);
-          return null;
+        setShowResultInfo(false);
+
+        if (isEmpty(searchQuery)) {
+            setSearchError('Please enter text to search');
+            setPosts(items);
+            return null;
         }
-    
-        setSearchError( '' );
-    
-        fetchPosts( {
-          variables: {
-            first: PER_PAGE_FIRST,
-            after: null,
-            query: searchQuery
-          }
-        } );
+
+        setSearchError('');
+
+        fetchPosts({
+            variables: {
+                first: PER_PAGE_FIRST,
+                after: null,
+                query: searchQuery
+            }
+        });
     }
-    useEffect( () => {
+    useEffect(() => {
         /**
          * If the query params is set, set the searchQuery in the in
          * 1. Set the search input value to that query.
          * 2. Call fetchPosts to get the results as per the query string from query params.
          */
-        if ( searchQueryParam ) {
-          setSearchQuery( searchQueryParam );
-          fetchPosts( {
-            variables: {
-              first: PER_PAGE_FIRST,
-              after: null,
-              query: searchQueryParam
-            }
-          } );
+        if (searchQueryParam) {
+            setSearchQuery(searchQueryParam);
+            fetchPosts({
+                variables: {
+                    first: PER_PAGE_FIRST,
+                    after: null,
+                    query: searchQueryParam
+                }
+            });
         }
-    
-    }, [ searchQueryParam ] );
-  
-    useEffect( () => {
-        if ( isEmpty( searchQuery ) ) {
+
+    }, [searchQueryParam]);
+
+    useEffect(() => {
+        if (isEmpty(searchQuery)) {
             setPosts(items);
         }
-    }, [ searchQuery ] );
+    }, [searchQuery]);
 
-    useEffect( () => {
-       //console.log("use effect categoriesWithPosts");
+    /*useEffect(() => {
+        //console.log("use effect categoriesWithPosts");
         const categoriesWithPosts = categories.map((category) => {
             const { name, slug, creativeTypeInformation } = category.node;
             const matchingPosts = posts.filter((post) => {
@@ -114,7 +117,7 @@ const ItemsByType = ({
             });
             const alphabetizedPosts = matchingPosts.sort((a, b) => {
                 const getTitle = (item) => {
-                    const {title, creativeInformation } = item.node;
+                    const { title, creativeInformation } = item.node;
                     if (creativeInformation.name.lastName) {
                         return creativeInformation.name.lastName.toLowerCase();
                     }
@@ -139,56 +142,70 @@ const ItemsByType = ({
                 creativeTypeInformation,
                 posts: matchingPosts,
             };
-        }); 
+        });
         setFilteredCategories(categoriesWithPosts);
     }, [posts]);
+    */
+
+    const categorySelectValues = categories.map(function(category) { 
+        const {name, slug} = category.node;
+        return {
+            label: name,
+            value: slug
+        }
+    });
+
+    const handleSelectChange = (e) => {
+        e.preventDefault();
+        const href = e.target.value;
+        router.push(`/creatives/${href}`);
+    }
 
     return <Fragment>
-        {includeFilters && <Filters.Bar>
-            <Filters.ByCategories 
-                categories={categories}
-                activeCategory={activeCategory}
-                setActiveCategory={setActiveCategory}
-            />
-            {includeSearch && 
-                <Filters.BySearch 
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                    handleSearchFormSubmit={handleSearchFormSubmit}
-                />
-            }
-            {displayFormats && 
-                <Filters.ByDisplayFormat 
-                    displayFormat={displayFormat}
-                    setDisplayFormat={setDisplayFormat}
-                />
-            }
-        </Filters.Bar>
+        {includeFilters &&
+            <Filters.Bar>
+                <Col xs="12" sm="4">
+                    <Label>Filter by category</Label>
+                    <Select
+                        //filteredCategories
+                        //options={[{label: "All", value: "all"}, ...categorySelectValues]} 
+                        options={[{ label: "All", value: "all" }, ...categorySelectValues]}
+                        //changeHandler={handleChange} 
+                        value={activeCategory}
+                        changeHandler={handleSelectChange}
+                    />
+                </Col>
+                {includeSearch &&
+                    <Filters.BySearch
+                        searchQuery={searchQuery}
+                        setSearchQuery={setSearchQuery}
+                        handleSearchFormSubmit={handleSearchFormSubmit}
+                    />
+                }
+                {displayFormats &&
+                    <Filters.ByDisplayFormat
+                        displayFormat={displayFormat}
+                        setDisplayFormat={setDisplayFormat}
+                    />
+                }
+            </Filters.Bar>
         }
         <Container>
             {filteredCategories.length > 0 && filteredCategories.map((category, index) => {
                 const { posts, name, slug, creativeTypeInformation } = category;
-               // console.log({creativeTypeInformation});
-               // console.log({posts});
-                return posts.length > 0 && <DisplayPosts 
-                        key={index}
-                        sectionTitle={name}
-                        displayFormat={displayFormat}
-                        posts={posts}
-                        parentSlug="creatives"
-                        displayCategory={false}
-                        categorySlug={slug}
-                        categoryIcon={creativeTypeInformation?.svgIcon}
-                 />
+                return posts.length > 0 && <DisplayPosts
+                    key={index}
+                    sectionTitle={name}
+                    displayFormat={displayFormat}
+                    posts={posts}
+                    parentSlug="creatives/details"
+                    displayCategory={false}
+                    categorySlug={slug}
+                    categoryIcon={creativeTypeInformation?.svgIcon}
+                />
             })
-        }
+            }
         </Container>
     </Fragment>
 }
-export default ItemsByType
-
-
-
-
-
-
+export default ItemsByType;

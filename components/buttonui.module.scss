@@ -14,5 +14,10 @@
         width: 1.5rem;
         height: auto;
     }
+    &.close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
     @include mixins.fills();
 }

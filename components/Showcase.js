@@ -21,12 +21,22 @@ import Col from './Col';
 
 let cx = classNames.bind(styles)
 
-const Showcase = ({location, title, introduction, category, backgroundImage, homeCardsData, slug=null}) => {
+const Showcase = ({
+    backgroundImage, 
+    category, 
+    height="large",
+    homeCardsData, 
+    introduction, 
+    location, 
+    title, 
+    slug=null
+}) => {
     const router = useRouter();
     const homeCards = homeCardsData;
     let showcaseClasses = cx({
         showcase: true,
         home: location === 'home',
+        [`height-${height}`]: height,
     });
    
     if (location === 'home') {

@@ -17,9 +17,9 @@ const CreativeBorder = () => {
              let borderClasses = cx({
                 'border': true,
                 [`background-color-${type}`] : type,
-                [`flex-grow-${rand}`] : rand,
+                //[`flex-grow-${rand}`] : rand,
             });
-            return <div key={index} className={borderClasses}></div>
+            return <div key={`${index}-${rand}`} className={borderClasses}></div>
         })} 
     </div>
 }

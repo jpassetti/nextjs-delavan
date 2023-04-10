@@ -17,6 +17,14 @@ const iconPaths = [
         C151.06,90.09,242.32,181.4,333.06,272.2z`
     },
     {
+        name: "angle-down",
+        viewBox : {
+            width: 448,
+            height: 512
+        },
+        path: `M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z`
+    },
+    {
         name: `search`,
         viewBox : {
             width: 512,
@@ -442,13 +450,14 @@ const iconPaths = [
     },
 ];
 
-const Icon = ({ iconPath, isActive, color, iconSlug }) => {
+const Icon = ({ iconPath, isActive, iconColor, iconSlug }) => {
+    //console.log({iconSlug});
     let iconClasses = cx({
         icon: true,
         active : isActive === true,
         inactive : isActive === false,
         close: iconSlug === 'close',
-        [`fill-${color}`] : color
+        [`fill-${iconColor}`] : iconColor
     });
     if (iconPath) {
         return <Image 

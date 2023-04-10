@@ -6,15 +6,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 60vh;
     width: 100%;
     background-color: #f5f5f5;
-    padding: 1rem;
+    padding: 5rem 0 1rem 0;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     position: relative;
    // margin-bottom: 2rem;
+    &.height-small {
+        min-height: 40vh;
+    }
+    &.height-large {
+        min-height: 60vh;
+    }
     &__content {
         position: relative;
         z-index: 2;
@@ -35,7 +40,7 @@
        min-height: 70vh;
     }
     &.home {
-       min-height: 100vh;
+        min-height: 100vh;
         background-color: vars.$color__blue;
         padding-top: 6rem;
     }

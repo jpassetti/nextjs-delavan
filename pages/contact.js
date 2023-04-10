@@ -8,6 +8,7 @@ import Container from "../components/Container";
 import Heading from '../components/Heading';
 import Paragraph from '../components/Paragraph';
 import Row from '../components/Row';
+import { DEFAULT_TITLE } from '../config';
 
 import { getPageBySlug } from "../lib/api";
 
@@ -22,9 +23,11 @@ export async function getStaticProps( {params}) {
 
 const ContactPage = ({pageData}) => {
     const {title, content, excerpt, featuredImage} = pageData;
+    const pageTitle = title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
+
     return <Layout>
         <Head>
-            <title>{title} | Delavan Studios | Syracuse, NY</title>
+            <title>{pageTitle}</title>
             <meta name="description" content={ excerpt ? excerpt : "Delavan Studios is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side. The studios are flexible for many uses." } />
         </Head>
         <Showcase 

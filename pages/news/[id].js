@@ -8,6 +8,8 @@ import Paragraph from '../../components/Paragraph';
 import Row from '../../components/Row';
 import Section from '../../components/Section';
 import Showcase from "../../components/Showcase";
+
+import { DEFAULT_TITLE } from '../../config';
 import { getPostBySlug, getAllPostSlugs } from "../../lib/api";
 
 export async function getStaticPaths() {
@@ -35,10 +37,11 @@ export async function getStaticProps({params}) {
 
 const SingleNewsPage = ({ postData }) => {
     const { title, excerpt, content, featuredImage } = postData;
+    const pageTitle = title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
     return (
         <Layout>
             <Head>
-                <title>{title} | Delavan Studios | Syracuse, NY</title>
+                <title>{pageTitle}</title>
                 <meta name="description" content={ excerpt ? excerpt : "Delavan Studios is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side. The studios are flexible for many uses." } />
             </Head>
             <Showcase

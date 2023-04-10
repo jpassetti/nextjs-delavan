@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import Layout from '../components/Layout'
 import Showcase from '../components/Showcase';
+import { DEFAULT_TITLE } from '../config';
 
-import {getHomeCards, getPageBySlug} from '../lib/api';
+import { getPageBySlug } from '../lib/api';
 
 export async function getStaticProps() {
   const creativeCardData = await getPageBySlug("creatives");
@@ -21,13 +22,13 @@ export default function Home({
 }) {
   return <Layout>
     <Head>
-        <title>Delavan Studios | Syracuse, NY</title>
-            <meta name="description" content="Delavan Studios is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side. The studios are flexible for many uses." />
+      <title>{DEFAULT_TITLE}</title>
+      <meta name="description" content="Delavan Studios is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side. The studios are flexible for many uses." />
     </Head>
-      <Showcase 
+    <Showcase
       location="home"
       backgroundImage="building--blue.jpg"
       homeCardsData={homeCardsData}
-      />
+    />
   </Layout>
 }
