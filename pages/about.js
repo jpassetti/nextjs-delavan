@@ -14,7 +14,6 @@ export async function getStaticProps() {
     const pageData = await getPageBySlug("about");
     return {
         props: {
-            timelineData,
             pageData
         }, // will be passed to the page component as props
     }
