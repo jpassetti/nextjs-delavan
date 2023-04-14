@@ -7,7 +7,7 @@ const DisplayItems = ({items, parentSlug}) => {
         <Grid>
         {items.map((item, index) => {
             const {title, slug, featuredImage, creativeTypes, categories} = item.node;
-            const formattedSlug = `creatives/details/${slug}`;
+            const formattedSlug = `/creatives/details/${slug}`;
             return <Card 
             key={index} 
             title={title} 
