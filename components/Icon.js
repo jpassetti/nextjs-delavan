@@ -486,7 +486,7 @@ const Accessory = ({iconPath, iconSlug}) => {
         [`background-color-${iconSlug}`] : iconSlug
     });
     return <div className={iconAccessoryClasses}>
-        <Icon iconPath={iconPath} iconSlug={iconSlug} color="black"  />
+        <Icon iconPath={iconPath ? iconPath : null} iconSlug={iconSlug} iconColor="black"  />
      </div>
 }
 Icon.Accessory = Accessory;

@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import Button from './Button';
 import ButtonUI from './ButtonUI';
 import DisplayItems from './DisplayItems';
+import DisplayPosts from './DisplayPosts';
+import DisplayItemsWithSections from './DisplayItemsWithSections';
 import Overlay from './Overlay';
 import styles from './filters.module.scss';
 import Container from './Container';
@@ -239,7 +241,14 @@ const CreativeList = ({ creatives, creativeTypes, updateFilter, initialCreativeT
         </Container>
       </div>
       <Container>
-        <DisplayItems items={filteredCreatives} parentSlug={initialCreativeType} />
+        {initialCreativeType === "all" ?
+         <p>All</p>
+        : 
+          <DisplayItems 
+            posts={filteredCreatives} 
+            parentSlug={initialCreativeType} 
+          />
+        }
       </Container>
     </section>
   );

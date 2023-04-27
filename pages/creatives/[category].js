@@ -1,6 +1,14 @@
+import { useEffect, useContext } from "react";
+import { 
+    AllCreativesContext,
+    AllCreativeTypesContext,
+    ActiveCreativeTypesContext 
+} from '../../lib/context';
+
 import Head from "next/head";
-import FilteredCreativeList from '../../components/FilteredCreativeList';
+import FilterControls from '../../components/FilterControls';
 import Layout from "../../components/Layout";
+import PostListContainer from "../../components/PostListContainer";
 
 import Showcase from "../../components/Showcase";
 
@@ -26,14 +34,14 @@ export async function getStaticPaths() {
     return { paths, fallback: false };
 }
 export async function getStaticProps({ params }) {
-    const creativeTypeSlug = params.category;
-    const creativeTypeData = await getCreativeTypeBySlug(creativeTypeSlug);
+    const currentPageSlug = params.category;
+    const creativeTypeData = await getCreativeTypeBySlug(currentPageSlug);
     const allCreatives = await getAllCreatives();
     const allCreativeTypes = await getAllCreativeTypes();
     
     return {
         props: {
-            creativeTypeSlug,
+            currentPageSlug,
             creativeTypeData,
             allCreatives,
             allCreativeTypes
@@ -42,18 +50,27 @@ export async function getStaticProps({ params }) {
 }
 
 const SingleCategoryPage = ({
-    creativeTypeSlug, 
+    currentPageSlug, 
     creativeTypeData,
     allCreatives,
     allCreativeTypes
 }) => {
+    const [allCreativesState, setAllCreativesState] = useContext(AllCreativesContext);
+    const [allCreativeTypesState, setAllCreativeTypesState] = useContext(AllCreativeTypesContext);
+    const [activeCreativeTypesState, setActiveCreativeTypesState] = useContext(ActiveCreativeTypesContext);
+
     const { name: title, slug } = creativeTypeData;
     const pageTitle = title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
+ 
+    useEffect(() => {
+        setAllCreativesState(allCreatives);
+        setAllCreativeTypesState(allCreativeTypes);
+    }, [allCreatives, allCreativeTypes]);
+
     return (
         <Layout>
             <Head>
                 <title>{pageTitle}</title>
-                {/*<meta name="description" content={excerpt ? excerpt : "Delavan Studios is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side. The studios are flexible for many uses."} />*/}
             </Head>
             <Showcase
                 category={{
@@ -61,16 +78,19 @@ const SingleCategoryPage = ({
                     slug: "creatives"
                 }}
                 title={title}
-                slug={slug}
+                slug={currentPageSlug}
                 height="small"
-                //introduction={excerpt}
                 backgroundImage={"https://delavan.stayfresh.design/wp-content/uploads/2023/02/creatives.jpg"}
             />
-            <FilteredCreativeList 
-                creatives={allCreatives} 
-                creativeTypes={allCreativeTypes} 
-                initialCreativeType={creativeTypeSlug}
-                initialTagSlug="all"
+             <FilterControls 
+                allCreativeTypes={allCreativeTypesState}
+                activeCreativeType={{ node: { name: title, slug: slug } }}
+                setActiveCreativeType={setActiveCreativeTypesState}
+             />
+             <PostListContainer 
+                posts={allCreativesState}
+                categories={allCreativeTypesState}
+                activeCategory={{ node: { name: title, slug: slug } }}
             />
         </Layout>
     );

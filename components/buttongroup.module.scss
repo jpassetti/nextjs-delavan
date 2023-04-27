@@ -1,6 +1,9 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
 .btn_group {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 2rem;
-    justify-content: center;
+    @include mixins.justifyContent();
 }

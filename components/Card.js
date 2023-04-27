@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import { motion } from "framer-motion";
 import Heading from './Heading';
+import Image from 'next/image';
 import Link from 'next/link'
 import { getCategoryNameById } from '../lib/api';
 import styles from './card.module.scss'
@@ -43,27 +44,41 @@ const Card = ({title, slug, categories, backgroundImage, clickHandler, categoryS
     return <motion.article 
         variants={variants}
         className={cardClasses} 
-        style={{backgroundImage: `url(${backgroundImage ? backgroundImage : "none"})`}}
+       // style={{backgroundImage: `url(${backgroundImage ? backgroundImage : "none"})`}}
         onClick={clickHandler}    
     >
+      {backgroundImage &&
+        <Image 
+        src={backgroundImage.sourceUrl}
+        alt={backgroundImage.altText}
+        //width={backgroundImage.mediaDetails.width}
+        //height={backgroundImage.mediaDetails.height}
+        fill={true}
+        className={styles.card__image}
+        sizes={backgroundImage.sizes}
+      />
+      }
+        
         <div className={styles.card__nameplate}>
-    
             {categories?.edges.map((category, index) => {
                 const {name} = category.node;
                 if (name !== "Featured")
                 return <Heading key={index} level="4" marginBottom="2" color="tan" textTransform="uppercase" size="sm">{name}</Heading>
             })}
             <Heading level="3" color="white" textAlign="center" className={styles.card__title}>
-                <Link href={`/${slug}`}>
-                {title}
-                </Link>
+                {backgroundImage ? <Link href={slug}>
+                  {title}
+                  </Link>
+                : title
+                }
             </Heading>
         </div>
-        <div className={ctaClasses}>
-            <Link href={`/${slug}`}>
+        {backgroundImage &&  <div className={ctaClasses}>
+            <Link href={slug}>
                 View more
              </Link>
-        </div>
+        </div>}
+       
     </motion.article>
 }
 export default Card;

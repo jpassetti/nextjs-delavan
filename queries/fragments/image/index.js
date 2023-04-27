@@ -1,12 +1,12 @@
 const ImageFragment = `
     fragment ImageFragment on MediaItem {
-        id
-        sourceUrl
+        sourceUrl(size: LARGE)
         altText
         mediaDetails {
             width
             height
-        } 
+        }
+        sizes
     }
 `
 export default ImageFragment;

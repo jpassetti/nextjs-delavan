@@ -62,27 +62,27 @@ const SingleCreativePage = ({ creativeData }) => {
                     slug: "creatives"
                 }}
                 title={title}
-                introduction={excerpt}
+                introduction={excerpt? excerpt : null}
                 backgroundImage={featuredImage?.node?.sourceUrl}
             />
             <Container>
-                <Row>
-                    <Col xs="12" sm="10" md="8" marginBottom="0">
+                <Row justifyContent="space-between">
+                    <Col xs="12" sm="9" md="7" marginBottom="0">
                         {content && <MainContent content={content} />}
                     </Col>
-                    <Col xs="12" sm="2" md="4" marginBottom="0" paddingTop={4}>
+                    <Col xs="12" sm="2" md="4" marginBottom="0" paddingTop={4} textAlign="left">
                         {creativeInformation.websiteUrl &&
-                            <ButtonGroup>
-                                <Button size="large" label="Visit Site" url={creativeInformation.websiteUrl} />
+                            <ButtonGroup justifyContent="flex-start">
+                                <Button backgroundColor="blue" fontColor="white" size="large" label="Visit Site" url={creativeInformation.websiteUrl} />
                             </ButtonGroup>
                         }
                         {linksArr.length > 0 &&
                             <Group>
-                                <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm" textAlign="center">Follow</Heading>
+                                <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase" size="sm" textAlign="left">Follow</Heading>
                                 <SocialMediaLinks
                                     color="red"
                                     links={linksArr}
-                                    justifyContent="center"
+                                    justifyContent="flex-start"
                                 />
                             </Group>
                         }

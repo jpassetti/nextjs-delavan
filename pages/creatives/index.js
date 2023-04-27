@@ -1,15 +1,29 @@
-import FilteredCreativeList from '../../components/FilteredCreativeList';
+// core components
+import { useEffect, useContext } from 'react';
+
+// custom components
+import FilterControls from '../../components/FilterControls';
 import Head from "next/head";
 import Layout from "../../components/Layout";
+import PostListContainer from '../../components/PostListContainer';
 import Showcase from '../../components/Showcase';
 
+// custom data
 import { DEFAULT_TITLE } from '../../config';
 
+// data functions
 import { 
     getAllCreatives, 
     getAllCreativeTypes, 
     getPageBySlug, 
 } from "../../lib/api";
+
+// context
+import { 
+    AllCreativesContext,
+    AllCreativeTypesContext,
+    ActiveCreativeTypesContext
+} from '../../lib/context';
 
 export async function getStaticProps() {
     const pageData = await getPageBySlug("creatives");
@@ -30,6 +44,15 @@ const CreativesLandingPage = ({
     allCreatives,
     allCreativeTypes
 }) => {
+    const [allCreativesState, setAllCreativesState] = useContext(AllCreativesContext);
+    const [allCreativeTypesState, setAllCreativeTypesState] = useContext(AllCreativeTypesContext);
+    const [activeCreativeTypesState, setActiveCreativeTypesState] = useContext(ActiveCreativeTypesContext);
+
+    useEffect(() => {
+        setAllCreativesState(allCreatives);
+        setAllCreativeTypesState(allCreativeTypes);
+    }, []);
+
     const { title, excerpt, featuredImage } = pageData;
     const pageTitle = title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
     return <Layout>
@@ -44,11 +67,15 @@ const CreativesLandingPage = ({
             backgroundImage={featuredImage?.node?.sourceUrl}
             height="small"
         />
-        <FilteredCreativeList 
-            creatives={allCreatives} 
-            creativeTypes={allCreativeTypes} 
-            initialCreativeType="all"
-            initialTagSlug="all"
+        <FilterControls 
+            allCreativeTypes={allCreativeTypesState}
+            activeCreativeType={{ node: { name: "All", slug: "all" } }}
+            setActiveCreativeType={setActiveCreativeTypesState}
+        />
+        <PostListContainer 
+            posts={allCreativesState}
+            categories={allCreativeTypesState}
+            activeCategory={{ node: { name: "All", slug: "all" } }}
         />
     </Layout>
 }

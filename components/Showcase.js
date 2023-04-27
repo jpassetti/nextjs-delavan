@@ -63,7 +63,7 @@ const Showcase = ({
                         title={title} 
                         slug={slug} 
                         categorySlug={categorySlug}
-                        backgroundImage={featuredImage?.node?.sourceUrl} 
+                        backgroundImage={featuredImage ? featuredImage.node : null} 
                     />
                 })}
             </CardGroup> 
