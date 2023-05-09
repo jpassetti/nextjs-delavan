@@ -80,7 +80,14 @@ const SingleCategoryPage = ({
                 title={title}
                 slug={currentPageSlug}
                 height="small"
-                backgroundImage={"https://delavan.stayfresh.design/wp-content/uploads/2023/02/creatives.jpg"}
+                backgroundImage={{
+                    sourceUrl: "https://delavan.stayfresh.design/wp-content/uploads/2023/02/creatives.jpg",
+                    altText: "Creatives background image",
+                    mediaDetails: {
+                        height: 1333,
+                        width: 2000
+                    }
+                }}
             />
              <FilterControls 
                 allCreativeTypes={allCreativeTypesState}

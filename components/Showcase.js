@@ -9,6 +9,7 @@ import Card from './Card';
 import CardGroup from './CardGroup';
 import Container from './Container';
 import Heading from './Heading';
+import Image from 'next/image';
 import Paragraph from './Paragraph';
 import WildSVG from './WildSVG'
 
@@ -41,8 +42,18 @@ const Showcase = ({
    
     if (location === 'home') {
         //return <Building />
-        return <Fragment><section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage ? backgroundImage : ''})`}}>
-            
+        return <Fragment><section className={showcaseClasses}>
+            {backgroundImage &&
+                <Image 
+                    src={backgroundImage.sourceUrl}
+                    alt={backgroundImage.altText}
+                    //width={backgroundImage.mediaDetails.width}
+                    //height={backgroundImage.mediaDetails.height}
+                    fill={true}
+                    sizes={backgroundImage.sizes}
+                    className={styles.showcase__background}
+                />
+            }
                 <Container>
                     <Row justifyContent="center">
                         <Col xs={12} sm={10} md={8}>
@@ -73,7 +84,18 @@ const Showcase = ({
             </section>
             </Fragment>
     } else {
-        return <Fragment><section className={showcaseClasses} style={{backgroundImage: `url(${backgroundImage ? backgroundImage : ''})`}}>
+        return <Fragment><section className={showcaseClasses}>
+            {backgroundImage &&
+                <Image 
+                    src={backgroundImage.sourceUrl}
+                    alt={backgroundImage.altText}
+                    //width={backgroundImage.mediaDetails.width}
+                    //height={backgroundImage.mediaDetails.height}
+                    fill={true}
+                    sizes={backgroundImage.sizes}
+                    className={styles.showcase__background}
+                />
+            }
             <Container>
             <div className={styles.showcase__content}>
             {category &&  <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase">

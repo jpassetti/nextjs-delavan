@@ -31,7 +31,7 @@ const AboutPage = ({ pageData }) => {
         <Showcase
             title={title}
             introduction={excerpt}
-            backgroundImage={featuredImage?.node.sourceUrl}
+            backgroundImage={featuredImage ? featuredImage.node : null}
         />
         <Container>
             <Section>

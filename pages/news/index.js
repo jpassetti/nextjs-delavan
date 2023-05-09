@@ -48,7 +48,7 @@ const NewsLandingsPage = ({postsData, categoriesData, pageData}) => {
             title={title}
             slug="news"
             introduction={excerpt}
-            backgroundImage={featuredImage?.node?.sourceUrl} 
+            backgroundImage={featuredImage ? featuredImage.node : null}
         />
          <Container>
          <Heading level="2" color="black" marginBottom={2} marginTop={6}>Latest</Heading>

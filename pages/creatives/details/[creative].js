@@ -63,7 +63,7 @@ const SingleCreativePage = ({ creativeData }) => {
                 }}
                 title={title}
                 introduction={excerpt? excerpt : null}
-                backgroundImage={featuredImage?.node?.sourceUrl}
+                backgroundImage={featuredImage ? featuredImage.node : null}
             />
             <Container>
                 <Row justifyContent="space-between">

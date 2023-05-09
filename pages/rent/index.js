@@ -39,7 +39,7 @@ const RentLandingPage = ({spacesData, pageData}) => {
             title={title}
             slug="rent"
             introduction={excerpt}
-            backgroundImage={featuredImage?.node?.sourceUrl} 
+            backgroundImage={featuredImage ? featuredImage.node : null}
         />
         <Container>
           

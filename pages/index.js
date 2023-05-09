@@ -27,7 +27,14 @@ export default function Home({
     </Head>
     <Showcase
       location="home"
-      backgroundImage="building--blue.jpg"
+      backgroundImage={{
+        sourceUrl: "/building--blue.jpg",
+        altText: "Delavan Studios building",
+        mediaDetails: {
+          width: 1920,
+          height: 1280
+        }
+      }}
       homeCardsData={homeCardsData}
     />
   </Layout>

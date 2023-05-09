@@ -64,7 +64,7 @@ const CreativesLandingPage = ({
             title={title}
             slug="creatives"
             introduction={excerpt}
-            backgroundImage={featuredImage?.node?.sourceUrl}
+            backgroundImage={featuredImage ? featuredImage.node : null}
             height="small"
         />
         <FilterControls 
