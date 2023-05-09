@@ -78,7 +78,7 @@ const Overlay = ({children, closeHandler, isOverlayActive, slug}) => {
 const Menu = ({closeHandler, isOverlayActive}) => {
     const pages = getPages();
    
-    return <Overlay slug="menu" closeHandler={closeHandler} slug="menu" isOverlayActive={isOverlayActive}>
+    return <Overlay slug="menu" closeHandler={closeHandler} isOverlayActive={isOverlayActive}>
         <Container>
         <Row marginBottom="4">
                 <Col xs="6" sm="4" md="3">

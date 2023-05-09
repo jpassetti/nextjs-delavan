@@ -13,6 +13,7 @@
     background-size: cover;
     background-position: center center;
     position: relative;
+    overflow:hidden;
    // margin-bottom: 2rem;
     &.height-small {
         min-height: 40vh;
