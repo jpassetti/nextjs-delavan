@@ -35,7 +35,7 @@ const FilterControls = ({
         const selectedCreativeType = e.target.value;
 
         if (selectedCreativeType === "all") {
-            console.log("WHOOOO");
+            //console.log("WHOOOO");
             // setActiveCreativeType({ 
             //     node: { 
             //         name: "All", 
