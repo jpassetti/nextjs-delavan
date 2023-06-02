@@ -45,7 +45,8 @@ const Card = ({title, slug, categories, backgroundImage, clickHandler, categoryS
         variants={variants}
         className={cardClasses} 
        // style={{backgroundImage: `url(${backgroundImage ? backgroundImage : "none"})`}}
-        onClick={clickHandler}    
+        onClick={clickHandler} 
+        style={{ position: 'relative' }}   
     >
       {backgroundImage &&
         <Image 

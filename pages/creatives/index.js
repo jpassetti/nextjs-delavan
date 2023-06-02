@@ -1,5 +1,5 @@
 // core components
-import { useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 // custom components
 import FilterControls from '../../components/FilterControls';
@@ -22,8 +22,14 @@ import {
 import { 
     AllCreativesContext,
     AllCreativeTypesContext,
-    ActiveCreativeTypesContext
+    ActiveCreativeTypesContext,
+    ActiveTagsContext,
 } from '../../lib/context';
+
+// utilities
+import { 
+    getPreparedTags 
+} from '../../lib/utilities';
 
 export async function getStaticProps() {
     const pageData = await getPageBySlug("creatives");
@@ -48,13 +54,26 @@ const CreativesLandingPage = ({
     const [allCreativeTypesState, setAllCreativeTypesState] = useContext(AllCreativeTypesContext);
     const [activeCreativeTypesState, setActiveCreativeTypesState] = useContext(ActiveCreativeTypesContext);
 
+    const [filteredCreativesState, setFilteredCreativesState] = useState(allCreativesState);
+
+    const [filteredTagsState, setFilteredTagsState] = useState([]);
+    const [activeTagsState, setActiveTagsState] = useContext(ActiveTagsContext);
+
     useEffect(() => {
         setAllCreativesState(allCreatives);
         setAllCreativeTypesState(allCreativeTypes);
+        setActiveCreativeTypesState({ node: { name: "All", slug: "all" }});
     }, []);
+
+    useEffect(() => {
+        const preparedTags = getPreparedTags(allCreativesState);
+        setFilteredTagsState(preparedTags);
+    }, [allCreativesState]);
+
 
     const { title, excerpt, featuredImage } = pageData;
     const pageTitle = title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
+
     return <Layout>
         <Head>
             <title>{pageTitle}</title>
@@ -71,11 +90,15 @@ const CreativesLandingPage = ({
             allCreativeTypes={allCreativeTypesState}
             activeCreativeType={{ node: { name: "All", slug: "all" } }}
             setActiveCreativeType={setActiveCreativeTypesState}
+            filteredTags={filteredTagsState}
+            activeTags={activeTagsState}
+            setActiveTags={setActiveTagsState}
         />
         <PostListContainer 
             posts={allCreativesState}
             categories={allCreativeTypesState}
-            activeCategory={{ node: { name: "All", slug: "all" } }}
+            activeCategory={activeCreativeTypesState}
+            activeTags={activeTagsState}
         />
     </Layout>
 }

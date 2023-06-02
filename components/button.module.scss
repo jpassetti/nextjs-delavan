@@ -28,6 +28,8 @@
     }
     &.size-small {
         display: inline-block;
+        padding: .6rem 1.1rem;
+        font-size: .9rem;
         svg {
             width: .75rem;
             height: .75rem;
@@ -41,8 +43,8 @@
         border: 1px solid vars.$color__blue;
         display: inline-flex;
         &.size-small {
-            font-size: 1rem;
-            padding: .6rem 1rem;
+            font-size: .9rem;
+            padding: .5rem 1rem;
             font-weight: 400;
             text-transform: uppercase;
             font-family: vars.$font__primary__condensed;

@@ -50,8 +50,11 @@ const Showcase = ({
                     //width={backgroundImage.mediaDetails.width}
                     //height={backgroundImage.mediaDetails.height}
                     fill={true}
+                    //placeholder="blur"
+                    //priority={true}
                     sizes={backgroundImage.sizes}
                     className={styles.showcase__background}
+                    
                 />
             }
                 <Container>
@@ -92,6 +95,7 @@ const Showcase = ({
                     //width={backgroundImage.mediaDetails.width}
                     //height={backgroundImage.mediaDetails.height}
                     fill={true}
+                    priority={true}
                     sizes={backgroundImage.sizes}
                     className={styles.showcase__background}
                 />

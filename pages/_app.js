@@ -26,16 +26,20 @@ function MyApp( { Component, pageProps } ) {
 	// creative types taxonomy state
 	const [allCreativeTypesState, setAllCreativeTypesState] = useState([]);
 	const [filteredCreativeTypesState, setFilteredCreativeTypesState] = useState([]);
-	const [activeCreativeTypesState, setActiveCreativeTypesState] = useState([{
+	const [activeCreativeTypesState, setActiveCreativeTypesState] = useState({
 		node: {
 			name: "All", slug: "all"
 		}
-	}]);
+	});
 
 	// tags taxonomy
 	const [allTagsState, setAllTagsState] = useState([]);
 	const [filteredTagsState, setFilteredTagsState] = useState([]);
-	const [activeTagsState, setActiveTagsState] = useState([]);
+	const [activeTagsState, setActiveTagsState] = useState([{ 
+		node: { 
+			name: "All", slug: "all" 
+		}
+	}]);
 
 	// categories taxonomy
 	const [allCategoriesState, setAllCategoriesState] = useState([]);

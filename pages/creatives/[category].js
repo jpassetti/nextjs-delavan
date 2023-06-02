@@ -1,8 +1,9 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { 
     AllCreativesContext,
     AllCreativeTypesContext,
-    ActiveCreativeTypesContext 
+    ActiveCreativeTypesContext,
+    ActiveTagsContext 
 } from '../../lib/context';
 
 import Head from "next/head";
@@ -15,15 +16,18 @@ import Showcase from "../../components/Showcase";
 import { DEFAULT_TITLE } from '../../config';
 
 import { 
-    getAllCreatives, 
+    getCreativesByTypeSlug, 
     getAllCreativeTypes, 
-    getCreativeTypeBySlug,
     getAllCreativeTypeSlugs
-    //getAllCreativeTypesWithCreatives 
 } from "../../lib/api";
+
+import { 
+    getPreparedTags
+} from '../../lib/utilities';
 
 export async function getStaticPaths() {
     const creativeTypeSlugs = await getAllCreativeTypeSlugs();
+    
     const paths = creativeTypeSlugs.map((creativeType) => {
         return {
             params: {
@@ -35,15 +39,13 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }) {
     const currentPageSlug = params.category;
-    const creativeTypeData = await getCreativeTypeBySlug(currentPageSlug);
-    const allCreatives = await getAllCreatives();
+    const creativeTypeData = await getCreativesByTypeSlug(currentPageSlug);
     const allCreativeTypes = await getAllCreativeTypes();
     
     return {
         props: {
             currentPageSlug,
             creativeTypeData,
-            allCreatives,
             allCreativeTypes
         }
     }
@@ -52,20 +54,29 @@ export async function getStaticProps({ params }) {
 const SingleCategoryPage = ({
     currentPageSlug, 
     creativeTypeData,
-    allCreatives,
     allCreativeTypes
 }) => {
     const [allCreativesState, setAllCreativesState] = useContext(AllCreativesContext);
     const [allCreativeTypesState, setAllCreativeTypesState] = useContext(AllCreativeTypesContext);
     const [activeCreativeTypesState, setActiveCreativeTypesState] = useContext(ActiveCreativeTypesContext);
 
-    const { name: title, slug } = creativeTypeData;
+    const [filteredTagsState, setFilteredTagsState] = useState([]);
+    const [activeTagsState, setActiveTagsState] = useContext(ActiveTagsContext);
+
+    const { name: title, slug, creatives } = creativeTypeData;
     const pageTitle = title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
  
     useEffect(() => {
-        setAllCreativesState(allCreatives);
+        setAllCreativesState(creatives.edges);
         setAllCreativeTypesState(allCreativeTypes);
-    }, [allCreatives, allCreativeTypes]);
+        setActiveCreativeTypesState({ node: { name: title, slug: slug }});
+        setActiveTagsState([{ node: { name: "All", slug: "all" }}]);
+    }, [creatives]);
+
+    useEffect(() => {
+        const preparedTags = getPreparedTags(allCreativesState);
+        setFilteredTagsState(preparedTags);
+    }, [allCreativesState]);
 
     return (
         <Layout>
@@ -93,11 +104,16 @@ const SingleCategoryPage = ({
                 allCreativeTypes={allCreativeTypesState}
                 activeCreativeType={{ node: { name: title, slug: slug } }}
                 setActiveCreativeType={setActiveCreativeTypesState}
+                filteredTags={filteredTagsState}
+                activeTags={activeTagsState}
+                setActiveTags={setActiveTagsState}
              />
              <PostListContainer 
                 posts={allCreativesState}
                 categories={allCreativeTypesState}
                 activeCategory={{ node: { name: title, slug: slug } }}
+                activeTags={activeTagsState}
+                setActiveTags={setActiveTagsState}
             />
         </Layout>
     );
