@@ -17,18 +17,20 @@ const Heading = ({
 	letterSpacing=undefined,
 	lineHeight = "normal",
 	marginTop=undefined, 
-	marginBottom=undefined, 
+	marginBottom=1, 
 	marginLeft=undefined, 
 	marginRight=undefined, 
+	name=null,
 	textAlign=undefined, 
 	textTransform=undefined,
 	size=undefined,
 }) => {
-	const Tag = level > 6 ? 'h6' : `h${level}`
+	console.log({name});
+	const Tag = name ? name : level > 6 ? 'h6' : `h${level}`;
 
 	let headingClasses = cx({
 		heading: true,
-		[`${Tag}`]: level,
+		[`${Tag}`]: name || level,
 		[`text-align-${textAlign}`] : textAlign,
 		[`margin-top-${marginTop}`] : marginTop,
 		[`margin-right-${marginRight}`]: marginRight,

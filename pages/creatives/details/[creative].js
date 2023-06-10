@@ -67,10 +67,11 @@ const SingleCreativePage = ({ creativeData }) => {
             />
             <Container>
                 <Row justifyContent="space-between">
-                    <Col xs="12" sm="9" md="7" marginBottom="0">
+                    <Col xs={12} sm={12} md={8} marginBottom={0}>
                         {content && <MainContent content={content} />}
                     </Col>
-                    <Col xs="12" sm="2" md="4" marginBottom="0" paddingTop={4} textAlign="left">
+                    <Col xs={12} sm={12} md={1}></Col>
+                    <Col xs={12} sm={12} md={3} marginBottom={0} paddingTop={4} textAlign="left">
                         {creativeInformation.websiteUrl &&
                             <ButtonGroup justifyContent="flex-start">
                                 <Button backgroundColor="blue" fontColor="white" size="large" label="Visit Site" url={creativeInformation.websiteUrl} />
