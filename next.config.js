@@ -13,6 +13,10 @@ module.exports = {
         protocol: 'https',
         hostname: 'delavan.stayfresh.design'
       },
+      {
+        protocol: 'https',
+        hostname: 'api.delavanstudios.com'
+      },
     ],
   }
 }
