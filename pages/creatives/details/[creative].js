@@ -62,7 +62,7 @@ const SingleCreativePage = ({ creativeData }) => {
                     slug: "creatives"
                 }}
                 title={title}
-                introduction={excerpt? excerpt : null}
+                introduction={excerpt ? excerpt : null}
                 backgroundImage={featuredImage ? featuredImage.node : null}
             />
             <Container>
