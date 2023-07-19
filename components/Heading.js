@@ -25,7 +25,7 @@ const Heading = ({
 	textTransform=undefined,
 	size=undefined,
 }) => {
-	console.log({name});
+	// console.log({name});
 	const Tag = name ? name : level > 6 ? 'h6' : `h${level}`;
 
 	let headingClasses = cx({
