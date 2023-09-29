@@ -44,10 +44,10 @@ const RentLandingPage = ({spacesData, pageData}) => {
         <Container>
           
           {spacesData.length > 0 ? <>
-            <Heading level="2" color="black" marginBottom={2} marginTop={6}>Available spaces</Heading>
+            <Heading level={2} color="black" marginBottom={2} marginTop={6}>Available spaces</Heading>
             <Space space={spacesData[activeSpace]} setShowContactForm={setShowContactForm} />
           </> : <>
-            <Heading level="2" color="black" marginBottom={2} marginTop={6}>No spaces available</Heading>
+            <Heading level={2} color="black" marginBottom={2} marginTop={6}>No spaces available</Heading>
             <Paragraph marginBottom={4}>Check back soon or join our waiting list by contact us.</Paragraph>
             <ContactForm subject={`[Inquiry] I'd like to join the waiting list`} />
           </>}
@@ -57,7 +57,7 @@ const RentLandingPage = ({spacesData, pageData}) => {
           <div id="rentContactForm">
           {(showContactForm && spacesData.length > 0) && 
             <div style={{ "backgroundColor": "gold", "padding" : "2rem", "marginBottom" : "2rem"}}>
-              <Heading level="2" color="black" marginBottom={2} marginTop={6}>Contact us</Heading>
+              <Heading level={2} color="black" marginBottom={2} marginTop={6}>Contact us</Heading>
               <ContactForm subject={`[Space Inquiry] ${spacesData[activeSpace].node.title} - ${spacesData[activeSpace].node.spaceInformation.squareFt} ft.`} />
             </div>
           }

@@ -1,9 +1,38 @@
+import React, { ReactNode } from 'react'; // Import React and ReactNode type
+
 import classNames from 'classnames/bind';
 import * as styles from './col.module.scss';
 
 let cx = classNames.bind(styles);
 
-const Col = ({ 
+interface ColProps {
+	backgroundColor?: string;
+	borderLeft?: string;
+	children?: ReactNode;
+	xs?: number;
+	sm?: number;
+	md?: number;
+	lg?: number;
+	xl?: number;
+	fontSize?: string;
+	fontWeight?: string;
+	marginTop?: string | null;
+	marginRight?: string | null;
+	marginBottom?: string | number;
+	marginLeft?: string | null;
+	paddingTop?: string | null;
+	paddingRight?: string | number;
+	paddingBottom?: string | null;
+	paddingLeft?: string | number;
+	paddingAll?: string;
+	position?: string;
+	th?: boolean;
+	td?: boolean;
+	textAlign?: string;
+	flexOrder?: number;
+  }
+
+  const Col: React.FC<ColProps> = ({
 	backgroundColor,
 	borderLeft,
 	children, 
@@ -14,7 +43,7 @@ const Col = ({
 	xl, 
 	fontSize,
 	fontWeight,
-	position, 
+	position="relative", 
 	marginTop=null,
 	marginRight=null,
 	marginBottom=2,
@@ -44,7 +73,7 @@ const Col = ({
 		[`col__md__${md}`] : md,
 		[`col__lg__${lg}`]: lg,
 		[`col__xl__${xl}`]: xl,
-		sticky : position === 'sticky',
+		//sticky : position === 'sticky',
 		[`margin-top-${marginTop}`] : marginTop,
 		[`margin-right-${marginRight}`]: marginRight,
 		[`margin-bottom-${marginBottom}`]: marginBottom,
@@ -54,6 +83,7 @@ const Col = ({
 		[`padding-bottom-${paddingBottom}`]: paddingBottom,
 		[`padding-left-${paddingLeft}`]: paddingLeft,
 		[`padding-all-${paddingAll}`] : paddingAll,
+		[`position-${position}`] : position,
 		[`table-header`] : th,
 		[`table-data-cell`] : td,
 		[`text-align-${textAlign}`] : textAlign,

@@ -10,7 +10,7 @@ const DisplayPostsWithCategories = ({ posts, categories }) => {
         return <Section key={index}>
             <Section.Header>
                     <Icon.Accessory iconSlug={slug} />
-                    <Heading level="2" color="black" textTransform="uppercase" size="small">{name}</Heading>
+                    <Heading level={2} color="black" textTransform="uppercase" size="small">{name}</Heading>
             </Section.Header>
             <Grid>
                 {posts.map((post, index) => {

@@ -91,7 +91,7 @@ const ByCategories = ({
     });
 
     
-    return <Col xs="12" sm="4">
+    return <Col xs={12} sm={4}>
         <Label>Filter by category</Label>
         <Select 
             options={[{label: "All", value: "all"}, ...categorySelectValues]} 
@@ -102,7 +102,7 @@ const ByCategories = ({
 }
 Filters.ByCategories = ByCategories;
 const BySearch = ({searchQuery, setSearchQuery, handleSearchFormSubmit}) => {
-    return <Col xs="12" sm="6">
+    return <Col xs={12} sm={6}>
         <Label>Search</Label>
         <Search.Form 
             searchQuery={searchQuery}
@@ -113,7 +113,7 @@ const BySearch = ({searchQuery, setSearchQuery, handleSearchFormSubmit}) => {
 }
 Filters.BySearch = BySearch;
 const ByDisplayFormat = ({displayFormat, setDisplayFormat}) => {
-    return <Col xs="12" sm="2">
+    return <Col xs={12} sm={2}>
         <Label>Display</Label>
         <div>
             <ButtonUI 

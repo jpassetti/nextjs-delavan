@@ -55,7 +55,7 @@ const SingleNewsPage = ({ postData }) => {
             />
              <Container>
                 <Row justifyContent="center">
-                    <Col xs="12" sm="8" marginBottom="0">
+                    <Col xs={12} sm={8} marginBottom={0}>
                         <Section>
                             {content && 
                                 <MainContent content={content} />

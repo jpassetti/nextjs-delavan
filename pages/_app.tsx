@@ -1,6 +1,8 @@
 import '../sass/global.scss';
-
+import type { AppProps } from "next/app";
 import { useState } from 'react';
+import { Provider as ReduxProvider } from "react-redux";
+import { store } from "../store/store";
 
 import { 
 	AllCreativesContext,
@@ -17,7 +19,7 @@ import {
 	ActiveCategoriesContext
 } from '../lib/context';
 
-function MyApp( { Component, pageProps } ) {
+function MyApp({ Component, pageProps }: AppProps) {
 	// creatives
 	const [allCreativesState, setAllCreativesState] = useState([]);
 	const [filteredCreativesState, setFilteredCreativesState] = useState([]);
@@ -58,7 +60,9 @@ function MyApp( { Component, pageProps } ) {
 							<AllCategoriesContext.Provider value={[allCategoriesState, setAllCategoriesState]}>
 								<FilteredCategoriesContext.Provider value={[filteredCategoriesState, setFilteredCategoriesState]}>
 									<ActiveCategoriesContext.Provider value={[activeCategoriesState, setActiveCategoriesState]}>
+									<ReduxProvider store={store}>
 										<Component {...pageProps} />
+										</ReduxProvider>
 									</ActiveCategoriesContext.Provider>
 								</FilteredCategoriesContext.Provider>
 							</AllCategoriesContext.Provider>

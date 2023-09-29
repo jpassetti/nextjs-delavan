@@ -51,7 +51,7 @@ const NewsLandingsPage = ({postsData, categoriesData, pageData}) => {
             backgroundImage={featuredImage ? featuredImage.node : null}
         />
          <Container>
-         <Heading level="2" color="black" marginBottom={2} marginTop={6}>Latest</Heading>
+         <Heading level={2} color="black" marginBottom={2} marginTop={6}>Latest</Heading>
             {displayFormat === 'grid' ? 
                 <Grid data={filteredPosts} parentSlug="news" />
             : displayFormat === 'list' ?

@@ -20,9 +20,9 @@ const Space = ({space, setShowContactForm}) => {
             className={styles.space__image}
         />
         <div className={styles.space__content}>
-            <Heading level="2" color="white" marginBottom="1">{title}</Heading>
-            <Heading level="3" color="white" marginBottom="2" fontWeight="400">{spaceInformation.squareFt} ft.</Heading>
-            <Paragraph color="white" marginBottom="2">{spaceInformation.description}</Paragraph>
+            <Heading level={2} color="white" marginBottom={1}>{title}</Heading>
+            <Heading level={3} color="white" marginBottom={2} fontWeight="400">{spaceInformation.squareFt} ft.</Heading>
+            <Paragraph color="white" marginBottom={2}>{spaceInformation.description}</Paragraph>
             <Button clickHandler={() => {
 				//console.log("clicked");
                 setShowContactForm(true);

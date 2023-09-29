@@ -17,7 +17,7 @@ const Slider = ({ items, small, clickHandler, activeSpace }) => {
                 return <div key={index} className={itemClasses} onClick={() => {
                     clickHandler(index);
                 }}>
-                    {small ? <Heading level="3" marginBottom="1">{title}</Heading> : <Heading level="2" marginBottom="1">{title}</Heading>}
+                    {small ? <Heading level={3} marginBottom={1}>{title}</Heading> : <Heading level={2} marginBottom={1}>{title}</Heading>}
                     <Paragraph>{spaceInformation.squareFt} ft.</Paragraph>
                 </div>
             })}

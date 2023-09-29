@@ -164,7 +164,7 @@ const ItemsByType = ({
     return <Fragment>
         {includeFilters &&
             <Filters.Bar>
-                <Col xs="12" sm="4">
+                <Col xs={12} sm={4}>
                     <Label>Filter by category</Label>
                     <Select
                         //filteredCategories

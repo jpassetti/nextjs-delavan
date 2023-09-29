@@ -1,31 +1,57 @@
+import React, { ReactNode } from 'react'; // Import React and ReactNode type
+
 import classNames from 'classnames/bind'
 import styles from './heading.module.scss';
 
 let cx = classNames.bind(styles);
 
-const Heading = ({
-	accentBottom=undefined,
-	accentTop=undefined,
-	borderTop=undefined,
+interface HeadingProps {
+	accentBottom?: string | null;
+	accentTop?: string | null;
+	borderTop?: string | null;
+	children: ReactNode;
+	className?: string | null;
+	color?: string;
+	fontFamily?: string;
+	fontStyle?: string;
+	fontWeight?: string;
+	level?: number | null;
+	letterSpacing?: string | null;
+	lineHeight?: string;
+	marginTop?: number | null;
+	marginBottom?: number | number;
+	marginLeft?: number | null;
+	marginRight?: number | null;
+	name?: string | null;
+	textAlign?: string | null;
+	textTransform?: string | null;
+	size?: string | null;
+  }
+
+
+  const Heading: React.FC<HeadingProps> = ({
+	accentBottom=null,
+	accentTop=null,
+	borderTop=null,
 	children, 
-	className=undefined,
+	className=null,
 	color="blue", 
 	fontFamily = "primary",
 	fontStyle = "normal",
 	fontWeight = "bold",
-	level=undefined, 
-	letterSpacing=undefined,
+	level=null, 
+	letterSpacing=null,
 	lineHeight = "normal",
-	marginTop=undefined, 
+	marginTop=null, 
 	marginBottom=1, 
-	marginLeft=undefined, 
-	marginRight=undefined, 
+	marginLeft=null, 
+	marginRight=null, 
 	name=null,
-	textAlign=undefined, 
-	textTransform=undefined,
-	size=undefined,
+	textAlign=null, 
+	textTransform=null,
+	size=null,
 }) => {
-	console.log({name});
+	//console.log({name});
 	const Tag = name ? name : level > 6 ? 'h6' : `h${level}`;
 
 	let headingClasses = cx({

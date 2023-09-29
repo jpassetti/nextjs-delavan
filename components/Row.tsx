@@ -1,9 +1,34 @@
+import React, { ReactNode } from 'react'; // Import React and ReactNode type
+
+
 import classNames from 'classnames/bind';
 import styles from './row.module.scss'
 
 let cx = classNames.bind(styles)
 
-const Row = ({
+interface RowProps {
+	borderBottom?: number;
+	borderTop?: number;
+	children?: ReactNode;
+	alignItems?: string;
+	justifyContent?: string;
+	flexDirection?: string;
+	flexWrap?: string;
+	gap?: string;
+	th?: boolean;
+	tr?: boolean;
+	marginTop?: string;
+	marginRight?: string;
+	marginBottom?: string;
+	marginLeft?: string;
+	paddingTop?: string;
+	paddingRight?: string;
+	paddingBottom?: string;
+	paddingLeft?: string;
+	paddingAll?: string;
+  }
+
+  const Row: React.FC<RowProps> = ({
 	borderBottom,
 	borderTop,
 	children, 

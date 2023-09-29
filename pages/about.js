@@ -36,7 +36,7 @@ const AboutPage = ({ pageData }) => {
         <Container>
             <Section>
                 <Row justifyContent="center">
-                    <Col xs="12" sm="10" md="8">
+                    <Col xs={12} sm={10} md={8}>
                         {content &&
                             <MainContent content={content} />
                         }

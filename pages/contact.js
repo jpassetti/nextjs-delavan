@@ -38,8 +38,8 @@ const ContactPage = ({pageData}) => {
         <Container> 
             <Section>
                 <Row justifyContent="center">
-                <Col xs="12" sm="10" md="8">
-                    <Heading level="2" marginBottom="2">Get in touch</Heading>
+                <Col xs={12} sm={10} md={8}>
+                    <Heading level={2} marginBottom={2}>Get in touch</Heading>
                     <Paragraph marginBottom={2}>Use the form below to get in touch with us.</Paragraph>
                     <ContactForm />
                 </Col>

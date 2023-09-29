@@ -59,7 +59,7 @@ const PostListContainer = ({
         return posts.length > 0 ? <Section borderTop={1} paddingTop={3} key={`category${index}`}>
             <Section.Header>
                 <Icon.Accessory iconSlug={slug} />
-                <Heading level="2" color="black" textTransform="uppercase" size="small">{name}</Heading>
+                <Heading level={2} color="black" textTransform="uppercase" size="small">{name}</Heading>
                 </Section.Header>
                 <Grid posts={filterPosts(preFilteredPostsByTags, category)} />
          </Section>

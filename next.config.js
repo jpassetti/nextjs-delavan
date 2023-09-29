@@ -17,6 +17,14 @@ module.exports = {
         protocol: 'https',
         hostname: 'api.delavanstudios.com'
       },
+      {
+        protocol: 'https',
+        hostname: 'delavan-studios.local'
+      },
+      {
+        protocol: 'http',
+        hostname: 'delavan-studios.local'
+      }
     ],
   }
 }

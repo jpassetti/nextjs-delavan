@@ -1,9 +1,28 @@
+import React, { ReactNode } from 'react'; // Import React and ReactNode type
+
 import Image from 'next/image'
 
 import classNames from 'classnames/bind'
 import styles from './icon.module.scss';
 
 let cx = classNames.bind(styles);
+
+interface IconProps {
+    name?: string;
+    size?: string;
+    color?: string;
+    className?: string;
+    viewBox?: {
+        width: number;
+        height: number;
+    };
+    path?: string;
+    children?: ReactNode;
+    iconPath?: string;
+    isActive?: boolean;
+    iconColor?: string;
+    iconSlug?: string;
+}
 
 const iconPaths = [
     {
@@ -479,10 +498,19 @@ const iconPaths = [
 		c-49.3,0-98,0-147.1,0C192.8,214.6,192.8,221.8,192.8,229.5z M218.4,57.7c-3.8-11.4-7.4-22.2-11.4-34.1
 		c-8.3,11.1-12.8,21.8-14.4,34.1C201,57.7,208.8,57.7,218.4,57.7z M314.5,57.7c9.7,0,17.7,0,26,0c-1.9-12.5-6.3-23.3-14.5-34.1
 		C321.9,35.6,318.2,46.4,314.5,57.7z`
+    },
+    {
+        name: 'cart',
+        viewBox: {
+            width: 576,
+            height: 512
+        },
+        path: `M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z`
     }
 ];
 
-const Icon = ({ iconPath, isActive, iconColor, iconSlug }) => {
+const Heading: React.FC<IconProps> = ({
+iconPath, isActive, iconColor, iconSlug }) => {
     //console.log({iconSlug});
     let iconClasses = cx({
         icon: true,

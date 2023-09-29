@@ -1,3 +1,5 @@
+import React, { ReactNode } from 'react'; // Import React and ReactNode type
+
 import { useRouter } from 'next/router';
 import { motion } from "framer-motion";
 import { Fragment } from 'react';
@@ -22,10 +24,21 @@ import Col from './Col';
 
 let cx = classNames.bind(styles)
 
-const Showcase = ({
-    backgroundImage, 
+interface ShowcaseProps {
+    backgroundImage?: string;
+    category?: string;
+    height?: 'small' | 'large'; // Optional prop with specific values
+    homeCardsData?: any[]; // Replace 'any' with the actual type of homeCardsData
+    introduction?: string;
+    location?: string;
+    title?: string;
+    slug?: string | null;
+  }
+
+const Showcase: React.FC<ShowcaseProps> = ({
+    backgroundImage=null, 
     category, 
-    height="large",
+    height= 'large',
     homeCardsData, 
     introduction, 
     location, 
@@ -61,7 +74,7 @@ const Showcase = ({
                     <Row justifyContent="center">
                         <Col xs={12} sm={10} md={8}>
                 <div className={styles.showcase__content}>
-            <Paragraph color="white" marginBottom="3" type="medium"><strong>Delavan Studios</strong> is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side.</Paragraph>
+            <Paragraph color="white" marginBottom={3} type="medium"><strong>Delavan Studios</strong> is a historic multi-use, multi-story, multi-building complex on Syracuse's Near West Side.</Paragraph>
             </div>  
             </Col>
             </Row>
@@ -102,13 +115,13 @@ const Showcase = ({
             }
             <Container>
             <div className={styles.showcase__content}>
-            {category &&  <Heading level="3" marginBottom="2" color="tan" textTransform="uppercase">
+            {category &&  <Heading level={3} marginBottom={2} color="tan" textTransform="uppercase">
                  <Link href={`/${category.slug}`}>
                  {category.title}
                  </Link>
              </Heading>
             }
-            <Heading level="1" color="white" marginBottom="2" accentBottom={slug ? slug : null}>{title}</Heading>
+            <Heading level={1} color="white" marginBottom={2} accentBottom={slug ? slug : null}>{title}</Heading>
             {introduction && <Paragraph intro color="white">{introduction}</Paragraph>}
             </div>
             </Container>

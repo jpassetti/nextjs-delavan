@@ -1,18 +1,41 @@
+import React from "react";
 import classNames from 'classnames/bind';
 import { motion } from "framer-motion"
 
 import styles from './button.module.scss';
 import Icon from './Icon';
+import { type } from "os";
 
 let cx = classNames.bind(styles);
 
-const Button = ({
+interface Props {
+    backgroundColor?: string;
+    children?: React.ReactNode;
+    className?: string;
+    clickHandler?: React.MouseEventHandler<HTMLButtonElement>;
+    disabled?: boolean;
+    fontColor?: string;
+    iconAfter?: string;
+    label?: string;
+    size?: string;
+    type?: string;
+    url?: string;
+    withMotion?: boolean;
+    isClicked?: boolean;
+  }
+
+const Button: React.FC<Props> = ({
     backgroundColor,
+    children,
+    className,
     clickHandler,
+    disabled,
     fontColor,
-    iconAfter, 
+    iconAfter,
+    isClicked, 
     label, 
     size,
+    type="button",
     url, 
     withMotion
 }) => {
@@ -20,7 +43,8 @@ const Button = ({
         btn: true,
         [`background-color-${backgroundColor}`]: backgroundColor,
         [`font-color-${fontColor}`]: fontColor,
-        [`size-${size}`] : size
+        [`size-${size}`] : size,
+        [`disabled`]: disabled,
     });
     const buttonMotionVariants = {
         show: {
@@ -59,7 +83,7 @@ const Button = ({
             {!url && iconAfter ? <Icon color="white" iconSlug={iconAfter} /> : ''}
         </motion.button>
     } else {
-        return <button className={buttonClasses} onClick={clickHandler ? clickHandler : null}>
+        return <button type={type} className={buttonClasses} onClick={clickHandler ? clickHandler : null}>
             {url ? <a href={url} target="_blank" rel="noopener noreferrer">
                 {label ? label : ''} 
                 {iconAfter ? <Icon color="white" iconSlug={iconAfter} /> : ''}

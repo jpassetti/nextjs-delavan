@@ -38,6 +38,10 @@
     &.size-large {
         display: block;
     }
+    &.disabled {
+        opacity: 0.4;
+        background: lightgrey;
+    }
     &.toggle {
         color: vars.$color__blue;
         border: 1px solid vars.$color__blue;

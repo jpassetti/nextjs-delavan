@@ -8,8 +8,8 @@ const Timeline = ({children}) => {
 export default Timeline;
 const TimelineItem = ({item}) => {
     return <div className={styles.timeline__item}>
-        <Heading level="4" color="tan" marginBottom="1">{item.year}</Heading>
-        <Heading level="3" marginBottom="2">{item.title}</Heading>
+        <Heading level={4} color="tan" marginBottom={1}>{item.year}</Heading>
+        <Heading level={3} marginBottom={2}>{item.title}</Heading>
         <Paragraph>{item.description}</Paragraph>
     </div>
 }
