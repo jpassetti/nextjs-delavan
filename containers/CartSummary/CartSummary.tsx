@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CartSummaryLine from "../../components/CartSummaryLine";
+import CartSummaryLine from "../../components/cart/CartSummaryLine";
 import { LineItem } from "../../utils/types/wooCommerceTypes";
 
 interface Props {

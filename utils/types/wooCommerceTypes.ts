@@ -118,14 +118,14 @@ export interface LineItem {
 }
 
 export interface ShippingLine {
-  id: number;
-  method_title: string;
-  method_id: string;
-  instance_id: string;
-  total: string;
-  total_tax: string;
-  taxes: any[];
-  meta_data: any[];
+  id?: number;
+  method_title?: string;
+  method_id?: string;
+  instance_id?: string;
+  total?: string;
+  total_tax?: string;
+  taxes?: any[];
+  meta_data?: any[];
 }
 
 export interface Meta_Data_Line_Item {
@@ -288,6 +288,7 @@ export interface Shipping {
   postcode: string;
   country: string;
   email: string;
+  phone: string;
 }
 
 export interface Variation {

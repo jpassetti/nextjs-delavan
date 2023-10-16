@@ -1,9 +1,8 @@
-import CartQty from "../../components/CartQty";
-import Col from "../../components/Col";
-import Button from "../../components/Button";
-import Heading from "../../components/Heading";
-import Paragraph from "../../components/Paragraph";
-import Row from "../../components/Row";
+import CartQty from "../../components/cart/CartQty";
+import Col from "../../components/layout/Col";
+import Button from "../../components/ui/Button";
+import Paragraph from "../../components/typography/Paragraph";
+import Row from "../../components/layout/Row";
 import { useAppDispatch } from "../../store/hooks";
 import {
   decrementLineItemQuantity,

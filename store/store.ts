@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./slices/cartSlice";
+import shippingMethodReducer from './slices/shippingMethodSlice';
+
 
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
+    shippingMethod: shippingMethodReducer,
   },
   // Redux Toolkit includes thunk as default middleware
 });

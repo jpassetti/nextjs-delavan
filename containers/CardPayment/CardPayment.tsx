@@ -1,4 +1,11 @@
-import styled from "styled-components";
+import React, { Fragment, useState } from "react";
+
+import {
+  StripeCardCvcElementChangeEvent,
+  StripeCardExpiryElementChangeEvent,
+  StripeCardNumberElementChangeEvent,
+} from "@stripe/stripe-js";
+
 import {
   CardNumberElement,
   CardExpiryElement,
@@ -6,17 +13,18 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import Button from "../../components/Button";
-import Modal from "../../components/Modal";
-import React, { Fragment, useState } from "react";
-import {
-  StripeCardCvcElementChangeEvent,
-  StripeCardExpiryElementChangeEvent,
-  StripeCardNumberElementChangeEvent,
-} from "@stripe/stripe-js";
+
+import Button from "../../components/ui/Button";
+import Col from "../../components/layout/Col";
+import Heading from "../../components/typography/Heading";
+import Label from "../../components/form/Label";
+import Modal from "../../components/ui/modal/Modal";
+import Paragraph from "../../components/typography/Paragraph";
+import Row from "../../components/layout/Row";
+import Well from "../../components/custom/Well";
+
 import { createOrderApi, createPaymentIntentApi } from "../../utils/customApi";
-//mport {createWooCommerceOrder} from "../../utils/wooCommerceApi";
-import { LineItem } from "../../utils/types/wooCommerceTypes";
+import { LineItem, Shipping, Billing,  } from "../../utils/types/wooCommerceTypes";
 import {
   checkStripeElementsValid,
   confirmCardPayment,
@@ -25,14 +33,33 @@ import { useAppDispatch } from "../../store/hooks";
 import { resetCartState } from "../../store/slices/cartSlice";
 import { useRouter } from "next/router";
 
+import styles from '../../components/form/form.module.scss'
+
 interface Props {
   lineItems: LineItem[];
+  shippingInfo: Shipping;
+  billingInfo: Billing;
+  shippingMethod: {
+    id: number;
+    title: string;
+    enabled: boolean;
+    method_id: string;
+    method_title: string;
+  };
+}
+interface PaymentIntent {
+  paymentIntentId: string;
+  clientSecret: string;
+  // Add other properties as needed
 }
 
 const CardPayment: React.FC<Props> = ({
-  lineItems
+  lineItems,
+  shippingInfo,
+  billingInfo,
+  shippingMethod,
 }) => {
-  console.log({lineItems});
+  //console.log({lineItems, shippingInfo, billingInfo});
   const stripe = useStripe();
   const elements = useElements();
   const dispatch = useAppDispatch();
@@ -62,26 +89,32 @@ const CardPayment: React.FC<Props> = ({
     setError("");
 
     // create Stripe payment intent and get client secret in return
-    let paymentIntent = await createPaymentIntentApi(lineItems).catch(
-      (error) => {
-        setError(error.message);
-        setIsLoading(false);
-        return;
-      }
-    );
-    console.log("--CREATED STRIPE PAYMENT INTENT: ", paymentIntent);
+    let paymentIntent: PaymentIntent | undefined;
+   
+    try {
+      paymentIntent = await createPaymentIntentApi(lineItems);
+      //console.log("--CREATED STRIPE PAYMENT INTENT: ", paymentIntent);
+    } catch (error) {
+      setError(error.message);
+      setIsLoading(false);
+      return;
+    }
+    //console.log("--CREATED STRIPE PAYMENT INTENT: ", paymentIntent);
 
     // create WooCommerce order and link it with Stripe payment intent
     // NOTE: must create server-side because of env vars
     let wooCommerceOrder = await createOrderApi(
       lineItems,
-      paymentIntent!.paymentIntentId
+      paymentIntent.paymentIntentId,
+      shippingInfo,
+      billingInfo,
+      shippingMethod
     ).catch((error) => {
       setError(error.message);
       setIsLoading(false);
       return;
     });
-    console.log("--CREATED WOOCOMMERCE ORDER: ", wooCommerceOrder);
+    //console.log("--CREATED WOOCOMMERCE ORDER: ", wooCommerceOrder);
 
     // confirm card payment using client secret
     let stripeResult = await confirmCardPayment(
@@ -93,7 +126,7 @@ const CardPayment: React.FC<Props> = ({
       setIsLoading(false);
       return;
     });
-    console.log("--STRIPE CONFIRM CARD: ", stripeResult);
+    //console.log("--STRIPE CONFIRM CARD: ", stripeResult);
 
     // TODO use wooCommerceOrder.id to update order status to 'processing' after card payment succeeded - this step would be achieved by webhook when website served over https
 
@@ -124,59 +157,46 @@ const CardPayment: React.FC<Props> = ({
 
   return (
     <Fragment>
-      <Form id="card-payment-form" onSubmit={handleFormSubmit}>
-        <CardNumberElement
+        <Heading level={2} marginBottom={2} marginTop={4}>3. Credit Card Information</Heading>
+      <form id="card-payment-form" onSubmit={handleFormSubmit}>
+        <Label htmlFor="card-number-element">Card Number</Label>
+                <CardNumberElement
           id="card-number-element"
-          className="card-element"
+          className={styles.card_element}
           options={CARD_NUMBER_OPTIONS}
           onChange={handleValidation}
         />
         <Row>
+          <Col xs={6} sm={6}>
+          <Label htmlFor="card-expiry-element">Expiration Date</Label>
           <CardExpiryElement
             id="card-expiry-element"
-            className="card-element"
+            className={styles.card_element}
             options={CARD_ELEMENT_OPTIONS}
             onChange={handleValidation}
           />
+          </Col>
+          <Col xs={6} sm={6}>
+          <Label htmlFor="card-cvc-element">CVC</Label>
           <CardCvcElement
             id="card-cvc-element"
-            className="card-element"
+            className={styles.card_element}
             options={CARD_ELEMENT_OPTIONS}
             onChange={handleValidation}
           />
+          </Col>
         </Row>
         <Button type="submit" disabled={!lineItems.length} label="PAY NOW" backgroundColor="blue" fontColor="white"/>
-        <ErrorMessage>{error}</ErrorMessage>
-      </Form>
+        {error &&  <Well>
+          <Paragraph>{error}</Paragraph></Well>}
+       
+      </form>
       {isLoading && <Modal message="Processing card..." />}
     </Fragment>
   );
 };
 
 export default CardPayment;
-
-const Form = styled.form`
-  width: 100%;
-  /* Stripe Element containers can also be styled by class */
-  .card-element {
-    width: 100%;
-    margin-bottom: 1rem;
-    border: 1px solid gray;
-    border-radius: 3px;
-    padding: 10px;
-  }
-`;
-
-const Row = styled.div`
-  display: flex;
-  width: 100%;
-  gap: 16px;
-`;
-
-const ErrorMessage = styled.div`
-  color: #fa004f;
-  padding-top: 8px;
-`;
 
 // Stripe has a defined style object that you can use to style Elements
 const CARD_ELEMENT_OPTIONS = {

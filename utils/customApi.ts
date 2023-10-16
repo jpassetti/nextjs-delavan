@@ -1,15 +1,5 @@
 import { PaymentIntent } from "./types/stripeTypes";
-import { LineItem, Order } from "./types/wooCommerceTypes";
-
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
-
-// initialise the WooCommerceRestApi 
-const api = new WooCommerceRestApi({
-  url: process.env.NEXT_PUBLIC_WOOCOMMERCE_URL!,
-  consumerKey: process.env.NEXT_PUBLIC_WOOCOMMERCE_KEY!,
-  consumerSecret: process.env.NEXT_PUBLIC_WOOCOMMERCE_SECRET!,
-  version: "wc/v3",
-});
+import { LineItem, Order, Shipping, Billing } from "./types/wooCommerceTypes";
 
 //const axios = require("axios").default;
 const axios = require("axios").default;
@@ -31,35 +21,44 @@ const instance = axios.create({
 // hits the create-order API endpoint to create a new WooCommerce order //
 export async function createOrderApi(
   lineItems: LineItem[],
-  paymentIntentId: string
+  paymentIntentId: string,
+  shippingInfo: Shipping,
+  billingInfo: Billing,
+  shippingMethod: {
+    id: number,
+    title: string,
+    enabled: boolean,
+    method_id: string,
+    method_title: string
+  }
 ) {
+  //console.log("createOrderApi");
+  //console.log({shippingInfo, billingInfo});
   // create order data
   const data: Order = {
     payment_method: "stripe",
     payment_method_title: "Card",
     set_paid: false,
     line_items: lineItems,
+    shipping: shippingInfo,
+    billing: billingInfo,
     meta_data: [
       {
         key: "_stripe_intent_id",
         value: paymentIntentId,
       },
     ],
+    shipping_lines: [
+      {
+        method_id: shippingMethod.method_id,
+        method_title: shippingMethod.method_title
+      }
+    ],
   };
-
-  // try {
-  //  // const response = await api.post("orders", data);
-  //  const response = await fetch('/api/make-order', {
-  //   method: 'POST',
-  // });
-  // const data = await response.json();
-  //   return response.data as Order;
-  // } catch (err) {
-  //   throw new Error(err);
-  // }
+  //console.log({data});
   try {
     const response = await instance.post("/api/make-order", data);
-    console.log({response});
+    //console.log({response});
     return response;
   } catch (error) {
     throw new Error(error);
@@ -68,16 +67,11 @@ export async function createOrderApi(
 
 // hits the create-payment-intent API endpoint to create a new Stripe payment intent and return client secret //
 export async function createPaymentIntentApi(data: LineItem[]) {
-  console.log("createPaymentIntentApi data: ", data);
+  //console.log("createPaymentIntentApi data: ", data);
   try {
     const response = await instance.post("/api/create-payment-intent", data);
-    //console.log({response});
-    // const response = await fetch('/api/create-order', {
-    //   method: 'POST',
-    // });
-    // const data = await response.json();
+
     return response.data as PaymentIntent;
-    //return data as PaymentIntent;
   } catch (err) {
     throw new Error(err);
   }

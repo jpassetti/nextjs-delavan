@@ -1,0 +1,318 @@
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { motion } from "framer-motion";
+
+import ButtonToggle from '../ui/Button/ButtonToggle';
+import ButtonAsSelectMenu from '../ui/Button/ButtonAsSelectMenu';
+import ButtonUI from '../ui/Button/ButtonUI';
+import DisplayItems from '../layout/DisplayItems';
+import styles from './filters.module.scss';
+import Container from '../layout/Container';
+import Row from '../layout/Row';
+import Col from '../layout/Col';
+import Label from '../form/Label';
+
+// Interface for CreativeType
+interface CreativeType {
+  node: {
+    slug: string;
+  };
+}
+
+// Interface for Tag
+interface Tag {
+  node: {
+    slug: string;
+    name: string;
+  };
+}
+
+// Interface for CreativeListProps
+interface CreativeListProps {
+  creatives: any[]; // Replace 'any' with the actual type of creatives
+  creativeTypes: CreativeType[];
+  updateFilter: (newFilter: string) => void;
+  initialCreativeType: string;
+  initialTagSlug: string;
+}
+
+// Interface for FilteredComponentProps
+interface FilteredComponentProps {
+  creatives: any[]; // Replace 'any' with the actual type of creatives
+  creativeTypes: CreativeType[];
+  updateFilter: (newFilter: string) => void;
+  initialCreativeType: string;
+  initialTagSlug: string;
+}
+
+// Higher-order component to filter a list of items
+const withFilter = (WrappedComponent: React.FC<CreativeListProps>) => {
+  return function FilteredComponent({
+    creatives,
+    creativeTypes,
+    initialCreativeType = 'all',
+    initialTagSlug = 'all',
+  }: FilteredComponentProps) {
+    const router = useRouter();
+    const [filter, setFilter] = useState(initialCreativeType);
+
+    // Method to update filter state
+    const updateFilter = (newFilter: string) => {
+      setFilter(newFilter);
+      if (newFilter === 'all') {
+        // don't add /add to the url
+        router.push(`/creatives`, undefined, { shallow: false });
+      } else {
+        router.push(`/creatives/${newFilter}`, undefined, { shallow: false });
+      }
+    };
+
+    // Filter items based on the current filter state
+    const filteredCreatives = creatives.filter((creative) => {
+      const { node } = creative;
+      const { creativeTypes } = node;
+      return filter === 'all' || creativeTypes.edges.find((edge) => edge.node.slug === filter);
+    });
+
+    // Pass filtered items and filter update method to WrappedComponent
+    return (
+      <WrappedComponent
+        creatives={filteredCreatives}
+        creativeTypes={creativeTypes}
+        updateFilter={updateFilter}
+        initialCreativeType={initialCreativeType}
+        initialTagSlug={initialTagSlug}
+      />
+    );
+  };
+};
+
+// Component to display a list of items
+const CreativeList: React.FC<CreativeListProps> = ({
+  creatives,
+  creativeTypes,
+  updateFilter,
+  initialCreativeType,
+  initialTagSlug,
+}: CreativeListProps) => {
+  
+  // state to show/hide the category picker
+  const [areCategoriesExposed, setCategoriesExposed] = useState(false);
+
+  // state to hold the list of tags
+  const [filteredTags, setFilteredTags] = useState(() => {
+    const allTags = creatives.reduce((accumulativeArray, creative) => {
+      creative.node.tags.edges.forEach((tag) => {
+        if (!accumulativeArray.find((t) => t.node.slug === tag.node.slug)) {
+          accumulativeArray.push(tag);
+        }
+      });
+      return accumulativeArray;
+    }, []);
+    allTags.unshift({ node: { name: "All", slug: "all" } });
+    return allTags;
+  });
+
+  // state to hold the list of active tags
+  const [activeTags, setActiveTags] = useState(() => {
+    return [filteredTags.find((tag) => tag.node.slug === initialTagSlug)];
+  });
+
+  // state to hold the list of creatives that match the active category and tags
+  const [filteredCreatives, setFilteredCreatives] = useState(() => {
+    return creatives;
+  });
+
+  useEffect(() => {
+    // Filter artists based on active tags
+    // If "All" tag is active, show all artists
+    if (activeTags.some((tag) => tag.node.slug === "all")) {
+      setFilteredCreatives(creatives);
+    } else {
+      // Filter artists based on active tags
+      const filtered = creatives.filter((creative) => {
+        return creative.node.tags.edges.some((tag) => {
+          return activeTags.some((t) => t.node.slug === tag.node.slug);
+        });
+      });
+      setFilteredCreatives(filtered);
+    }
+  }, [activeTags, creatives]);
+
+
+  const handleTagClick = (tag) => {
+    // Check if tag is already active
+    let updatedTags = [];
+    if (tag.node.slug === "all") {
+      updatedTags = [tag];
+    } else {
+      // clone the array
+      updatedTags = [...activeTags];
+
+      // remove `all` tag if it exists
+      updatedTags = activeTags.filter((t) => t.node.slug !== "all");
+
+      // if the tag is not already active, add it
+      if (!updatedTags.some((t) => t.node.slug === tag.node.slug)) {
+        updatedTags.push(tag);
+      } else {
+        // if the tag is already active, remove it
+        updatedTags = updatedTags.filter((t) => t.node.slug !== tag.node.slug);
+      }
+      // Add "All" tag if no other tags are active
+      if (updatedTags.length === 0 || (updatedTags.length === 1 && updatedTags.some((t) => t.node.slug === "all"))) {
+        updatedTags = [{ node: { slug: "all" } }];
+      }
+    }
+    setActiveTags(updatedTags);
+  };
+
+  const filterRowVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        delay: .6,
+        staggerChildren: .15
+      }
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: .5
+      }
+    }
+  }
+
+  const optionAll = { node: { name: "All", slug: "all" } };
+  const filterOptions = [optionAll, ...creativeTypes].map((option) => {
+    const { node } = option;
+    console.log({node});
+    const { name, slug } = node;
+    return <ButtonToggle
+      key={slug}
+      clickHandler={() => {
+        updateFilter(slug);
+        setCategoriesExposed(false);
+      }}
+      label={name}
+      withMotion
+      isActive={slug === initialCreativeType ? true : false}
+    />
+  });
+
+  return (
+    <section>
+      <div className={styles.filterBar}>
+        <Container>
+          {areCategoriesExposed ?
+            <Row alignItems="center">
+              <Col xs={12} marginBottom={1}>
+                <Label htmlFor="categories" label="Categories" />
+              </Col>
+              <Col xs={12} marginBottom={0}>
+                <motion.div
+                  variants={filterRowVariants}
+                  className={styles.filterRow}
+                  initial="hidden"
+                  animate="show"
+                  exit="exit"
+                >
+                  {filterOptions}
+                </motion.div>
+              </Col>
+              <ButtonUI
+                iconSlug="close"
+                iconColor="black"
+                clickHandler={() => {
+                  setCategoriesExposed(false);
+                }}
+              />
+            </Row>
+            :
+            <Row alignItems="center">
+              <Col xs={12} md={1} marginBottom={0}>
+                <Label htmlFor="filters" label="Filters" />
+              </Col>
+              <Col xs={12} md={11} marginBottom={0}>
+                <ButtonAsSelectMenu
+                  fontColor="navy"
+                  iconAfter="angle-down"
+                  iconColor="blue"
+                  clickHandler={() => {
+                    setCategoriesExposed(!areCategoriesExposed);
+                  }}
+                  label="Pick a category"
+                />
+              </Col>
+            </Row>
+          }
+        </Container>
+      </div>
+      <div className={styles.tagBar}>
+        <Container>
+          <Row alignItems="center">
+            <Col xs={12} marginBottom={1}>
+              <Label htmlFor="tags" label="Tags" />
+            </Col>
+            <Col xs={12} marginBottom={0}>
+              <div className={styles.tagRow}>
+                {filteredTags.length > 0 && filteredTags.map((tag) => {
+                  const { node } = tag;
+                  const { name, slug } = node;
+                  return <ButtonToggle
+                    key={slug}
+                    clickHandler={() => {
+                      handleTagClick(tag);
+                    }}
+                    label={name}
+                    isActive={activeTags.find((t) => t.node.slug === slug)}
+                    size="small"
+                  />
+                })}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <Container>
+        {initialCreativeType === "all" ?
+         <p>All</p>
+        : 
+          <DisplayItems 
+            posts={filteredCreatives} 
+            parentSlug={initialCreativeType} 
+          />
+        }
+      </Container>
+    </section>
+  );
+};
+
+const FilteredCreativeList = withFilter(CreativeList);
+export default FilteredCreativeList;
+
+
+
+if (domNode.name === "form") {
+		const { attribs, children }	= domNode;
+		const classesAsArray = attribs.class.split(' ');
+		if (classesAsArray.includes("wpcf7-form")) {
+			//console.log({domNode});
+			const { action } = attribs;
+			// get 88 from action: "/graphql#wpcf7-f88-o1"
+			const formID = parseInt(action.split('#wpcf7-f')[1].split('-o')[0]);
+			console.log("wpcf7-form detected");
+			return <ContactForm7 
+				key={`${domNode.type}${getPsuedoID()}`} 
+				formID={formID}
+				domNode={domNode} 
+				>
+				{(children && children.length > 0) && children.map((child) => {
+					return tagParser(child);
+				})}
+				</ContactForm7>
+		} else {
+			return <Form />
+		}
+ 	} else 

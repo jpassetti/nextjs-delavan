@@ -1,14 +1,42 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LineItem } from "../../utils/types/wooCommerceTypes";
+import { LineItem, Shipping, Billing } from "../../utils/types/wooCommerceTypes";
 
 // Define a type for the slice state
 interface CartState {
   lineItems: LineItem[];
+  shippingInfo: Shipping;
+  billingInfo: Billing;
 }
 
 // Define the initial state using that type
 const initialState: CartState = {
   lineItems: [],
+  shippingInfo: {
+    first_name: '',
+    last_name: '',
+    address_1: '',
+    address_2: '',
+    city: '',
+    state: '',
+    postcode: '',
+    company: '',
+    country: '',
+    email: '',
+    phone: '',
+  },
+  billingInfo: {
+    first_name: '',
+    last_name: '',
+    address_1: '',
+    address_2: '',
+    city: '',
+    state: '',
+    postcode: '',
+    company: '',
+    country: '',
+    email: '',
+    phone: '',
+  },
 };
 
 // NOTE: Redux Toolkit's createReducer API uses Immer internally automatically making it safe to mutate state. createSlice uses createReducer inside so it's also safe to mutate state there as well. This even applies if the case reducer functions are defined outside of the createSlice/createReducer call (as in the functions defined below)
@@ -16,7 +44,7 @@ const addLineItemReducer = (
   state: CartState,
   action: PayloadAction<LineItem>
 ) => {
-  console.log("addLineItemReducer");
+  //console.log("addLineItemReducer");
   const index = state.lineItems.findIndex(
     (lineItem) => lineItem.product_id === action.payload.product_id
   );
@@ -66,6 +94,18 @@ export const cartSlice = createSlice({
     addLineItem: addLineItemReducer,
     decrementLineItemQuantity: decrementQuantityReducer,
     removeLineItem: removeLineItemReducer,
+    updateShippingInfo: (
+      state,
+      action: PayloadAction<Shipping>
+    ) => {
+      state.shippingInfo = action.payload;
+    },
+    updateBillingInfo: (
+      state,
+      action: PayloadAction<Billing>
+    ) => {
+      state.billingInfo = action.payload;
+    },
     resetCartState() {
       return initialState;
     },
@@ -81,6 +121,8 @@ export const {
   decrementLineItemQuantity,
   removeLineItem,
   resetCartState,
+  updateShippingInfo,
+  updateBillingInfo,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

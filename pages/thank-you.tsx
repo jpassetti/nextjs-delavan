@@ -1,14 +1,12 @@
 import Head from 'next/head';
-import Col from '../components/Col';
-import ContactForm from '../components/ContactForm';
-import Layout from "../components/Layout";
-import Section from '../components/Section';
-import Showcase from "../components/Showcase";
-import Container from "../components/Container";
-import Heading from '../components/Heading';
-import Paragraph from '../components/Paragraph';
-import Row from '../components/Row';
-import Strong from '../components/Strong';
+import Col from '../components/layout/Col';
+import Layout from "../components/layout/Layout";
+import Section from '../components/layout/Section';
+import Showcase from "../components/custom/Showcase";
+import Container from "../components/layout/Container";
+import Paragraph from '../components/typography/Paragraph';
+import Row from '../components/layout/Row';
+import Strong from '../components/html/Strong';
 
 const ThankYouPage = () => {
     return <Layout>

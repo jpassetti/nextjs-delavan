@@ -1,21 +1,17 @@
-import Layout from "../components/Layout";
+import Layout from "../components/layout/Layout";
 import { useRouter } from 'next/router'
 import { useAppSelector } from "../store/hooks";
 import Cart from "../features/Cart";
-import Col from "../components/Col";
-import Container from "../components/Container";
-import Heading from "../components/Heading";
-import Paragraph from "../components/Paragraph";
-import Row from "../components/Row";
-import Section from "../components/Section";
-import Showcase from "../components/Showcase";
-import Button from "../components/Button";
-import Link from "next/link";
+import Col from "../components/layout/Col";
+import Container from "../components/layout/Container";
+import Row from "../components/layout/Row";
+import Section from "../components/layout/Section";
+import Showcase from "../components/custom/Showcase";
 
 export default function CartPage() {
   const router = useRouter();
   const cartState = useAppSelector((state) => state.cart);
-  console.log({cartState});
+  //console.log({cartState});
   return (
     <Layout>
        <Showcase 

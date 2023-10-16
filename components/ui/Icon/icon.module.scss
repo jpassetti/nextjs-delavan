@@ -1,0 +1,35 @@
+@use '../../../sass/abstracts/vars';
+@use '../../../sass/abstracts/mixins';
+
+.icon {
+    width: 1.5rem;
+    height: auto;
+    transition: all .35s;
+    fill: vars.$color__primary;
+    &.inactive {
+        opacity: .35;
+    }
+    &.active {
+        opacity: 1;    
+    }
+    // &.close {
+    //     position: absolute;
+    //     top: 1rem;
+    //     right: 1rem;
+    // }
+    @include mixins.fills();
+}
+.iconAccessory {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: vars.$color__tan;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    svg {
+        width: 2rem;
+        height: auto;
+    }
+    @include mixins.newAccentColors();
+}

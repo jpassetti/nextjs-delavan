@@ -1,0 +1,16 @@
+@use '../../../sass/abstracts/mixins';
+@use '../../../sass/abstracts/vars';
+
+
+.textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none;
+    font-family: vars.$font__nunito;
+    font-weight: 400;
+    font-size: 1.2rem;
+}

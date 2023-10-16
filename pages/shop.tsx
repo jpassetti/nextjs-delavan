@@ -1,21 +1,21 @@
 import React from 'react';
 import { useRouter } from 'next/router'
 import { useAppSelector } from "../store/hooks";
-import Button from "../components/Button";
-import Col from "../components/Col";
-import Container from "../components/Container";
-import Heading from "../components/Heading";
-import Layout from "../components/Layout"
-import Paragraph from "../components/Paragraph";
-import ProductCard from "../components/ProductCard";
-import Row from "../components/Row";
-import Section from "../components/Section";
-import Showcase from "../components/Showcase";
-import Well from "../components/Well";
+import Button from "../components/ui/Button";
+import Col from "../components/layout/Col";
+import Container from "../components/layout/Container";
+import Heading from "../components/typography/Heading";
+import Layout from "../components/layout/Layout"
+import Paragraph from "../components/typography/Paragraph";
+import ProductCard from "../components/custom/Card/ProductCard";
+import Row from "../components/layout/Row";
+import Section from "../components/layout/Section";
+import Showcase from "../components/custom/Showcase";
+import Well from "../components/custom/Well";
 import { Product } from "../utils/types/wooCommerceTypes";
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 
-import { fetchWooCommerceProducts, createWooCommerceOrder } from "../utils/wooCommerceApi";
+import { fetchWooCommerceProducts } from "../utils/wooCommerceApi";
 
 import { DEFAULT_TITLE } from '../config';
 
@@ -67,7 +67,7 @@ const StorePage: React.FC = ({ products, pageData }: Props) => {
       <Showcase 
         title={title}
         introduction={excerpt}
-        backgroundImage={featuredImage ? featuredImage.node : null}
+        backgroundImage={featuredImage ? featuredImage : null}
         />
        <Container> 
             <Section>

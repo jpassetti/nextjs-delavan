@@ -3,9 +3,9 @@ import { Order } from "./types/wooCommerceTypes";
 
 // initialise the WooCommerceRestApi 
 const api = new WooCommerceRestApi({
-  url: process.env.NEXT_PUBLIC_WOOCOMMERCE_URL!,
-  consumerKey: process.env.NEXT_PUBLIC_WOOCOMMERCE_KEY!,
-  consumerSecret: process.env.NEXT_PUBLIC_WOOCOMMERCE_SECRET!,
+  url: process.env.WOOCOMMERCE_URL!,
+  consumerKey: process.env.WOOCOMMERCE_KEY!,
+  consumerSecret: process.env.WOOCOMMERCE_SECRET!,
   version: "wc/v3",
 });
 
@@ -35,6 +35,14 @@ export async function createWooCommerceOrder(data: Order) {
 export async function retrieveProductById(productId: string) {
   try {
     const response = await api.get(`products/${productId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+export async function getShippingZones() {
+  try {
+    const response = await api.get("shipping/zones");
     return response.data;
   } catch (error) {
     throw new Error(error);
