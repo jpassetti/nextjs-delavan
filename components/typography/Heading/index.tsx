@@ -51,13 +51,8 @@ interface HeadingProps {
 	textTransform=null,
 	size=null,
 }) => {
-<<<<<<< HEAD:components/typography/Heading/index.tsx
 	//console.log({name});
 	const Tag = (name || level > 6 ? 'h6' : `h${level}`) as keyof JSX.IntrinsicElements;
-=======
-	// console.log({name});
-	const Tag = name ? name : level > 6 ? 'h6' : `h${level}`;
->>>>>>> stayfresh/main:components/Heading.js
 
 	let headingClasses = cx({
 		heading: true,

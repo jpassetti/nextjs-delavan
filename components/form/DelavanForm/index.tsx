@@ -23,9 +23,9 @@ import Well from '../../custom/Well';
     form_field_options: string[]; // Assuming this is for select options, adjust as needed
   }
   interface FormSettings {
+    form_submit_button_text?: string;
     form_success_message?: string;
     form_error_message?: string;
-    form_submit_button_text: string;
     admin_email?: string;
   }
   interface FormEmails {
@@ -34,9 +34,10 @@ import Well from '../../custom/Well';
 }
   interface FormDataType {
     form_fields: FormField[];
-    form_settings: FormSettings[];
-    form_emails: FormEmails[];
+    form_settings: FormSettings;
+    form_emails: FormEmails;
     title: string;
+    formId: number; // Added formId property
   }
   interface DelavanFormProps {
     formId: number;
@@ -208,7 +209,7 @@ const DelavanForm: React.FC<DelavanFormProps> = ({ formId }) => {
           backgroundColor="yellow" 
           fontColor="navy" 
           type="submit" 
-          label={formData?.form_settings.form_submit_button_text} />
+          label={formData?.form_settings?.form_submit_button_text} />
           {formStatus === 'success' && <Well status="success">{formMessage}</Well>}
           {formStatus === 'error' && <Well status="error">{formMessage}</Well>}
       </form>
